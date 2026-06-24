@@ -6,7 +6,7 @@
 const l2DataWeapons = [
     // ─── GRADE S ──────────────────────────────────────────────────────────
     {
-        nome: "Draconic Bow [Grade S] - Bow",
+        nome: "[Grade S] Draconic Bow - Bow",
         sa: "Focus (Red Stage 13) | Cheap Shot (Green Stage 13) | Guidance (Blue Stage 13)",
         grade: "S",
         tipo: "Bow",

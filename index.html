@@ -46,7 +46,7 @@
         <p class="text-[10px] text-[#8a7b6e] mt-2 uppercase tracking-widest font-bold">Database & Guides | Interlude Chronicle | Projeto: Vinicius Dezanetti</p>
     </header>
 
-    <!-- Campo de Busca Contextual (Escondido automaticamente na tela de leitura de quest) -->
+    <!-- Campo de Busca Contextual (Escondido automaticamente na tela de leitura de quest/craft) -->
     <div id="container-busca" class="max-w-6xl mx-auto px-4 mb-6">
         <input type="text" id="input-busca" placeholder="🔍 Search..."
                oninput="buscarNaWiki(this.value)"
@@ -148,6 +148,7 @@
     <script src="quests.js"></script>
     <script src="weapons.js"></script>
     <script src="armors.js"></script>
+    <script src="recipes.js"></script> <!-- SCRIPT DA BASE DE RECEITAS ADICIONADO -->
     <script src="bosses.js"></script>
     <script src="craft.js"></script>
     <script src="skills.js"></script>
@@ -171,9 +172,12 @@
                 { nome: "Mimir's Elixir (Subclass Part 2)", name: "Mimir's Elixir", level: "75+", lvl: "75+", npc: "Magister Ladd (Ivory Tower - 4th Floor)", desc: "Inicia-se após concluir Fate's Whisper. Requer preparar o Pure Silver e o Pure Gold usando a Urna de Alquimia (Alchemist's Mixing Urn) no subsolo de Ivory Tower. Em seguida, cace Watchman Antharas em Dragon Valley para obter o Blood Fire. Misture os ingredientes na Urna com a temperatura certa para criar o Mimir's Elixir. Ao consumi-lo, sua subclasse será oficialmente liberada." }
             ],
             armors: [
-                { nome: "Imperial Crusader Set [Grade S]", bonus: "P. Def +8%, Max HP +445, Sleep/Hold Resistance +70%", grade: "S" },
-                { nome: "Draconic Leather Set [Grade S]", bonus: "P. Atk +4%, P. Atk Spd +4%, Max MP +289, Weight Limit +5759", grade: "S" },
-                { nome: "Major Arcana Set [Grade S]", bonus: "M. Atk +17%, Speed +7, Casting Spd +15%, Stun Resistance +50%", grade: "S" }
+                { nome: "Imperial Crusader Set (Heavy) [Grade S]", bonus: "P. Def +8%, Max HP +445, Sleep/Hold Resistance +70%", grade: "S" },
+                { nome: "Draconic Leather Set (Light) [Grade S]", bonus: "P. Atk +4%, P. Atk Spd +4%, Max MP +289, Weight Limit +5759", grade: "S" },
+                { nome: "Major Arcana Set (Robes) [Grade S]", bonus: "M. Atk +17%, Speed +7, Casting Spd +15%, Stun Resistance +50%", grade: "S" },
+                { nome: "Tateossian Ring [Grade S] - Jewel", bonus: "M. Def +48, Max MP +21", grade: "S" },
+                { nome: "Tateossian Earring [Grade S] - Jewel", bonus: "M. Def +71, Max MP +31", grade: "S" },
+                { nome: "Tateossian Necklace [Grade S] - Jewel", bonus: "M. Def +95, Max MP +42", grade: "S" }
             ],
             recipes: [
                 { nome: "Recipe: Draconic Bow (60%)", mat: "10x Draconic Bow Shaft, 10x Leonard, 10x Sophia, 4x S-grade Crystal" },
@@ -450,7 +454,6 @@
                 </div>`).join('');
         }
 
-        // Renderizador em tela cheia de Quest (HTML Habilitado para imagens e diálogos)
         function exibirDetalheQuest(nomeQuest) {
             let source = [];
             if (typeof dadosQuests !== 'undefined' && dadosQuests.length > 0) source = dadosQuests;
@@ -521,7 +524,8 @@
                 return;
             }
             c.innerHTML = lista.map(w => `
-                <div class="bg-[#140f0c] border-2 border-[#3d2f25] p-4 rounded-none hover:border-[#b58c56] transition-colors shadow-md flex items-center gap-4">
+                <div onclick="exibirDetalheRecipe('${w.nome}')" 
+                     class="bg-[#140f0c] border-2 border-[#3d2f25] p-4 rounded-none hover:border-[#b58c56] hover:bg-[#1a1410] transition-colors shadow-md flex items-center gap-4 cursor-pointer group">
                     
                     <!-- Slot de Inventário Estilo L2 -->
                     <div class="w-12 h-12 shrink-0 bg-[#0d0907] border-2 border-[#3d2f25] flex items-center justify-center overflow-hidden shadow-inner">
@@ -532,10 +536,13 @@
                     </div>
                     
                     <!-- Detalhes -->
-                    <div>
+                    <div class="flex-1">
                         <span class="text-[9px] bg-[#100c09] text-[#a89276] px-1.5 py-0.5 border border-[#3d2f25] font-bold uppercase">Grade ${w.grade || 'S'}</span>
-                        <h3 class="text-[#e5c158] font-bold text-sm uppercase mt-1">${w.nome}</h3>
+                        <h3 class="text-[#e5c158] font-bold text-sm uppercase mt-1 group-hover:text-[#ffcc00] transition-colors">${w.nome}</h3>
                         <p class="text-[11px] text-[#a89276] mt-0.5 font-bold">SA: ${w.sa || 'Sem Customizações'}</p>
+                        <div class="text-right mt-1.5 border-t border-[#241c16] pt-1">
+                            <span class="text-[9px] text-[#b58c56] uppercase font-bold group-hover:underline">🔨 Ver Recipe de Craft →</span>
+                        </div>
                     </div>
 
                 </div>`).join('');
@@ -558,13 +565,22 @@
                 return;
             }
             c.innerHTML = lista.map(a => `
-                <div class="bg-[#140f0c] border-2 border-[#3d2f25] p-4 rounded-none hover:border-[#b58c56] transition-colors shadow-md">
-                    <h3 class="text-[#e5c158] font-bold text-sm uppercase">${a.nome || a.name}</h3>
-                    <p class="text-[11px] text-[#a89276] mt-1 font-bold">Bônus: ${a.bonus || a.setBonus || 'N/A'}</p>
+                <div onclick="exibirDetalheRecipe('${a.nome}')"
+                     class="bg-[#140f0c] border-2 border-[#3d2f25] p-4 rounded-none hover:border-[#b58c56] hover:bg-[#1a1410] transition-colors shadow-md cursor-pointer group flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start gap-2">
+                            <h3 class="text-[#e5c158] font-bold text-sm uppercase group-hover:text-[#ffcc00] transition-colors">${a.nome || a.name}</h3>
+                            <span class="text-[9px] bg-[#100c09] text-[#a89276] px-1.5 py-0.5 border border-[#3d2f25] font-bold uppercase shrink-0">Grade ${a.grade || 'S'}</span>
+                        </div>
+                        <p class="text-[11px] text-[#a89276] mt-2 font-bold leading-relaxed">Bônus: ${a.bonus || a.setBonus || 'N/A'}</p>
+                    </div>
+                    <div class="text-right mt-3 border-t border-[#241c16] pt-2">
+                        <span class="text-[9px] text-[#b58c56] uppercase font-bold group-hover:underline">🔨 Ver Recipe de Craft →</span>
+                    </div>
                 </div>`).join('');
         }
 
-        // ─── RENDERS DE FALLBACKS (Receitas, NPCs, Monstros, Bosses) ──────────────
+        // ─── SEÇÃO: RECIPES ──────────────────────────────────────────────────────
         function exibirRecipes() {
             const c = document.getElementById('container-classes');
             let source = [];
@@ -573,12 +589,103 @@
             else source = fallbacksLocais.recipes;
 
             c.innerHTML = source.map(r => `
-                <div class="bg-[#140f0c] border-2 border-[#3d2f25] p-4 rounded-none hover:border-[#b58c56] transition-colors shadow-md">
-                    <h3 class="text-[#e5c158] font-bold text-sm uppercase">${r.nome}</h3>
-                    <p class="text-[11px] text-[#a89276] mt-1 font-bold">Materiais: ${r.mat || r.materials || 'N/A'}</p>
+                <div onclick="exibirDetalheRecipe('${r.nome}')" 
+                     class="bg-[#140f0c] border-2 border-[#3d2f25] p-4 rounded-none hover:border-[#b58c56] hover:bg-[#1a1410] transition-all shadow-md cursor-pointer group flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-[#e5c158] font-bold text-sm uppercase group-hover:text-[#ffcc00] transition-colors">${r.nome}</h3>
+                        <p class="text-[11px] text-[#a89276] mt-1 font-bold">Materiais Base: ${r.mat || r.materials || 'N/A'}</p>
+                    </div>
+                    <div class="text-right mt-3 border-t border-[#241c16] pt-2">
+                        <span class="text-[9px] text-[#b58c56] uppercase font-bold group-hover:underline">🔨 Ver Recipe Completa →</span>
+                    </div>
                 </div>`).join('');
         }
 
+        // ─── DETALHES DE RECIPE & CRAFTING (TELA CHEIA) ──────────────────────────
+        function obterCoreName(nome) {
+            // Remove [Grade S], - Bow, etc. para limpar a busca no banco de receitas
+            return nome.replace(/\[Grade \w\]/i, '').replace(/-\s*\w+/i, '').replace(/\(Heavy\)|\(Light\)|\(Robes\)/i, '').trim();
+        }
+
+        function obterDetalhesRecipe(nomeItem) {
+            const coreName = obterCoreName(nomeItem);
+            
+            // Procura no banco de receitas carregadas pelo arquivo externo recipes.js
+            const db = (typeof l2RecipesDatabase !== 'undefined') ? l2RecipesDatabase : [];
+            let recipe = db.find(r => r.nome.toLowerCase() === coreName.toLowerCase());
+            
+            // Caso o arquivo externo não tenha carregado, gera uma receita padrão dinâmica (S-Grade) de segurança
+            if (!recipe) {
+                recipe = {
+                    nome: coreName,
+                    arvoreHtml: `
+                        <div class="font-mono text-xs bg-[#0d0907] p-4 border border-[#3d2f25] space-y-1 text-[#d4c5b3] shadow-inner">
+                            <div class="text-[#e5c158] font-bold pb-2 border-b border-[#3d2f25] mb-2">Recipe: ${coreName} (60%) (recipe 100%)</div>
+                            <div>├── 📄 <strong>Recipe: ${coreName} (60%)</strong> [Qtd: 1]</div>
+                            <div>├── 🔹 <strong>${coreName} Key Material</strong> [Qtd: 17]</div>
+                            <div>├── 🔹 <strong>Gemstone S</strong> [Qtd: 43]</div>
+                            <div>├── 📦 <strong>Warsmith's Holder</strong> [Qtd: 4]</div>
+                            <div>└── 🔹 <strong>Crystal: S Grade</strong> [Qtd: 214]</div>
+                        </div>
+                    `,
+                    totaisHtml: `
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-mono bg-[#0d0907] p-4 border border-[#3d2f25] text-[#d4c5b3]">
+                            <div class="flex justify-between border-b border-[#1f1712] pb-1"><span>Recipe: ${coreName} (60%)</span><span class="text-[#e5c158] font-bold">1</span></div>
+                            <div class="flex justify-between border-b border-[#1f1712] pb-1"><span>${coreName} Key Material</span><span class="text-[#e5c158] font-bold">17</span></div>
+                            <div class="flex justify-between border-b border-[#1f1712] pb-1"><span>Gemstone S</span><span class="text-[#e5c158] font-bold">43</span></div>
+                            <div class="flex justify-between border-b border-[#1f1712] pb-1"><span>Crystal: S Grade</span><span class="text-[#e5c158] font-bold">214</span></div>
+                        </div>
+                    `
+                };
+            }
+            return recipe;
+        }
+
+        function exibirDetalheRecipe(nomeItem) {
+            document.getElementById('container-busca').classList.add('hidden');
+            
+            const container = document.getElementById('container-classes');
+            container.className = "max-w-4xl mx-auto space-y-6";
+            
+            const recipe = obterDetalhesRecipe(nomeItem);
+            
+            // Retorna para a seção de origem baseada na aba ativa atual
+            const backSection = (secaoAtiva === 'recipes') ? 'recipes' : (secaoAtiva === 'weapons' ? 'weapons' : 'armors');
+
+            container.innerHTML = `
+                <!-- Botão Voltar -->
+                <div class="mb-2">
+                    <button onclick="renderizarSecao('${backSection}')" class="bg-[#1f1712] border border-[#5c4737] hover:bg-[#5c4737] hover:border-[#b58c56] hover:text-white text-[#e5c158] text-xs font-bold px-4 py-2 transition-colors rounded-none flex items-center gap-2">
+                        ← Voltar para ${backSection.toUpperCase()}
+                    </button>
+                </div>
+
+                <!-- Painel de Recipe Clássico -->
+                <div class="bg-[#140f0c] border-4 border-double border-[#5c4737] p-6 rounded-none shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
+                    <div class="flex flex-wrap justify-between items-start gap-4 border-b border-[#3d2f25] pb-4 mb-4">
+                        <div>
+                            <span class="text-[10px] text-[#a89276] uppercase tracking-widest font-bold">Recipe & Crafting Guide — Interlude Chronicle</span>
+                            <h2 class="text-2xl font-l2-title text-[#e5c158] uppercase tracking-wider mt-1">${recipe.nome} Crafting</h2>
+                        </div>
+                    </div>
+
+                    <h3 class="text-[#e5c158] font-bold text-sm uppercase mb-2 border-b border-[#3d2f25] pb-1">Recipe Tree</h3>
+                    ${recipe.arvoreHtml}
+
+                    <h3 class="text-[#e5c158] font-bold text-sm uppercase mt-6 mb-2 border-b border-[#3d2f25] pb-1">Totals</h3>
+                    ${recipe.totaisHtml}
+                </div>
+
+                <!-- Botão Voltar Inferior -->
+                <div class="pt-4 text-center">
+                    <button onclick="renderizarSecao('${backSection}')" class="bg-[#1f1712] border border-[#5c4737] hover:bg-[#5c4737] hover:border-[#b58c56] hover:text-white text-[#e5c158] text-xs font-bold px-6 py-2.5 transition-colors rounded-none inline-block">
+                        ← Voltar para ${backSection.toUpperCase()}
+                    </button>
+                </div>
+            `;
+        }
+
+        // ─── RENDERS DE NPC, MONSTROS E BOSSES ───────────────────────
         function exibirNpcs() {
             const c = document.getElementById('container-classes');
             let source = [];
