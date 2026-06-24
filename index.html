@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L2 Interlude Wiki - Quests Completas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Marcellus&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+        /* Fontes temáticas de RPG/Fantasia */
+        .font-l2-title { font-family: 'Cinzel', serif; }
+        .font-l2-sub { font-family: 'Marcellus', serif; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+
+        /* Customização da barra de rolagem clássica / retrô */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #0d0d0f;
+            border-left: 1px solid #231e16;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #b48c36;
+            border: 2px solid #0d0d0f;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #8c6d28;
+        }
+
+        /* Efeito de borda dupla metálica/dourada estilo L2 UI */
+        .l2-border {
+            border: 1px solid #3c352a;
+            outline: 1px solid #1a1712;
+            outline-offset: -2px;
+        }
+        
+        .l2-panel {
+            background: linear-gradient(135deg, #161519 0%, #0f0e11 100%);
+            box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.6);
+        }
+    </style>
+</head>
+<body class="bg-[#0b0a0d] text-zinc-300 min-h-screen">
+
+    <!-- Cabeçalho Estilo Painel do Jogo -->
+    <header class="border-b-2 border-[#524636] bg-[#131216] p-8 text-center shadow-2xl relative">
+        <div class="absolute inset-x-0 bottom-0 h-[1px] bg-[#917b58]/30"></div>
+        <h1 class="text-4xl font-black tracking-widest text-[#d1af66] font-l2-title uppercase drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">Lineage II Wiki</h1>
+        <p class="text-xs text-[#9c8a70] font-l2-sub mt-2 italic uppercase tracking-wider">Work in progress | Vinicius Dezanetti | Interlude</p>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <main class="max-w-6xl mx-auto p-6">
+        
+        <!-- Menu de Navegação Rápida (Abas estilo Menu do Inventário/Skill) -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
+            <button class="p-4 bg-[#1c1a21] l2-border rounded text-[#d1af66] font-l2-sub font-bold shadow-xl transition-all duration-200 border-t-[#6b5d47]">🌳 Classes & Quests</button>
+            <button class="p-4 bg-[#111014] border border-[#2d271f] rounded hover:border-[#524636] hover:text-[#d1af66] transition-all text-zinc-500 font-l2-sub font-bold">⚒️ Craft</button>
+            <button class="p-4 bg-[#111014] border border-[#2d271f] rounded hover:border-[#524636] hover:text-[#d1af66] transition-all text-zinc-500 font-l2-sub font-bold">👹 Bosses</button>
+            <button class="p-4 bg-[#111014] border border-[#2d271f] rounded hover:border-[#524636] hover:text-[#d1af66] transition-all text-zinc-500 font-l2-sub font-bold">⏱️ Timers</button>
+        </div>
+
+        <!-- Seleção de Raças -->
+        <div class="flex flex-wrap gap-2 mb-5 bg-[#121115] p-3 l2-border rounded">
+            <span class="text-[#8c7a62] self-center mr-3 text-xs font-bold font-l2-sub uppercase tracking-widest">Selecione a Raça:</span>
+            <button onclick="selecionarRaca('human')" id="btn-human" class="btn-raca px-4 py-2 rounded text-xs font-bold uppercase tracking-wider bg-[#1c1a21] border border-[#3c352a] text-zinc-400 hover:bg-[#25222d] hover:text-zinc-200 transition">Human</button>
+            <button onclick="selecionarRaca('elf')" id="btn-elf" class="btn-raca px-4 py-2 rounded text-xs font-bold uppercase tracking-wider bg-[#1c1a21] border border-[#3c352a] text-zinc-400 hover:bg-[#25222d] hover:text-zinc-200 transition">Elf</button>
+            <button onclick="selecionarRaca('darkelf')" id="btn-darkelf" class="btn-raca px-4 py-2 rounded text-xs font-bold uppercase tracking-wider bg-[#1c1a21] border border-[#3c352a] text-zinc-400 hover:bg-[#25222d] hover:text-zinc-200 transition">Dark Elf</button>
+            <button onclick="selecionarRaca('orc')" id="btn-orc" class="btn-raca px-4 py-2 rounded text-xs font-bold uppercase tracking-wider bg-[#1c1a21] border border-[#3c352a] text-zinc-400 hover:bg-[#25222d] hover:text-zinc-200 transition">Orc</button>
+            <button onclick="selecionarRaca('dwarf')" id="btn-dwarf" class="btn-raca px-4 py-2 rounded text-xs font-bold uppercase tracking-wider bg-[#1c1a21] border border-[#3c352a] text-zinc-400 hover:bg-[#25222d] hover:text-zinc-200 transition">Dwarf</button>
+        </div>
+
+        <!-- Sub-Filtro: Arquétipo -->
+        <div id="container-subfiltros" class="flex gap-2 mb-6 pl-1 hidden">
+            <button onclick="filtrarArquetipo('Fighter')" id="btn-sub-Fighter" class="px-4 py-1.5 rounded text-[11px] font-bold uppercase border border-[#3c352a] text-zinc-400 bg-[#141217]">⚔️ Fighter</button>
+            <button onclick="filtrarArquetipo('Mage')" id="btn-sub-Mage" class="px-4 py-1.5 rounded text-[11px] font-bold uppercase border border-[#3c352a] text-zinc-400 bg-[#141217]">🔮 Mage</button>
+        </div>
+
+        <!-- Área da Árvore de Classes -->
+        <section class="bg-[#121115] l2-border rounded-lg p-6 shadow-2xl">
+            <div class="flex justify-between items-center mb-6 border-b border-[#3c352a] pb-3">
+                <h2 class="text-lg font-bold text-[#d1af66] font-l2-title uppercase tracking-wider">Progressão de Árvore Linhagem</h2>
+                <span class="text-[11px] text-[#8c7a62] italic">Selecione a classe desejada para abrir as crônicas de quest</span>
+            </div>
+            
+            <div id="container-classes" class="space-y-4">
+                <!-- Injetado via JS dinamicamente -->
+            </div>
+        </section>
+
+        <!-- MODAL MULTI-QUEST -->
+        <div id="modal-quest" class="fixed inset-0 bg-black/85 backdrop-blur-sm flex items-center justify-center p-4 hidden z-50">
+            <div class="bg-[#141318] l2-border rounded-md max-w-4xl w-full p-6 shadow-[0_0_50px_rgba(0,0,0,0.9)] relative max-h-[90vh] flex flex-col">
+                <!-- Botão Fechar -->
+                <button onclick="fecharQuest()" class="absolute top-4 right-4 text-zinc-500 hover:text-[#d1af66] text-3xl font-light transition">&times;</button>
+                
+                <!-- Título e Árvore -->
+                <h3 id="quest-titulo" class="text-2xl font-bold text-[#d1af66] font-l2-title mb-1 uppercase tracking-wider">CARDINAL</h3>
+                <p id="quest-subtitulo" class="text-[11px] font-mono text-[#9c8a70] mb-5 border-b border-[#3c352a] pb-3">Human Mystic ➔ Cleric ➔ Bishop ➔ Cardinal</p>
+                
+                <!-- Seleção do Estágio da Quest -->
+                <div class="flex gap-2 mb-4 bg-[#0a0a0d] p-1.5 rounded border border-[#2a241d]">
+                    <button onclick="mudarEstagioQuest(1)" id="btn-job-1" class="flex-1 py-2 text-xs font-bold uppercase tracking-wider rounded border border-[#3c352a] text-zinc-500 bg-transparent hover:bg-[#1a171f] transition">1ª Job (Lv 20)</button>
+                    <button onclick="mudarEstagioQuest(2)" id="btn-job-2" class="flex-1 py-2 text-xs font-bold uppercase tracking-wider rounded border border-[#3c352a] text-zinc-500 bg-transparent hover:bg-[#1a171f] transition">2ª Job (Lv 40)</button>
+                    <button onclick="mudarEstagioQuest(3)" id="btn-job-3" class="flex-1 py-2 text-xs font-bold uppercase tracking-wider rounded border border-[#3c352a] text-zinc-500 bg-transparent hover:bg-[#1a171f] transition">3ª Job (Lv 76)</button>
+                </div>
+                
+                <!-- Conteúdo de Passos Rolar -->
+                <div class="overflow-y-auto pr-2 flex-1 bg-[#09090c] p-5 rounded border border-[#1f1b15] custom-scrollbar">
+                    <div id="quest-passos" class="text-[13px] text-[#c2b49a] space-y-4 whitespace-pre-line leading-relaxed font-mono font-medium tracking-wide">
+                        <!-- O tutorial detalhado entra aqui via JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Scripts de Dados Modulares -->
+    <script src="human.js"></script>
+    <script src="elf.js"></script>
+    <script src="darkelf.js"></script>
+    <script src="orc.js"></script>
+    <script src="dwarf.js"></script>
+
+    <!-- Script de Controle da Aplicação -->
+    <script>
+        const dadosClasses = {
+            human: typeof l2DataHuman !== 'undefined' ? l2DataHuman : [],
+            elf: typeof l2DataElf !== 'undefined' ? l2DataElf : [],
+            darkelf: typeof l2DataDarkElf !== 'undefined' ? l2DataDarkElf : [],
+            orc: typeof l2DataOrc !== 'undefined' ? l2DataOrc : [],
+            dwarf: typeof l2DataDwarf !== 'undefined' ? l2DataDwarf : []
+        };
+
+        let racaAtual = 'human';
+        let arquetipoAtual = 'Fighter';
+        let classeAtivaParaModal = null;
+
+        function selecionarRaca(raca) {
+            racaAtual = raca;
+            const subfiltros = document.getElementById('container-subfiltros');
+            
+            atualizarBotoesRaca(raca);
+
+            if (raca === 'dwarf') {
+                subfiltros.classList.add('hidden');
+                exibirClasses(dadosClasses[raca]);
+                return;
+            }
+
+            subfiltros.classList.remove('hidden');
+            filtrarArquetipo(arquetipoAtual);
+        }
+
+        function filtrarArquetipo(tipo) {
+            arquetipoAtual = tipo;
+            const filtradas = dadosClasses[racaAtual].filter(c => c.tipo === tipo);
+            exibirClasses(filtradas);
+            atualizarBotoesSubfiltro(tipo);
+        }
+
+        function exibirClasses(lista) {
+            const container = document.getElementById('container-classes');
+            container.innerHTML = '';
+
+            if (lista.length === 0) {
+                container.innerHTML = `<p class="text-zinc-500 italic text-center py-8">Dados desta raça ainda estão sendo importados pelos arquivos JS.</p>`;
+                return;
+            }
+
+            lista.forEach((fluxo, index) => {
+                container.innerHTML += `
+                    <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-center bg-[#16141a]/40 p-4 rounded-lg border border-[#2b251d] shadow-inner">
+                        
+                        <!-- Base Row -->
+                        <div class="bg-[#100f13] p-2.5 rounded w-full md:w-1/4 border-l-4 border-zinc-700 text-left pl-4 l2-border">
+                            <span class="text-[9px] text-[#8c7a62] block font-mono uppercase font-bold tracking-wider">Classe Inicial</span>
+                            <strong class="text-xs text-zinc-300 font-sans tracking-wide uppercase font-semibold">${fluxo.base}</strong>
+                        </div>
+                        
+                        <div class="text-[#524636] font-bold rotate-90 md:rotate-0 text-sm">➔</div>
+                        
+                        <!-- 1st Job Row -->
+                        <div onclick="abrirQuest('${racaAtual}', ${index}, 1)" class="bg-[#100f13] p-2.5 rounded w-full md:w-1/4 border-l-4 border-cyan-800 text-left pl-4 hover:border-cyan-500 hover:bg-cyan-950/20 l2-border cursor-pointer transition-all duration-250">
+                            <span class="text-[9px] text-cyan-500 block font-mono uppercase font-bold tracking-wider">Lv 20 (1st Job)</span>
+                            <strong class="text-xs text-zinc-200 font-sans tracking-wide uppercase font-semibold">${fluxo.c1}</strong>
+                        </div>
+                        
+                        <div class="text-[#524636] font-bold rotate-90 md:rotate-0 text-sm">➔</div>
+                        
+                        <!-- 2nd Job Row -->
+                        <div onclick="abrirQuest('${racaAtual}', ${index}, 2)" class="bg-[#100f13] p-2.5 rounded w-full md:w-1/4 border-l-4 border-emerald-800 text-left pl-4 hover:border-emerald-500 hover:bg-emerald-950/20 l2-border cursor-pointer transition-all duration-250">
+                            <span class="text-[9px] text-emerald-500 block font-mono uppercase font-bold tracking-wider">Lv 40 (2nd Job)</span>
+                            <strong class="text-xs text-zinc-200 font-sans tracking-wide uppercase font-semibold">${fluxo.c2}</strong>
+                        </div>
+                        
+                        <div class="text-[#524636] font-bold rotate-90 md:rotate-0 text-sm">➔</div>
+                        
+                        <!-- 3rd Job Row Actived -->
+                        <div onclick="abrirQuest('${racaAtual}', ${index}, 3)" class="bg-[#100f13] p-2.5 rounded w-full md:w-1/4 border-l-4 border-[#9e8044] text-left pl-4 hover:border-[#d1af66] hover:bg-[#d1af66]/5 l2-border cursor-pointer transition-all duration-250">
+                            <span class="text-[9px] text-[#d1af66] block font-mono uppercase font-bold tracking-wider">Lv 76 (3rd Job) ★</span>
+                            <strong class="text-xs text-[#d1af66] font-sans tracking-wide uppercase font-bold">${fluxo.c3}</strong>
+                        </div>
+                        
+                    </div>
+                `;
+            });
+        }
+
+        function abrirQuest(raca, index, jobAlvo) {
+            if (raca === 'dwarf') {
+                classeAtivaParaModal = dadosClasses[raca][index];
+            } else {
+                classeAtivaParaModal = dadosClasses[raca].filter(c => c.tipo === arquetipoAtual)[index];
+            }
+            
+            document.getElementById('quest-titulo').innerText = classeAtivaParaModal.c3;
+            document.getElementById('quest-subtitulo').innerText = `${classeAtivaParaModal.base} ➔ ${classeAtivaParaModal.c1} ➔ ${classeAtivaParaModal.c2} ➔ ${classeAtivaParaModal.c3}`;
+            
+            document.getElementById('modal-quest').classList.remove('hidden');
+            mudarEstagioQuest(jobAlvo);
+        }
+
+        function mudarEstagioQuest(job) {
+            [1, 2, 3].forEach(i => {
+                const btn = document.getElementById(`btn-job-${i}`);
+                if(btn) btn.className = "flex-1 py-2 text-xs font-bold uppercase tracking-wider rounded border border-[#3c352a] text-zinc-500 bg-transparent hover:bg-[#1a171f] transition";
+            });
+            
+            const btnAtivo = document.getElementById(`btn-job-${job}`);
+            if(btnAtivo) btnAtivo.className = "flex-1 py-2 text-xs font-bold uppercase tracking-wider rounded border border-[#9e8044] text-[#d1af66] bg-[#d1af66]/10 font-semibold shadow-inner";
+            
+            const container = document.getElementById('quest-passos');
+            if (job === 1) {
+                container.innerText = classeAtivaParaModal.quest1 || `★ GUIA DA 1ª JOB (${classeAtivaParaModal.c1}) ★\n\nGuia detalhado do level 20 em processo de importação.`;
+            } else if (job === 2) {
+                container.innerText = classeAtivaParaModal.quest2 || `★ GUIA DA 2ª JOB (${classeAtivaParaModal.c2}) ★\n\nGuia triplo do level 40 em processo de importação.`;
+            } else if (job === 3) {
+                container.innerText = classeAtivaParaModal.quest3 || classeAtivaParaModal.quest || `★ GUIA DA 3ª JOB (${classeAtivaParaModal.c3}) ★\n\nSaga da Tablet of Vision do level 76 em processo de importação.`;
+            }
+        }
+
+        function fecharQuest() {
+            document.getElementById('modal-quest').classList.add('hidden');
+            classeAtivaParaModal = null;
+        }
+
+        function atualizarBotoesRaca(racaAtiva) {
+            document.querySelectorAll('.btn-raca').forEach(btn => {
+                btn.className = "btn-raca px-4 py-2 rounded text-xs font-bold uppercase tracking-wider bg-[#1c1a21] border border-[#3c352a] text-zinc-400 hover:bg-[#25222d] hover:text-zinc-200 transition";
+            });
+            const botaoAlvo = document.getElementById(`btn-${racaAtiva}`);
+            if(botaoAlvo) botaoAlvo.className = "btn-raca px-4 py-2 rounded text-xs font-bold uppercase tracking-wider bg-[#d1af66] text-zinc-950 font-bold shadow-md border border-[#9e8044]";
+        }
+
+        function atualizarBotoesSubfiltro(tipoAtivo) {
+            const btnFighter = document.getElementById('btn-sub-Fighter');
+            const btnMage = document.getElementById('btn-sub-Mage');
+            if(!btnFighter || !btnMage) return;
+            
+            btnFighter.className = "px-4 py-1.5 rounded text-[11px] font-bold uppercase border border-[#3c352a] text-zinc-400 bg-[#141217]";
+            btnMage.className = "px-4 py-1.5 rounded text-[11px] font-bold uppercase border border-[#3c352a] text-zinc-400 bg-[#141217]";
+
+            if (tipoAtivo === 'Fighter') {
+                btnFighter.className = "px-4 py-1.5 rounded text-[11px] font-bold uppercase border border-[#9e8044] text-[#d1af66] bg-[#d1af66]/5 font-bold";
+            } else {
+                btnMage.className = "px-4 py-1.5 rounded text-[11px] font-bold uppercase border border-[#9e8044] text-[#d1af66] bg-[#d1af66]/5 font-bold";
+            }
+        }
+
+        const modalBackdrop = document.getElementById('modal-quest');
+        modalBackdrop.addEventListener('click', function(e) {
+            if (e.target === modalBackdrop) {
+                fecharQuest();
+            }
+        });
+
+        document.addEventListener("DOMContentLoaded", () => {
+            selecionarRaca('human');
+        });
+    </script>
+</body>
+</html>

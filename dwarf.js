@@ -1,0 +1,28 @@
+// Arquivo: dwarf.js
+const l2DataDwarf = [
+    // ==========================================
+    //   DWARF - ARTISAN / WARSMITH / MAESTRO
+    // ==========================================
+    { 
+        tipo: "Fighter", base: "Dwarven Fighter", c1: "Artisan", c2: "Warsmith", c3: "Maestro",
+        
+        quest1: `★ PATH TO AN ARTISAN (1st Job - Lv 20) ★\n\n[NPC Inicial]: Silvermith Pinter na guilda de ferreiros em Gludio Town.\n\n1. Fale com Pinter para iniciar seu teste de manufatura. Ele te dará a "Pinter's Letter".\n2. Vá para a entrada de Wasteland e cace "Boogle Ratmen" até conseguir 10 pedaços de minério cinzento.\n3. Retorne a Gludio e entregue a Pinter. Ele te dará uma receita especial de quest.\n4. Siga para as Ruínas da Agonia e cace "Vuku Orc Fighters" para obter 10 pedaços de carvão vegetal de qualidade.\n5. Volte a falar com Pinter. Ele avaliará seu trabalho e te entregará o "Final Recipe Token".\n6. Vá até o Chief da guilda dos anões em Gludio ou Schuttgart e mude sua classe para Artisan.`,
+        
+        quest2: `★ PATH OF THE WARSMITH (2nd Job - Lv 40) ★\n\n[NPC Inicial]: Warehouse Chief Reed em Giran Town.\n\n1. Comece a "Trial of the Guildsman" com Reed. Você precisará viajar para Giran e falar com o Blacksmith Dunming para criar chaves de teste, caçando Breka Orcs para coletar materiais.\n2. Inicie o "Test of Testimony" com o Guild Master em Dien. Ele exigirá que você prove seus conhecimentos geológicos caçando lagartos e formigas gigantes em Wasteland.\n3. Pegue o "Test of the Maestro" com Chief Croon em Schuttgart. Você precisará visitar 3 mestres ferreiros lendários espalhados pelo mundo (em Oren, Giran e Dwarven Village) e cumprir tarefas de fundição de alta complexidade para cada um.\n4. Com as marcas de Guildsman, Testimony e Maestro em mãos, vá até a guilda de Schuttgart ou Giran e torne-se um Warsmith.`,
+        
+        quest3: `★ SAGA OF THE MAESTRO (3rd Job - Lv 76) ★\n\n[NPC Inicial]: Chief Ferreio Tobald em Schuttgart.\n\n1. Tobald te enviará para Goddard falar com o Mestre Kusto para investigar esquemas de plantas antigas de runas.\n2. Viaje para Hot Springs e consiga a tradicional "Ice Crystal" com o Chef Jeremy na quest "The Finest Ingredients - Part 1".\n3. Sintonize as Tablets of Vision:\n   • Tablet 1: Sul de Tower of Insolence.\n   • Tablet 2: Valley of Saints (Derrote os monstros guardiões rúnicos ao redor da placa).\n   • Tablet 3: Border Outpost (Derrote o Golem Invasor de quest em duelo estritamente solo).\n4. Vá para Goddard e faça aliança nível 2 com os Varka Silenos ou Ketra Orcs para obter a "Divine Stone of Wisdom".\n5. Cace 700 monstros em Shrine of Loyalty para fazer o Archon of Halisha nascer e dropar o 5º amuleto.\n6. Ative a última Tablet, fale com a projeção ancestral e volte a Schuttgart para consagrar-se um MAESTRO!`
+    },
+
+    // ==========================================
+    //   DWARF - SCAVENGER / BOUNTY HUNTER / FORTUNE SEEKER
+    // ==========================================
+    { 
+        tipo: "Fighter", base: "Dwarven Fighter", c1: "Scavenger", c2: "Bounty Hunter", c3: "Fortune Seeker",
+        
+        quest1: `★ PATH TO A SCAVENGER (1st Job - Lv 20) ★\n\n[NPC Inicial]: Collector Pippi na Dwarven Village (ou na guilda de Gludin).\n\n1. Fale com Pippi para receber a "Pippi's Letter". Ela te mandará falar com o Trader Mion.\n2. Mion te dará várias missões de entrega de pacotes para NPCs locais na vila dos anões até confiar em você.\n3. Depois, Mion te mandará caçar "Hunter Bear" e "Honey Bear" nas montanhas congeladas usando a habilidade Spoil até conseguir 5 potes de mel.\n4. Leve o mel para o Master Raut em Gludin Town.\n5. Raut te mandará para a costa de Gludin eliminar "Torai" ou contrabandistas para recuperar o anel rúnico.\n6. Entregue o anel para Raut, ganhe o "Ring of Raven" e mude sua classe para Scavenger na guilda.`,
+        
+        quest2: `★ PATH OF THE BOUNTY HUNTER (2nd Job - Lv 40) ★\n\n[NPC Inicial]: Warehouse Chief Reed em Giran Town.\n\n1. Comece a "Trial of the Guildsman" com Reed para obter autorização comercial avançada, coletando mandíbulas de aranhas em Hunter's Village.\n2. Faça o "Test of Testimony" iniciando em Dion Town. Você precisará rastrear minérios raros caçando monstros do tipo planta e fungos em Cruma Swamp.\n3. Faça o "Test of the Prosperity" com Chief Warehouse Keeper Parman em Giran. Você terá que pagar taxas raras coletando itens valiosos de Mandragoras em Dion e de monstros na Ant Nest (Wasteland).\n4. Junte os 3 certificados (Guildsman, Testimony e Prosperity), volte para o Warehouse de Giran no nível 40 e mude para Bounty Hunter.`,
+        
+        quest3: `★ SAGA OF THE FORTUNE SEEKER (3rd Job - Lv 76) ★\n\n[NPC Inicial]: Chief Warehouse Keeper Mion em Goddard Town.\n\n1. Mion te mandará falar com Pamela para rastrear o paradeiro do Amuleto da Fortuna Suprema.\n2. Vá até Hot Springs garantir sua "Ice Crystal" cumprindo a caçada do Chef Jeremy.\n3. Sintonize as Tablets of Vision:\n   • Tablet 1: Próxima a TOI.\n   • Tablet 2: Valley of Saints (Limpe os guardiões mágicos ao redor).\n   • Tablet 3: Border Outpost (Derrote o caçador de recompensas rival que aparece como Quest Monster sozinho).\n4. Conquiste aliança nível 2 com os Orcs Ketra ou Silenos Varka para ganhar a "Divine Stone of Wisdom".\n5. Vá para Shrine of Loyalty e junte 700 insígnias para forçar a aparição do Archon of Halisha e pegar o 5º amuleto.\n6. Ative a última Tablet e retorne a Goddard para virar um FORTUNE SEEKER!`
+    }
+];
