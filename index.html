@@ -4,18 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lineage II Wiki - Jobs & Quests</title>
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@400;600&display=swap');
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0b0a0d;
+        body { font-family: 'Inter', sans-serif; background-color: #0b0a0d; }
+        .font-l2-title { font-family: 'Cinzel', serif; }
+        .btn-classe {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: opacity 0.15s;
         }
-        .font-l2-title {
-            font-family: 'Cinzel', serif;
-        }
+        .btn-classe:hover .nome-classe { color: #d1af66 !important; text-decoration: underline; }
     </style>
 </head>
 <body class="text-zinc-300 min-h-screen pb-12">
@@ -28,73 +29,63 @@
 
     <!-- Campo de Busca -->
     <div class="max-w-6xl mx-auto px-4 mb-6">
-        <div class="relative">
-            <input type="text" id="input-busca" placeholder="🔍 Search class (e.g., Dreadnought, Hawkeye, Paladin...)" 
-                   oninput="buscarClasse(this.value)"
-                   class="w-full bg-[#141318] border border-[#3c352a] rounded-lg p-4 text-[#d1af66] placeholder-[#524636] focus:outline-none focus:border-[#d1af66] transition">
-        </div>
+        <input type="text" id="input-busca" placeholder="🔍 Search class (e.g., Dreadnought, Hawkeye, Paladin...)"
+               oninput="buscarClasse(this.value)"
+               class="w-full bg-[#141318] border border-[#3c352a] rounded-lg p-4 text-[#d1af66] placeholder-[#524636] focus:outline-none focus:border-[#d1af66] transition">
     </div>
 
-<!-- Navegação Principal -->
-<nav class="max-w-6xl mx-auto px-4 mb-6 flex flex-wrap gap-2 justify-center">
-    <button onclick="renderizarSecao('jobs')" class="px-4 py-2 bg-[#141318] border border-[#3c352a] text-[10px] uppercase">Classes</button>
-    <button onclick="renderizarSecao('weapons')" class="px-4 py-2 bg-[#141318] border border-[#3c352a] text-[10px] uppercase">Weapons</button>
-    <button onclick="renderizarSecao('armors')" class="px-4 py-2 bg-[#141318] border border-[#3c352a] text-[10px] uppercase">Armors</button>
-    <button onclick="renderizarSecao('bosses')" class="px-4 py-2 bg-[#141318] border border-[#3c352a] text-[10px] uppercase">Bosses</button>
+    <!-- Navegação Principal -->
+    <nav class="max-w-6xl mx-auto px-4 mb-6 flex flex-wrap gap-2 justify-center">
+        <button onclick="renderizarSecao('jobs')"    class="px-4 py-2 bg-[#141318] border border-[#3c352a] text-[10px] uppercase hover:border-zinc-500 transition">Classes</button>
+        <button onclick="renderizarSecao('weapons')" class="px-4 py-2 bg-[#141318] border border-[#3c352a] text-[10px] uppercase hover:border-zinc-500 transition">Weapons</button>
+        <button onclick="renderizarSecao('armors')"  class="px-4 py-2 bg-[#141318] border border-[#3c352a] text-[10px] uppercase hover:border-zinc-500 transition">Armors</button>
+        <button onclick="renderizarSecao('bosses')"  class="px-4 py-2 bg-[#141318] border border-[#3c352a] text-[10px] uppercase hover:border-zinc-500 transition">Bosses</button>
     </nav>
 
-    <!-- Subfiltros (Fighter / Mage) -->
+    <!-- Subfiltros Fighter / Mage -->
     <div id="container-subfiltros" class="max-w-6xl mx-auto px-4 mb-8 flex justify-center gap-4">
-        <button onclick="filtrarTipo('todos')" id="btn-tipo-todos" class="text-xs uppercase font-bold text-[#d1af66] border-b-2 border-[#d1af66] pb-1 px-2">Todos</button>
+        <button onclick="filtrarTipo('todos')"   id="btn-tipo-todos"   class="text-xs uppercase font-bold text-[#d1af66] border-b-2 border-[#d1af66] pb-1 px-2">Todos</button>
         <button onclick="filtrarTipo('Fighter')" id="btn-tipo-fighter" class="text-xs uppercase font-bold text-zinc-500 hover:text-zinc-300 pb-1 px-2">Fighters</button>
-        <button onclick="filtrarTipo('Mage')" id="btn-tipo-mage" class="text-xs uppercase font-bold text-zinc-500 hover:text-zinc-300 pb-1 px-2">Mages</button>
+        <button onclick="filtrarTipo('Mage')"    id="btn-tipo-mage"    class="text-xs uppercase font-bold text-zinc-500 hover:text-zinc-300 pb-1 px-2">Mages</button>
     </div>
 
-    <!-- Container onde as Árvores de Classes serão injetadas -->
+    <!-- Container principal -->
     <main class="max-w-6xl mx-auto px-4">
-        <div id="container-classes" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <!-- Injetado via JS -->
-        </div>
+        <div id="container-classes" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
     </main>
 
-    <!-- MODAL DETALHADO (Quests, Status, Forças e Fraquezas) -->
-    <div id="modal-quest" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-[#141318] border border-[#3c352a] w-full max-w-3xl rounded-lg max-h-[90vh] overflow-y-auto flex flex-col shadow-2xl">
-            
-            <!-- Cabeçalho do Modal -->
+    <!-- ═══════════════════════════════════════════════════════════════
+         MODAL — mostra APENAS a quest da classe clicada
+    ════════════════════════════════════════════════════════════════ -->
+    <div id="modal-quest" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden items-center justify-center p-4" style="display:none">
+        <div class="bg-[#141318] border border-[#3c352a] w-full max-w-2xl rounded-lg max-h-[90vh] flex flex-col shadow-2xl">
+
+            <!-- Cabeçalho -->
             <div class="p-4 border-b border-[#3c352a] flex justify-between items-start bg-[#1a191f]">
                 <div>
+                    <p id="modal-badge" class="text-[10px] font-mono uppercase tracking-widest mb-1 text-zinc-500"></p>
                     <h3 id="modal-titulo" class="text-xl font-l2-title text-[#d1af66] uppercase"></h3>
-                    <p id="modal-subtitulo" class="text-xs text-zinc-400 mt-1 uppercase tracking-wider"></p>
+                    <p id="modal-subtitulo" class="text-xs text-zinc-500 mt-1 uppercase tracking-wider"></p>
                 </div>
-                <button onclick="fecharModal()" class="text-zinc-500 hover:text-zinc-200 text-2xl font-bold px-2">&times;</button>
+                <button onclick="fecharModal()" class="text-zinc-500 hover:text-zinc-200 text-2xl font-bold px-2 leading-none">&times;</button>
             </div>
 
-            <!-- Abas internas do Modal -->
+            <!-- Abas -->
             <div class="flex border-b border-[#3c352a] bg-[#111014] text-xs uppercase font-semibold">
-                <button onclick="mudarAbaModal('quests')" id="tab-quests" class="flex-1 py-3 text-center border-b-2 border-[#d1af66] text-[#d1af66]">⚔️ Quests de Job</button>
-                <button onclick="mudarAbaModal('info')" id="tab-info" class="flex-1 py-3 text-center text-zinc-500 border-b-2 border-transparent hover:text-zinc-300">📊 Status e Info</button>
+                <button onclick="mudarAbaModal('quest')" id="tab-quest" class="flex-1 py-3 text-center border-b-2 border-[#d1af66] text-[#d1af66]">⚔️ Quest de Job</button>
+                <button onclick="mudarAbaModal('info')"  id="tab-info"  class="flex-1 py-3 text-center text-zinc-500 border-b-2 border-transparent hover:text-zinc-300">📊 Status e Info</button>
             </div>
 
-            <!-- Conteúdo do Modal -->
-            <div class="p-6 overflow-y-auto flex-1 location-modal">
-                <!-- Aba Quests -->
-                <div id="conteudo-modal-quests" class="space-y-6">
-                    <div>
-                        <h4 class="text-[#d1af66] font-bold text-sm uppercase mb-2 border-b border-[#3c352a] pb-1">1ª Mudança de Classe (Lv 20)</h4>
-                        <pre id="modal-quest1" class="whitespace-pre-wrap font-sans text-xs text-zinc-300 leading-relaxed bg-[#0b0a0d] p-3 rounded border border-zinc-900"></pre>
-                    </div>
-                    <div>
-                        <h4 class="text-[#d1af66] font-bold text-sm uppercase mb-2 border-b border-[#3c352a] pb-1">2ª Mudança de Classe (Lv 40)</h4>
-                        <pre id="modal-quest2" class="whitespace-pre-wrap font-sans text-xs text-zinc-300 leading-relaxed bg-[#0b0a0d] p-3 rounded border border-zinc-900"></pre>
-                    </div>
-                    <div>
-                        <h4 class="text-[#d1af66] font-bold text-sm uppercase mb-2 border-b border-[#3c352a] pb-1">3ª Mudança de Classe (Lv 76)</h4>
-                        <pre id="modal-quest3" class="whitespace-pre-wrap font-sans text-xs text-zinc-300 leading-relaxed bg-[#0b0a0d] p-3 rounded border border-zinc-900"></pre>
-                    </div>
+            <!-- Corpo -->
+            <div class="p-6 overflow-y-auto flex-1">
+
+                <!-- Aba Quest: mostra só 1 quest, a da classe clicada -->
+                <div id="conteudo-modal-quest">
+                    <h4 id="modal-quest-titulo" class="text-[#d1af66] font-bold text-sm uppercase mb-3 border-b border-[#3c352a] pb-1"></h4>
+                    <pre id="modal-quest-texto" class="whitespace-pre-wrap font-sans text-xs text-zinc-300 leading-relaxed bg-[#0b0a0d] p-4 rounded border border-zinc-900"></pre>
                 </div>
 
-                <!-- Aba Info (Status, Forças e Fraquezas) -->
+                <!-- Aba Info -->
                 <div id="conteudo-modal-info" class="hidden space-y-6">
                     <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 bg-[#0b0a0d] p-4 rounded border border-zinc-900 text-center">
                         <div><p class="text-zinc-500 text-[10px] uppercase">STR</p><p id="info-str" class="text-sm font-bold text-zinc-200">-</p></div>
@@ -104,21 +95,21 @@
                         <div><p class="text-zinc-500 text-[10px] uppercase">WIT</p><p id="info-wit" class="text-sm font-bold text-zinc-200">-</p></div>
                         <div><p class="text-zinc-500 text-[10px] uppercase">MEN</p><p id="info-men" class="text-sm font-bold text-zinc-200">-</p></div>
                     </div>
-
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div class="bg-emerald-950/20 border border-emerald-900/50 p-4 rounded-lg">
-                            <h5 class="text-emerald-400 font-bold text-xs uppercase mb-2 flex items-center gap-1">💪 Pontos Fortes</h5>
+                            <h5 class="text-emerald-400 font-bold text-xs uppercase mb-2">💪 Pontos Fortes</h5>
                             <ul id="lista-forcas" class="text-xs space-y-1 list-disc list-inside text-zinc-300"></ul>
                         </div>
                         <div class="bg-rose-950/20 border border-rose-900/50 p-4 rounded-lg">
-                            <h5 class="text-rose-400 font-bold text-xs uppercase mb-2 flex items-center gap-1">⚠️ Pontos Fracos</h5>
+                            <h5 class="text-rose-400 font-bold text-xs uppercase mb-2">⚠️ Pontos Fracos</h5>
                             <ul id="lista-fraquezas" class="text-xs space-y-1 list-disc list-inside text-zinc-300"></ul>
                         </div>
                     </div>
                 </div>
+
             </div>
 
-            <!-- Rodapé do Modal -->
+            <!-- Rodapé -->
             <div class="p-3 border-t border-[#3c352a] bg-[#1a191f] text-right">
                 <button onclick="fecharModal()" class="bg-[#3c352a] hover:bg-zinc-700 text-zinc-200 text-xs uppercase font-bold px-4 py-2 rounded transition">Fechar</button>
             </div>
@@ -126,7 +117,7 @@
         </div>
     </div>
 
-    <!-- scripts gerais -->
+    <!-- Scripts de dados -->
     <script src="human.js"></script>
     <script src="elf.js"></script>
     <script src="darkelf.js"></script>
@@ -137,300 +128,232 @@
     <script src="bosses.js"></script>
     <script src="craft.js"></script>
     <script src="skills.js"></script>
-    <!-- LÓGICA PRINCIPAL DA WIKI -->
+
+    <!-- LÓGICA PRINCIPAL -->
     <script>
-        // Centralizador de dados de todas as raças
+        // ─── DADOS ───────────────────────────────────────────────────────────────
         const dadosClasses = {
-            human: typeof l2DataHuman !== 'undefined' ? l2DataHuman : [],
-            elf: typeof l2DataElf !== 'undefined' ? l2DataElf : [],
+            human:   typeof l2DataHuman   !== 'undefined' ? l2DataHuman   : [],
+            elf:     typeof l2DataElf     !== 'undefined' ? l2DataElf     : [],
             darkelf: typeof l2DataDarkElf !== 'undefined' ? l2DataDarkElf : [],
-            orc: typeof l2DataOrc !== 'undefined' ? l2DataOrc : [],
-            dwarf: typeof l2DataDwarf !== 'undefined' ? l2DataDwarf : []
+            orc:     typeof l2DataOrc     !== 'undefined' ? l2DataOrc     : [],
+            dwarf:   typeof l2DataDwarf   !== 'undefined' ? l2DataDwarf   : []
         };
 
-        let racaAtual = 'human';
+        const todasAsClasses = [
+            ...dadosClasses.human,
+            ...dadosClasses.elf,
+            ...dadosClasses.darkelf,
+            ...dadosClasses.orc,
+            ...dadosClasses.dwarf
+        ];
+
+        let racaAtual  = 'human';
         let tipoFiltro = 'todos';
-        let favoritos = JSON.parse(localStorage.getItem('l2_favoritos')) || [];
-        let classeSelecionadaParaModal = null;
+        let favoritos  = JSON.parse(localStorage.getItem('l2_favoritos')) || [];
 
-        // Inicializador automático ao carregar a página
-        window.onload = function() {
-            selecionarRaca('human');
-        };
+        // ─── INIT ────────────────────────────────────────────────────────────────
+        window.onload = () => renderizarSecao('jobs');
 
-        // Altera a raça ativa e limpa a barra de busca
+        // ─── ROTEADOR ────────────────────────────────────────────────────────────
+        function renderizarSecao(secao) {
+            const container  = document.getElementById('container-classes');
+            const subfiltros = document.getElementById('container-subfiltros');
+            container.innerHTML = '';
+            subfiltros.classList.add('hidden');
+
+            if (secao === 'jobs') {
+                subfiltros.classList.remove('hidden');
+                selecionarRaca('human');
+            } else if (secao === 'weapons') {
+                exibirWeapons();
+            } else if (secao === 'bosses') {
+                exibirBosses();
+            } else {
+                container.innerHTML = `<div class="col-span-full text-center py-20 text-zinc-500 uppercase tracking-widest">${secao} em desenvolvimento</div>`;
+            }
+        }
+
+        // ─── RAÇAS / FILTROS ─────────────────────────────────────────────────────
         function selecionarRaca(raca) {
             racaAtual = raca;
-            document.getElementById('input-busca').value = "";
+            document.getElementById('input-busca').value = '';
             document.getElementById('container-subfiltros').classList.remove('hidden');
-            
-            // Atualiza visual dos botões de raça
-            document.querySelectorAll('.btn-raca').forEach(b => b.classList.add('opacity-50'));
-            document.getElementById('btn-favoritos').classList.remove('bg-yellow-600/30', 'border-yellow-500');
-            
-            const btnAtivo = document.getElementById(`btn-${raca}`);
-            if(btnAtivo) btnAtivo.classList.remove('opacity-50');
-
             filtrarTipo(tipoFiltro);
         }
 
-        // Filtra entre Fighter / Mage / Todos
         function filtrarTipo(tipo) {
             tipoFiltro = tipo;
-            
-            // Atualiza botões do subfiltro
-            const tipos = ['todos', 'Fighter', 'Mage'];
-            tipos.forEach(t => {
-                const btn = document.getElementById(`btn-tipo-${t.toLowerCase()}`);
-                if(btn) {
-                    btn.className = "text-xs uppercase font-bold text-zinc-500 hover:text-zinc-300 pb-1 px-2";
-                }
+            ['todos','Fighter','Mage'].forEach(t => {
+                const b = document.getElementById(`btn-tipo-${t.toLowerCase()}`);
+                if (b) b.className = 'text-xs uppercase font-bold text-zinc-500 hover:text-zinc-300 pb-1 px-2';
             });
-            document.getElementById(`btn-tipo-${tipo.toLowerCase()}`).className = "text-xs uppercase font-bold text-[#d1af66] border-b-2 border-[#d1af66] pb-1 px-2";
+            const ativo = document.getElementById(`btn-tipo-${tipo.toLowerCase()}`);
+            if (ativo) ativo.className = 'text-xs uppercase font-bold text-[#d1af66] border-b-2 border-[#d1af66] pb-1 px-2';
 
-            let listaFiltrada = dadosClasses[racaAtual] || [];
-            if (tipo !== 'todos') {
-                listaFiltrada = listaFiltrada.filter(c => c.tipo === tipo);
-            }
-
-            exibirClasses(listaFiltrada);
+            let lista = dadosClasses[racaAtual] || [];
+            if (tipo !== 'todos') lista = lista.filter(c => c.tipo === tipo);
+            exibirClasses(lista);
         }
 
-        // Renderiza dinamicamente a árvore de evolução no HTML
+        // ─── CARDS — cada nome da árvore é clicável ───────────────────────────────
         function exibirClasses(lista) {
             const container = document.getElementById('container-classes');
-            container.innerHTML = "";
+            container.innerHTML = '';
 
-            if(lista.length === 0) {
-                container.innerHTML = `<div class="col-span-full text-center py-12 text-zinc-500 text-sm uppercase">Nenhuma classe encontrada neste escopo.</div>`;
+            if (lista.length === 0) {
+                container.innerHTML = `<div class="col-span-full text-center py-12 text-zinc-500 text-sm uppercase">Nenhuma classe encontrada.</div>`;
                 return;
             }
 
-            lista.forEach((fluxo) => {
-                const eFavorito = favoritos.includes(fluxo.c3);
-                
-                container.innerHTML += `
-                    <div class="bg-[#141318] border border-[#3c352a] rounded-lg p-5 flex flex-col justify-between hover:border-zinc-600 transition shadow-lg relative group">
-                        
-                        <!-- Botão Favoritos de canto -->
-                        <button onclick="toggleFavorito('${fluxo.c3}')" class="absolute top-4 right-4 text-sm grayscale hover:grayscale-0 focus:outline-none transition ${eFavorito ? 'grayscale-0' : ''}">
-                            ${eFavorito ? '⭐' : '☆'}
+            lista.forEach(fluxo => {
+                const eFav = favoritos.includes(fluxo.c3);
+                const card = document.createElement('div');
+                card.className = 'bg-[#141318] border border-[#3c352a] rounded-lg p-5 hover:border-zinc-600 transition shadow-lg relative';
+
+                card.innerHTML = `
+                    <!-- botão favorito -->
+                    <button onclick="toggleFavorito('${fluxo.c3}')"
+                            class="absolute top-4 right-4 text-sm transition ${eFav ? '' : 'grayscale hover:grayscale-0'}">
+                        ${eFav ? '⭐' : '☆'}
+                    </button>
+
+                    <!-- raça -->
+                    <span class="text-[10px] text-zinc-500 uppercase tracking-widest font-bold block mb-3">${fluxo.base}</span>
+
+                    <!-- árvore clicável -->
+                    <div class="space-y-2">
+
+                        <!-- 1ª mudança -->
+                        <button class="btn-classe w-full text-left" onclick="abrirModal('${fluxo.c3}', 1)">
+                            <span class="text-[10px] bg-zinc-800 text-zinc-400 px-1.5 py-0.5 rounded font-mono shrink-0">1st</span>
+                            <span class="nome-classe text-sm text-zinc-300 font-semibold">${fluxo.c1}</span>
                         </button>
 
-                        <div>
-                            <span class="text-[10px] text-zinc-500 uppercase tracking-widest font-bold block mb-1">${fluxo.base}</span>
-                            
-                            <!-- Fluxograma de Evolução de Jobs -->
-                            <div class="space-y-2 mt-3">
-                                <div class="flex items-center gap-2">
-                                    <span class="text-[10px] bg-zinc-800 text-zinc-400 px-1.5 py-0.5 rounded font-mono">1st</span>
-                                    <strong class="text-sm text-zinc-300 font-semibold">${fluxo.c1}</strong>
-                                </div>
-                                <div class="text-zinc-600 text-xs pl-2">↓</div>
-                                <div class="flex items-center gap-2">
-                                    <span class="text-[10px] bg-amber-950/40 text-amber-500 px-1.5 py-0.5 rounded font-mono border border-amber-900/30">2nd</span>
-                                    <strong class="text-sm text-zinc-300 font-semibold">${fluxo.c2}</strong>
-                                </div>
-                                <div class="text-zinc-600 text-xs pl-2">↓</div>
-                                <div class="flex items-center gap-2">
-                                    <span class="text-[10px] bg-[#d1af66]/10 text-[#d1af66] px-1.5 py-0.5 rounded font-mono border border-[#d1af66]/20">3rd</span>
-                                    <strong class="text-base text-[#d1af66] font-bold tracking-wide">${fluxo.c3}</strong>
-                                </div>
-                            </div>
-                        </div>
+                        <div class="text-zinc-600 text-xs pl-2">↓</div>
 
-                        <!-- Botão de Ação -->
-                        <div class="mt-6 pt-4 border-t border-zinc-900">
-                            <button onclick="abrirModal('${fluxo.c3}')" class="w-full bg-[#1c1a22] hover:bg-[#d1af66] border border-[#3c352a] hover:border-[#d1af66] text-zinc-400 hover:text-black font-bold text-xs uppercase py-3 rounded tracking-wider transition">
-                                Ver Detalhes e Quests
-                            </button>
-                        </div>
+                        <!-- 2ª mudança -->
+                        <button class="btn-classe w-full text-left" onclick="abrirModal('${fluxo.c3}', 2)">
+                            <span class="text-[10px] bg-amber-950/40 text-amber-500 px-1.5 py-0.5 rounded font-mono border border-amber-900/30 shrink-0">2nd</span>
+                            <span class="nome-classe text-sm text-zinc-300 font-semibold">${fluxo.c2}</span>
+                        </button>
+
+                        <div class="text-zinc-600 text-xs pl-2">↓</div>
+
+                        <!-- 3ª mudança -->
+                        <button class="btn-classe w-full text-left" onclick="abrirModal('${fluxo.c3}', 3)">
+                            <span class="text-[10px] bg-[#d1af66]/10 text-[#d1af66] px-1.5 py-0.5 rounded font-mono border border-[#d1af66]/20 shrink-0">3rd</span>
+                            <span class="nome-classe text-base text-[#d1af66] font-bold tracking-wide">${fluxo.c3}</span>
+                        </button>
+
                     </div>
                 `;
+                container.appendChild(card);
             });
         }
 
-        // Ativa ou remove uma classe dos favoritos locais
+        // ─── FAVORITOS ───────────────────────────────────────────────────────────
         function toggleFavorito(nomeC3) {
-            if (favoritos.includes(nomeC3)) {
-                favoritos = favoritos.filter(f => f !== nomeC3);
-            } else {
-                favoritos.push(nomeC3);
-            }
+            favoritos = favoritos.includes(nomeC3)
+                ? favoritos.filter(f => f !== nomeC3)
+                : [...favoritos, nomeC3];
             localStorage.setItem('l2_favoritos', JSON.stringify(favoritos));
-            
-            // Re-renderiza o estado atual da tela automaticamente
-            if(document.getElementById('btn-favoritos').classList.contains('border-yellow-500')) {
-                mostrarFavoritos();
-            } else {
-                let inputVal = document.getElementById('input-busca').value;
-                if(inputVal) buscarClasse(inputVal); else filtrarTipo(tipoFiltro);
-            }
+            const v = document.getElementById('input-busca').value;
+            if (v) buscarClasse(v); else filtrarTipo(tipoFiltro);
         }
 
-        // Renderiza apenas as classes marcadas como favoritas
-        function mostrarFavoritos() {
-            document.querySelectorAll('.btn-raca').forEach(b => b.classList.add('opacity-50'));
-            document.getElementById('container-subfiltros').classList.add('hidden');
-            
-            const btnFav = document.getElementById('btn-favoritos');
-            btnFav.classList.add('bg-yellow-600/30', 'border-yellow-500');
-
-            let todasAsClasses = [];
-            Object.keys(dadosClasses).forEach(r => {
-                todasAsClasses.push(...dadosClasses[r]);
-            });
-
-            const listaFav = todasAsClasses.filter(c => favoritos.includes(c.c3));
-            exibirClasses(listaFav);
-        }
-
-        // Filtro em tempo real digitado na barra de busca
+        // ─── BUSCA ───────────────────────────────────────────────────────────────
         function buscarClasse(termo) {
             termo = termo.toLowerCase().trim();
-            if (termo === "") {
-                selecionarRaca(racaAtual);
-                return;
-            }
-
+            if (!termo) { selecionarRaca(racaAtual); return; }
             document.getElementById('container-subfiltros').classList.add('hidden');
-            document.querySelectorAll('.btn-raca').forEach(b => b.classList.add('opacity-50'));
-
-            let resultados = [];
-            Object.keys(dadosClasses).forEach(raca => {
-                const achados = dadosClasses[raca].filter(c => 
-                    c.c3.toLowerCase().includes(termo) || 
-                    c.c2.toLowerCase().includes(termo) || 
-                    c.c1.toLowerCase().includes(termo)
-                );
-                resultados.push(...achados);
-            });
-
-            exibirClasses(resultados);
+            const res = todasAsClasses.filter(c =>
+                c.c3.toLowerCase().includes(termo) ||
+                c.c2.toLowerCase().includes(termo) ||
+                c.c1.toLowerCase().includes(termo)
+            );
+            exibirClasses(res);
         }
 
-        // Gerenciador do Modal
-        function abrirModal(nomeC3) {
-            let todasAsClasses = [];
-            Object.keys(dadosClasses).forEach(r => todasAsClasses.push(...dadosClasses[r]));
-            
-            const classe = todasAsClasses.find(c => c.c3 === nomeC3);
-            if(!classe) return;
+        // ─── MODAL ───────────────────────────────────────────────────────────────
+        // numJob: 1 = 1ª mudança, 2 = 2ª mudança, 3 = 3ª mudança
+        function abrirModal(nomeC3, numJob) {
+            const fluxo = todasAsClasses.find(c => c.c3 === nomeC3);
+            if (!fluxo) { console.error('Não encontrado:', nomeC3); return; }
 
-            classeSelecionadaParaModal = classe;
+            // Qual classe foi clicada e qual quest mostrar
+            const config = {
+                1: { nome: fluxo.c1, badge: '1ª Mudança de Classe — Lv 20', questKey: 'quest1' },
+                2: { nome: fluxo.c2, badge: '2ª Mudança de Classe — Lv 40', questKey: 'quest2' },
+                3: { nome: fluxo.c3, badge: '3ª Mudança de Classe — Lv 76', questKey: 'quest3' }
+            }[numJob];
 
-            // Injeta os dados estáticos das quests
-            document.getElementById('modal-titulo').innerText = classe.c3;
-            document.getElementById('modal-subtitulo').innerText = `${classe.base} -> ${classe.c1} -> ${classe.c2}`;
-            document.getElementById('modal-quest1').innerText = classe.quest1 || "Dados da quest indisponíveis.";
-            document.getElementById('modal-quest2').innerText = classe.quest2 || "Dados da quest indisponíveis.";
-            document.getElementById('modal-quest3').innerText = classe.quest3 || "Dados da quest indisponíveis.";
+            // Cabeçalho
+            document.getElementById('modal-badge').innerText    = config.badge;
+            document.getElementById('modal-titulo').innerText   = config.nome;
+            document.getElementById('modal-subtitulo').innerText = `${fluxo.base} → ${fluxo.c1} → ${fluxo.c2} → ${fluxo.c3}`;
 
-            // Injeta dados de atributos/status (Com fallbacks inteligentes baseados em Humanos para evitar erros de leitura)
-            const status = classe.status || { str: 40, dex: 30, con: 43, int: 21, wit: 11, men: 25 };
-            document.getElementById('info-str').innerText = status.str;
-            document.getElementById('info-dex').innerText = status.dex;
-            document.getElementById('info-con').innerText = status.con;
-            document.getElementById('info-int').innerText = status.int;
-            document.getElementById('info-wit').innerText = status.wit;
-            document.getElementById('info-men').innerText = status.men;
+            // Quest — só a da mudança clicada
+            document.getElementById('modal-quest-titulo').innerText = `Quest: ${config.nome}`;
+            document.getElementById('modal-quest-texto').innerText  = fluxo[config.questKey] || 'Quest não cadastrada ainda.';
 
-            // Injeta Forças e Fraquezas nativas ou genéricas por arquétipo
-            const forcas = classe.forcas || ["Excelente HP base", "Alto P.Attack sustentado", "Facilidade em PVE"];
-            const fraquezas = classe.fraquezas || ["Velocidade de corrida moderada", "Bom critical rate contra alvos com evasion alta", "Dependência de party para máximo potencial"];
-            
-            const containerForcas = document.getElementById('lista-forcas');
-            const containerFraquezas = document.getElementById('lista-fraquezas');
-            
-            containerForcas.innerHTML = forcas.map(f => `<li>${f}</li>`).join('');
-            containerFraquezas.innerHTML = fraquezas.map(f => `<li>${f}</li>`).join('');
+            // Status (aba Info)
+            const s = fluxo.status || { str:40, dex:30, con:43, int:21, wit:11, men:25 };
+            ['str','dex','con','int','wit','men'].forEach(a => {
+                document.getElementById(`info-${a}`).innerText = s[a] ?? '-';
+            });
 
-            // Restaura para a aba de quests por padrão ao abrir
-            mudarAbaModal('quests');
+            const forcas    = fluxo.forcas    || ['Excelente HP base', 'Alto P.Attack sustentado', 'Facilidade em PVE'];
+            const fraquezas = fluxo.fraquezas || ['Velocidade moderada', 'Dependência de party'];
+            document.getElementById('lista-forcas').innerHTML    = forcas.map(f    => `<li>${f}</li>`).join('');
+            document.getElementById('lista-fraquezas').innerHTML = fraquezas.map(f => `<li>${f}</li>`).join('');
 
-            document.getElementById('modal-quest').classList.remove('hidden');
-            document.body.style.overflow = 'hidden'; // Bloqueia scroll do fundo
+            mudarAbaModal('quest');
+            document.getElementById('modal-quest').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
         }
 
         function fecharModal() {
-            document.getElementById('modal-quest').classList.add('hidden');
-            document.body.style.overflow = ''; // Libera scroll do fundo
+            document.getElementById('modal-quest').style.display = 'none';
+            document.body.style.overflow = '';
         }
 
-        // Navegação de Abas internas do Modal
         function mudarAbaModal(aba) {
-            const tabQuests = document.getElementById('tab-quests');
-            const tabInfo = document.getElementById('tab-info');
-            const boxQuests = document.getElementById('conteudo-modal-quests');
-            const boxInfo = document.getElementById('conteudo-modal-info');
-
-            if(aba === 'quests') {
-                tabQuests.className = "flex-1 py-3 text-center border-b-2 border-[#d1af66] text-[#d1af66]";
-                tabInfo.className = "flex-1 py-3 text-center text-zinc-500 border-b-2 border-transparent hover:text-zinc-300";
-                boxQuests.classList.remove('hidden');
-                boxInfo.classList.add('hidden');
-            } else {
-                tabInfo.className = "flex-1 py-3 text-center border-b-2 border-[#d1af66] text-[#d1af66]";
-                tabQuests.className = "flex-1 py-3 text-center text-zinc-500 border-b-2 border-transparent hover:text-zinc-300";
-                boxInfo.classList.remove('hidden');
-                boxQuests.classList.add('hidden');
-            }
-            function mostrarCraft() {
-    document.getElementById('container-subfiltros').classList.add('hidden');
-    document.getElementById('container-classes').innerHTML = `
-        <div class="col-span-full text-center py-20 text-zinc-500">
-            <h2 class="text-xl font-bold uppercase text-zinc-300">Craft</h2>
-            <p class="text-sm mt-2">Under construction: Lista de materiais e recipes.</p>
-        </div>
-    `;
-}
-
-function mostrarBosses() {
-    document.getElementById('container-subfiltros').classList.add('hidden');
-    document.getElementById('container-classes').innerHTML = `
-        <div class="col-span-full text-center py-20 text-zinc-500">
-            <h2 class="text-xl font-bold uppercase text-zinc-300">Raid Bosses</h2>
-            <p class="text-sm mt-2">Under construction: Horários e localização dos Bosses.</p>
-        </div>
-    `;
-}
+            const ativo   = 'flex-1 py-3 text-center border-b-2 border-[#d1af66] text-[#d1af66]';
+            const inativo = 'flex-1 py-3 text-center text-zinc-500 border-b-2 border-transparent hover:text-zinc-300';
+            const isQuest = aba === 'quest';
+            document.getElementById('tab-quest').className = isQuest ? ativo : inativo;
+            document.getElementById('tab-info').className  = isQuest ? inativo : ativo;
+            document.getElementById('conteudo-modal-quest').classList.toggle('hidden', !isQuest);
+            document.getElementById('conteudo-modal-info').classList.toggle('hidden',   isQuest);
         }
-        /**
- * Roteador central para alternar entre as seções da Wiki
- * Isso evita criar dezenas de funções separadas no futuro.
- */
-function renderizarSecao(secao) {
-    const container = document.getElementById('container-classes');
-    const subfiltros = document.getElementById('container-subfiltros');
-    
-    // Limpa o conteúdo atual
-    container.innerHTML = "";
-    
-    // Esconde os subfiltros por padrão (só mostra em 'jobs')
-    subfiltros.classList.add('hidden');
 
-    switch(secao) {
-        case 'jobs':
-            subfiltros.classList.remove('hidden');
-            selecionarRaca('human'); // Reutiliza sua lógica de jobs
-            break;
-            
-        case 'weapons':
-            container.innerHTML = `<div class="col-span-full p-8 text-center text-[#d1af66]"><h2>Seção: Weapons</h2><p>Aqui virão os dados de Craft, SA, etc.</p></div>`;
-            break;
-            
-        case 'armors':
-            container.innerHTML = `<div class="col-span-full p-8 text-center text-[#d1af66]"><h2>Seção: Armors</h2><p>Dados de Stats e Enchant Bonus.</p></div>`;
-            break;
-            
-        case 'bosses':
-            container.innerHTML = `<div class="col-span-full p-8 text-center text-red-500"><h2>Seção: Raid Bosses</h2><p>Localização e tempo de respawn.</p></div>`;
-            break;
-            
-        default:
-            console.log("Seção não encontrada");
-    }
-}
+        // ─── WEAPONS / BOSSES ────────────────────────────────────────────────────
+        function exibirWeapons() {
+            const c = document.getElementById('container-classes');
+            if (typeof dadosWeapons === 'undefined' || !dadosWeapons.length) {
+                c.innerHTML = `<div class="col-span-full text-center py-20 text-zinc-500 uppercase">Weapons em desenvolvimento</div>`;
+                return;
+            }
+            c.innerHTML = dadosWeapons.map(w => `
+                <div class="bg-[#141318] border border-[#3c352a] p-5 rounded-lg">
+                    <h3 class="text-[#d1af66] font-bold">${w.nome}</h3>
+                    <p class="text-xs text-zinc-400 mt-1">SA: ${w.sa}</p>
+                </div>`).join('');
+        }
+
+        function exibirBosses() {
+            const c = document.getElementById('container-classes');
+            if (typeof dadosBosses === 'undefined' || !dadosBosses.length) {
+                c.innerHTML = `<div class="col-span-full text-center py-20 text-zinc-500 uppercase">Bosses em desenvolvimento</div>`;
+                return;
+            }
+            c.innerHTML = dadosBosses.map(b => `
+                <div class="bg-[#141318] border border-red-900/30 p-5 rounded-lg">
+                    <h3 class="text-red-500 font-bold">${b.nome}</h3>
+                    <p class="text-xs text-zinc-400 mt-1">Local: ${b.local}</p>
+                </div>`).join('');
+        }
     </script>
 </body>
 </html>
