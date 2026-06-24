@@ -1,0 +1,1 @@
+const l2DataWeapons = [ {id: 1, name: "Draconic Bow", sa: "Focus"}, ... ];
