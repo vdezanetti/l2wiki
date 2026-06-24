@@ -1,4 +1,7 @@
 const l2DataHuman = [
+    // ════════════════════════════════════════════
+    //  HUMAN FIGHTERS
+    // ════════════════════════════════════════════
     {
         base: "Human Fighter",
         tipo: "Fighter",
@@ -379,5 +382,316 @@ Recompensa: Mudanca de classe para Sagittarius
 10. Vá para a Tablet of Vision #5 em Wall of Argos. Elimine os Archon de Halisha coletando 700 marcas ou invadindo a dungeon correspondente.
 11. Vá para a Tablet of Vision #6 perto de Hunters Village. Ative-a, defenda o NPC arqueiro derrubando o Monument Watcher Azrael, pegue o selo do NPC e ative a última pedra.
 12. Retorne a Hunters Village e fale com Bernard para receber sua terceira classe como Sagittarius.`
+    },
+
+    // ════════════════════════════════════════════
+    //  HUMAN MAGES
+    // ════════════════════════════════════════════
+    {
+        base: "Human Mage",
+        tipo: "Mage",
+        c1: "Wizard",
+        c2: "Sorcerer",
+        c3: "Archmage",
+        
+        quest1: `SAGA DA 1ª JOB: PATH TO A WIZARD (Lv 20)
+Inicio: Gludin Village
+NPC: Parina
+Recompensa: Bead of Season
+
+1. Fale com a Parina na porta da Igreja em Gludin Village para receber as instruções.
+2. Vá para as Ruins of Despair e encontre o Earth Snake Spirit. Ele pedirá que você mate Red Bears até conseguir o Red Bear Fleece. Volte a ele para pegar o Earth Spirit's Ring.
+3. Encontre o Water Undine do outro lado de Ruins of Despair. Ela enviará você para matar Water Seer nas imediações até juntar 2 Sparkles of Water. Volte e pegue o Water Spirit's Ring.
+4. Fale com a Flame Salamander em Ruins of Agony. Cace Ratman (arredores de Gludin) até obter a Key of Flame. Retorne a ela para pegar o Flame Spirit's Ring.
+5. Fale com a Wind Sylph perto da entrada de Windawood Manor (Wasteland). Cace Vuku Orc Fighters até conseguir a Wind Feather. Volte e pegue o Wind Spirit's Ring.
+6. Retorne a Parina em Gludin Village com os 4 anéis espirituais. Ela lhe entregará a Bead of Season.
+7. Vá até o High Priest na Igreja ao atingir o Nível 20 para se tornar um Wizard.`,
+
+        quest2: `SAGA DA 2ª JOB: SORCERER (Lv 40)
+Quests Necessarias: Trial of the Scholar, Testimony of Trust, Test of the Magus
+Recompensa: Mark of Scholar, Mark of Trust, Mark of Magus
+
+[TRIAL OF THE SCHOLAR] (Lv 35)
+1. Fale com Magister Mirien na guilda de Mages em Dion Town. Ela mandará você para High Priest Sylvain.
+2. Sylvain mandará você para Maria na Grocery Store de Dion. Siga as instruções e cace os monstros solicitados em Cruma Swamp e Execution Ground para reunir símbolos mágicos.
+3. Volte para Mirien. Ela mandará você falar com o Grand Magus Jurek em Giran. Cace Grandis e Breka Orcs para o teste dele e pegue seu selo de recomendação.
+4. Retorne a Mirien para fechar o Trial e receber a Mark of Scholar.
+
+[TESTIMONY OF TRUST] (Lv 37)
+1. Fale com High Priest Hollint na igreja de Oren. Ele pedirá as assinaturas de confiança de todas as raças.
+2. Pegue a carta dos Elfos com Asterios (caçando em Elven Forest).
+3. Pegue a carta dos Dark Elfos com Thifiell (ajudando Arkenia em Shilen's Temple e lutando contra Lizardmen).
+4. Viaje para Talking Island e Giran para coletar os testemunhos de Wilford e Seresin.
+5. Junte os fragmentos das formigas em Wasteland e volte a Hollint.
+
+[TEST OF THE MAGUS] (Lv 39)
+1. Fale com Bard Rukal na praça de Dion Castle Town. Ele lhe entregará uma lista de essências mágicas para reunir.
+2. Você precisará coletar encantamentos com 4 espíritos diferentes.
+3. Fale com Parina em Gludin. Fale com Casian em Wasteland. Cace os monstros indicados por eles nas regiões de Gludio, Wasteland, e Giran (Singing Flower, Salamander, Undine, etc).
+4. Após reunir todas as gemas elementais, retorne ao Bard Rukal em Dion.
+5. Ele avaliará suas habilidades mágicas e entregará a Mark of Magus.`,
+
+        quest3: `SAGA DA 3ª JOB: SAGA OF THE ARCHMAGE (Lv 76)
+Inicio: Ivory Tower (Oren)
+NPC: Grand Magus Valeria
+Recompensa: Mudanca de classe para Archmage
+
+1. Fale com a Grand Magus Valeria em Ivory Tower para iniciar a quest.
+2. Vá para Goddard Town e fale com a Information Broker Misty.
+3. Siga para Hot Springs, faça a quest de caça do Chef Jeremy e colete a Ice Cry para entregá-la. Leve o pacote misterioso de volta a Goddard.
+4. Vá para a Tablet of Vision #1 ao sul de TOI e realize a comunhão mágica.
+5. Siga para a Tablet of Vision #2 em Valley of Saints, limpe os Guardian Angels ao redor, recolha a pedra de visão e use-a.
+6. Vá para a Tablet of Vision #3. Ative a pedra, derrote o Anjo Caído utilizando suas magias e faça a comunhão com o monumento.
+7. Conclua o alinhamento com Ketra Orcs ou Varka Silenos até o nível 2 e obtenha a Divine Stone of Wisdom.
+8. Utilize a Divine Stone na Tablet of Vision #4.
+9. Siga para a Tablet of Vision #5 em Wall of Argos e elimine os Archon de Halisha (recolha 700 marcas na Imperial Tomb ou cace-o no campo).
+10. Vá para a Tablet of Vision #6. Ajude o NPC feiticeiro a derrotar o Monument Watcher invasor, fale com ele e ative a última pedra.
+11. Retorne a Valeria em Ivory Tower para transcender como Archmage.`
+    },
+    {
+        base: "Human Mage",
+        tipo: "Mage",
+        c1: "Wizard",
+        c2: "Necromancer",
+        c3: "Soultaker",
+        
+        quest1: `SAGA DA 1ª JOB: PATH TO A WIZARD (Lv 20)
+Inicio: Gludin Village
+NPC: Parina
+Recompensa: Bead of Season
+
+1. Fale com Parina na entrada da Igreja em Gludin.
+2. Visite o Earth Snake Spirit em Ruins of Despair. Cace Red Bears para o Fleece.
+3. Visite o Water Undine na mesma área. Cace Water Seer para os Sparkles of Water.
+4. Visite a Flame Salamander em Ruins of Agony. Cace Ratman para pegar a Key of Flame.
+5. Visite a Wind Sylph perto de Windawood. Cace Vuku Orc Fighters para obter a Wind Feather.
+6. Volte a Parina em Gludin com todos os itens elementais para pegar a Bead of Season.
+7. Mude de classe para Wizard no Grand Magus ou High Priest da cidade.`,
+
+        quest2: `SAGA DA 2ª JOB: NECROMANCER (Lv 40)
+Quests Necessarias: Trial of the Scholar, Testimony of Trust, Test of Witchcraft
+Recompensa: Mark of Scholar, Mark of Trust, Mark of Witchcraft
+
+[TRIAL OF THE SCHOLAR] (Lv 35)
+1. Fale com Magister Mirien em Dion Town.
+2. Vá para High Priest Sylvain, depois para Maria na Grocery Store de Dion. Cace monstros em Cruma Swamp e Execution Ground para reunir os selos.
+3. Retorne a Mirien e seja enviado ao Grand Magus Jurek em Giran. Realize o teste dele matando Grandis e Breka Orcs.
+4. Volte a Mirien em Dion para receber a Mark of Scholar.
+
+[TESTIMONY OF TRUST] (Lv 37)
+1. Fale com High Priest Hollint em Oren.
+2. Visite Asterios em Elven Village (para testar sua aliança com Elfos).
+3. Visite Thifiell e Arkenia em Dark Elven Village e lute contra Lizardmen em Dion.
+4. Visite Wilford e Seresin para conseguir os testemunhos humanos.
+5. Derrote formigas em Wasteland e volte a Hollint.
+
+[TEST OF WITCHCRAFT] (Lv 39)
+1. Fale com Shadow Orim em Dragon Valley (próximo à entrada da caverna). Ele lhe dará o diagrama das trevas.
+2. Vá para Giran e fale com Alexandria na Luxury Shop. Fale também com Magister Iria na guilda de mages local.
+3. Vá para Dion e converse com Magister Kaira. Siga para Execution Ground e cace Ghouls até juntar 10 Ghoul Hearts.
+4. Vá para Talking Island Village e fale com Somak. Siga para Dragon Valley e cace Succubus para obter as essências demoníacas.
+5. Volte a Orim em Dragon Valley para apresentar os artefatos macabros e receber a Mark of Witchcraft.`,
+
+        quest3: `SAGA DA 3ª JOB: SAGA OF THE SOULTAKER (Lv 76)
+Inicio: Hardin's Academy
+NPC: Magister Xenovia
+Recompensa: Mudanca de classe para Soultaker
+
+1. Fale com Magister Xenovia em Hardin's Academy (teleporte a partir de Hunters Village ou Giran).
+2. Vá para Goddard e fale com o espião da guilda para rastrear as pedras.
+3. Siga para Hot Springs, resolva a quest do Chef Jeremy e colete a Ice Cry para adquirir a caixa de entrega mística e retorne a Goddard.
+4. Vá para a Tablet of Vision #1 e comungue com ela.
+5. Siga para a Tablet of Vision #2 em Valley of Saints, invoque seus mortos-vivos para derrotar os Guardian Angels, pegue a pedra e interaja com o monumento.
+6. Vá para a Tablet of Vision #3. Ative a pedra, destrua o Anjo Caído utilizando Death Spike/vampiric skills em duelo solo, e interaja de novo.
+7. Eleve o nível de Aliança com Ketra ou Varka até 2 e pegue a Divine Stone of Wisdom.
+8. Entregue a Divine Stone na Tablet of Vision #4.
+9. Siga para a Tablet of Vision #5 em Wall of Argos. Derrote os Archon of Halisha matando os mobs específicos.
+10. Siga para a Tablet of Vision #6. Ajude a misteriosa figura a derrotar o boss invasor Azrael, interaja com o NPC e limpe a pedra final.
+11. Retorne a Hardin's Academy e reporte-se a Xenovia para ser coroado um Soultaker.`
+    },
+    {
+        base: "Human Mage",
+        tipo: "Mage",
+        c1: "Wizard",
+        c2: "Warlock",
+        c3: "Arcana Lord",
+        
+        quest1: `SAGA DA 1ª JOB: PATH TO A WIZARD (Lv 20)
+Inicio: Gludin Village
+NPC: Parina
+Recompensa: Bead of Season
+
+1. Fale com Parina na Igreja em Gludin.
+2. Em Ruins of Despair, cace Red Bears e entregue ao Earth Snake Spirit.
+3. Cace Water Seers para o Water Undine na mesma ruína.
+4. Em Ruins of Agony, cace Ratman e entregue para a Flame Salamander.
+5. Cace Vuku Orc Fighters para a Wind Sylph perto de Windawood.
+6. Volte com os 4 anéis elementais para Parina e pegue a Bead of Season.
+7. Torne-se Wizard ao chegar no Level 20 falando com o NPC responsável.`,
+
+        quest2: `SAGA DA 2ª JOB: WARLOCK (Lv 40)
+Quests Necessarias: Trial of the Scholar, Testimony of Trust, Test of the Summoner
+Recompensa: Mark of Scholar, Mark of Trust, Mark of Summoner
+
+[TRIAL OF THE SCHOLAR] (Lv 35)
+1. Fale com Magister Mirien em Dion Town.
+2. Complete os pedidos de High Priest Sylvain e Maria em Dion, caçando em Cruma Swamp e Execution Ground.
+3. Passe pelo teste do Grand Magus Jurek em Giran, matando os Grandis/Breka Orcs.
+4. Volte a Mirien para pegar a Mark of Scholar.
+
+[TESTIMONY OF TRUST] (Lv 37)
+1. Fale com High Priest Hollint em Oren.
+2. Colete assinaturas com Asterios em Elven Village e Thifiell em Dark Elven Village.
+3. Reúna os depoimentos de Wilford e Seresin nas outras vilas.
+4. Mate as Ant Warriors em Wasteland para obter os fragmentos cruciais.
+5. Entregue a Hollint para obter a Mark of Trust.
+
+[TEST OF THE SUMMONER] (Lv 39)
+1. Fale com High Summoner Galatea em Gludin Village. Ela dirá que você precisa desafiar os Summoners em combates.
+2. Você precisará de cristais mágicos para invocar os oponentes em cartas especiais de duelo (Arcana).
+3. Vá para Dion, Giran e Oren para enfrentar os Summoners designados pelas missões secundárias atreladas a Galatea.
+4. Colete as Cartas de Invocação de cada oponente (Derrote as bestas que eles invocam).
+5. Depois de derrotar os guardiões invocados e reunir todos os Arcana Cards, retorne a Galatea em Gludin para ser condecorado com a Mark of Summoner.`,
+
+        quest3: `SAGA DA 3ª JOB: SAGA OF THE ARCANA LORD (Lv 76)
+Inicio: Ivory Tower (Oren)
+NPC: High Summoner Sophia
+Recompensa: Mudanca de classe para Arcana Lord
+
+1. Fale com a High Summoner Sophia na guilda de Mages em Ivory Tower.
+2. Vá para Goddard Town e obtenha as informações iniciais com o NPC da cidade.
+3. Siga para Hot Springs, pegue a Ice Cry completando o pedido do Chef Jeremy e a entregue para liberar a relíquia mística.
+4. Siga para a Tablet of Vision #1 e comungue com ela.
+5. Vá para a Tablet of Vision #2 em Valley of Saints. Use suas summons (Kat the Cat, Mew the Cat, etc) para eliminar os Guardian Angels, pegue a pedra e ative a visão.
+6. Siga para a Tablet of Vision #3. Invoque seu servitor mais forte, mate o anjo sombrio que fará o desafio solo, e comungue.
+7. Complete a aliança nível 2 com Varka Silenos ou Ketra Orcs para adquirir a Divine Stone of Wisdom através da prova da água/fogo.
+8. Use a Divine Stone na Tablet of Vision #4.
+9. Na Tablet of Vision #5 em Wall of Argos, colete as marcas matando os Archon of Halisha nas profundezas do cemitério ou Tumba Imperial.
+10. Na Tablet of Vision #6, auxilie o mestre invocador lutando ao lado do NPC para matar o Monument Watcher. Pegue a pedra e interaja.
+11. Reporte-se a Sophia em Ivory Tower para se tornar um verdadeiro Arcana Lord.`
+    },
+    {
+        base: "Human Mage",
+        tipo: "Mage",
+        c1: "Cleric",
+        c2: "Bishop",
+        c3: "Cardinal",
+        
+        quest1: `SAGA DA 1ª JOB: PATH TO A CLERIC (Lv 20)
+Inicio: Gludin Village
+NPC: Priest Zigaunt
+Recompensa: Mark of Faith
+
+1. Fale com Priest Zigaunt na Igreja de Gludin. Ele pedirá que você encontre 5 livros proibidos.
+2. Fale com o Trader Simplon em Gludio. Ele lhe dará os 2 primeiros livros de forma pacífica.
+3. Fale com o Guard Praga no portão oeste de Gludio para receber uma pista. Cace Zombies em Ruins of Agony/Despair até dropar o colar da mãe dele. Entregue e receba o 3º livro.
+4. Volte a Zigaunt em Gludin. Ele revelará a localização do Lionel, o autor dos livros.
+5. Encontre Lionel na Talking Island (perto do Obelisco/Porto). Ele lhe dará o 4º livro e pedirá ajuda.
+6. Fale com Gallint na escola de magia de Talking Island e cumpra seu favor para ganhar o último livro.
+7. Volte a Zigaunt em Gludin, entregue todos os livros hereges para receber a Mark of Faith.
+8. Fale com o High Priest para mudar sua classe para Cleric.`,
+
+        quest2: `SAGA DA 2ª JOB: BISHOP (Lv 40)
+Quests Necessarias: Trial of the Pilgrim, Testimony of Trust, Test of the Healer
+Recompensa: Mark of Pilgrim, Mark of Trust, Mark of Healer
+
+[TRIAL OF THE PILGRIM] (Lv 35)
+1. Fale com o Hermit Santiago no Orc Barracks (norte de Gludin).
+2. Vá para Orc Village e fale com o Seer Tanapi. Cace monstros na Cave of Trials para provar seu valor e receber a relíquia dos Orcs.
+3. Siga para Dwarven Village e fale com Gauri Twinklerock. Em seguida converse com Priest of the Earth. Cace monstros nas minas para pegar o item divino dos anões.
+4. Volte a Santiago no Orc Barracks para encerrar a peregrinação e receber a Mark of Pilgrim.
+
+[TESTIMONY OF TRUST] (Lv 37)
+1. Fale com High Priest Hollint na igreja de Oren Castle Town.
+2. Pegue o Act of Verdure com Asterios em Elven Village.
+3. Pegue a Thifiell's Letter em Dark Elven Village.
+4. Pegue a permissão de Wilford (Talking Island) e Seresin (Giran).
+5. Colete os fragmentos de formiga em Wasteland e volte a Hollint em Oren.
+
+[TEST OF THE HEALER] (Lv 39)
+1. Fale com Priest Bandron na igreja de Giran. Ele entregará a Golden Statue of Einhasad.
+2. Vá para Floran Village, fale com Perrin e derrote o bandido que spawnar. Em seguida, converse com Allana.
+3. Encontre Orphanage Director Gupu na entrada oeste de Gludio. Pague a doação de 100.000 adena ou faça os favores demorados dele.
+4. Fale com Windy Shaera perto de Wasteland (Gorr's Lair) e interaja com a Tablet of Vision.
+5. Cace Leto Lizardman Shamans/Captains nas planícies até conseguir os 20 itens corrompidos para purificar.
+6. Retorne ao Priest Bandron para receber a Mark of Healer.`,
+
+        quest3: `SAGA DA 3ª JOB: SAGA OF THE CARDINAL (Lv 76)
+Inicio: Oren Castle Town
+NPC: Priestess Zigaunt / High Priest Hollint (Depende da crônica, siga a quest guide ingame)
+Recompensa: Mudanca de classe para Cardinal
+
+1. Fale com o líder da Igreja em Oren (Hollint/Zigaunt) para iniciar a peregrinação do Cardinal.
+2. Vá para Goddard Town e colete as informações da rota com o mensageiro da igreja.
+3. Siga para Hot Springs, cumpra a quest de caça para o Chef Jeremy, pegue a Ice Cry e realize a troca pelo pacote secreto.
+4. Encontre a Tablet of Vision #1 e comungue.
+5. Siga para a Tablet of Vision #2 em Valley of Saints. Purifique os Guardian Angels caçando-os com Inquisitor stance/magias, recolha a pedra e leia o monumento.
+6. Vá para a Tablet of Vision #3. Ative a pedra, lute no embate solo contra o herege e limpe a visão.
+7. Ali-se aos Ketra Orcs ou Varka Silenos até o Nível 2 e conclua a quest elementar para a Divine Stone of Wisdom.
+8. Coloque a Divine Stone na Tablet of Vision #4.
+9. Na Tablet of Vision #5 em Wall of Argos, expurgue os Archon of Halisha matando os demônios na tumba ou cemitério.
+10. Na Tablet of Vision #6, abençoe o aliado herói e ajude-o a despachar o Monument Watcher sombrio. Fale com ele e faça a comunhão final.
+11. Retorne a Igreja de Oren para ser consagrado como um Cardinal de Einhasad.`
+    },
+    {
+        base: "Human Mage",
+        tipo: "Mage",
+        c1: "Cleric",
+        c2: "Prophet",
+        c3: "Hierophant",
+        
+        quest1: `SAGA DA 1ª JOB: PATH TO A CLERIC (Lv 20)
+Inicio: Gludin Village
+NPC: Priest Zigaunt
+Recompensa: Mark of Faith
+
+1. Fale com Priest Zigaunt na Igreja de Gludin.
+2. Fale com Trader Simplon em Gludio para conseguir os 2 primeiros livros.
+3. Ajude o Guard Praga em Gludio recuperando o colar de sua mãe (mate Zombies em Ruins of Agony/Despair). Receba o 3º livro.
+4. Retorne a Zigaunt. Em seguida vá para Talking Island e fale com Lionel.
+5. Fale com Gallint na escola de magia de Talking Island, complete a missão dele e pegue o último livro.
+6. Entregue os 5 livros proibidos para Zigaunt e receba a Mark of Faith.
+7. Torne-se Cleric com o High Priest da vila.`,
+
+        quest2: `SAGA DA 2ª JOB: PROPHET (Lv 40)
+Quests Necessarias: Trial of the Pilgrim, Testimony of Trust, Test of the Reformer
+Recompensa: Mark of Pilgrim, Mark of Trust, Mark of Reformer
+
+[TRIAL OF THE PILGRIM] (Lv 35)
+1. Fale com Hermit Santiago no Orc Barracks ao norte de Gludin.
+2. Em Orc Village, fale com Tanapi. Sobreviva aos desafios na Cave of Trials.
+3. Em Dwarven Village, interaja com Gauri Twinklerock e o Priest of Earth. Cace nas minas.
+4. Retorne a Santiago para pegar a Mark of Pilgrim.
+
+[TESTIMONY OF TRUST] (Lv 37)
+1. Fale com High Priest Hollint na Igreja de Oren.
+2. Conquiste as recomendações dos Elfos com Asterios (Elven Village) e dos Dark Elfos com Thifiell (Dark Elven Village).
+3. Ganhe o apoio dos humanos com Wilford e Seresin em Talking Island/Giran.
+4. Reúna os fragmentos de formiga corrompidos em Wasteland e volte a Oren.
+
+[TEST OF THE REFORMER] (Lv 39)
+1. Fale com Priestess Pupina na igreja de Giran. Ela pedirá que você expurgue um demônio.
+2. Vá para Execution Ground e cace Nameless Revenant até dropar os itens da alma condenada.
+3. Volte a Pupina. Siga para Dion e fale com o Preacher Sla na praça central.
+4. Sla enviará você para as planícies de Dion/Giran para ajudar os devotos Katari e Ol Mahums arrependidos caçando monstros específicos (Leto Lizardman ou Turek Orcs, dependendo da rota designada).
+5. Destrua os ídolos pagãos matando as criaturas das trevas e recolha os itens.
+6. Volte ao Preacher Sla em Dion e depois a Pupina em Giran para obter a Mark of Reformer.`,
+
+        quest3: `SAGA DA 3ª JOB: SAGA OF THE HIEROPHANT (Lv 76)
+Inicio: Oren Castle Town
+NPC: High Priest Hollint / Zigaunt
+Recompensa: Mudanca de classe para Hierophant
+
+1. Fale com os líderes da Igreja em Oren para iniciar a trilha sagrada do Hierophant.
+2. Viaje a Goddard Town e fale com os agentes de informação para encontrar as relíquias perdidas.
+3. Em Hot Springs, faça a quest "The Finest Ingredients" com o Chef Jeremy para garantir a Ice Cry e trocar pelo selo místico de Goddard.
+4. Localize a Tablet of Vision #1 perto de Tower of Insolence e absorva a mensagem.
+5. Vá para a Tablet of Vision #2 em Valley of Saints. Destrua os Guardian Angels invocando a luz sagrada (usando magias de classe), obtenha a Vision Stone e faça a leitura.
+6. Siga para a Tablet of Vision #3. Invoque o Quest Monster anjo caído da pedra, enfrente-o em um combate solo longo usando seus melhores buffs, e leia a tábua de pedra.
+7. Complete a aliança nível 2 em Ketra Orcs ou Varka Silenos e tome posse da Divine Stone of Wisdom através da mágica secreta da tribo.
+8. Coloque a Divine Stone na Tablet of Vision #4.
+9. Na Tablet of Vision #5, destrua os Archon of Halisha matando os guardiões no fim do mundo (Wall of Argos/IT).
+10. Na Tablet of Vision #6, proteja o combatente sagrado que aparecer. Dê buffs e cure o aliado enquanto ele derrota o Monument Watcher. Interaja com a pedra após a luta.
+11. Volte à Igreja de Oren e fale com o sacerdote para receber as insígnias de Hierophant.`
     }
 ];

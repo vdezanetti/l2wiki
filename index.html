@@ -6,9 +6,18 @@
     <title>Lineage II Wiki - Jobs & Quests</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@400;600&display=swap');
-        body { font-family: 'Inter', sans-serif; background-color: #0b0a0d; }
-        .font-l2-title { font-family: 'Cinzel', serif; }
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&display=swap');
+        
+        /* Tema Clássico L2 Interlude - Marrom, Bronze e Ouro */
+        body { 
+            font-family: Tahoma, Arial, sans-serif; 
+            background-color: #0c0907; 
+        }
+        
+        .font-l2-title { 
+            font-family: 'Cinzel', serif; 
+        }
+        
         .btn-classe {
             display: flex;
             align-items: center;
@@ -16,102 +25,131 @@
             cursor: pointer;
             transition: opacity 0.15s;
         }
-        .btn-classe:hover .nome-classe { color: #d1af66 !important; text-decoration: underline; }
+        
+        /* Amarelo/Dourado clássico de hover do Lineage 2 */
+        .btn-classe:hover .nome-classe { 
+            color: #ffcc00 !important; 
+        }
+
+        /* Scrollbar clássica em tons de bronze/marrom */
+        ::-webkit-scrollbar { width: 12px; }
+        ::-webkit-scrollbar-track { background: #100c09; border-left: 1px solid #241c16; }
+        ::-webkit-scrollbar-thumb { background: #3d2f25; border: 1px solid #1a1410; }
+        ::-webkit-scrollbar-thumb:hover { background: #5c4737; }
     </style>
 </head>
-<body class="text-zinc-300 min-h-screen pb-12">
+<body class="text-[#d4c5b3] min-h-screen pb-12 selection:bg-[#5c4737] selection:text-[#ffcc00]">
 
-    <!-- Cabeçalho -->
-    <header class="text-center py-8 border-b border-[#3c352a] bg-[#111014] mb-6">
-        <h1 class="text-3xl md:text-4xl font-l2-title text-[#d1af66] tracking-widest uppercase">Lineage II Wiki</h1>
-        <p class="text-xs text-zinc-500 mt-2 uppercase tracking-wider">Classes, Quests and Attributes | Under Construction | Projeto. Vinicius Dezanetti</p>
+    <!-- Cabeçalho com estilo pergaminho escuro -->
+    <header class="text-center py-8 border-b-4 border-double border-[#5c4737] bg-[#140f0c] mb-6 shadow-[0_4px_20px_rgba(0,0,0,0.7)]">
+        <h1 class="text-3xl md:text-4xl font-l2-title text-[#e5c158] tracking-widest uppercase drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">Lineage II Wiki</h1>
+        <p class="text-[10px] text-[#8a7b6e] mt-2 uppercase tracking-widest font-bold">Database & Guides | Interlude Chronicle | Projeto: Vinicius Dezanetti</p>
     </header>
 
     <!-- Campo de Busca -->
     <div class="max-w-6xl mx-auto px-4 mb-6">
-        <input type="text" id="input-busca" placeholder="🔍 Search class (e.g., Dreadnought, Hawkeye, Paladin...)"
+        <input type="text" id="input-busca" placeholder="🔍 Search (e.g., Dreadnought, Antharas, Fate's Whisper...)"
                oninput="buscarClasse(this.value)"
-               class="w-full bg-[#141318] border border-[#3c352a] rounded-lg p-4 text-[#d1af66] placeholder-[#524636] focus:outline-none focus:border-[#d1af66] transition">
+               class="w-full bg-[#100c09] border-2 border-[#3d2f25] p-3 text-[#e5c158] placeholder-[#5c4737] focus:outline-none focus:border-[#b58c56] transition-colors rounded-none shadow-[inner_0_2px_8px_rgba(0,0,0,0.8)]">
     </div>
 
-    <!-- Navegação Principal -->
-    <nav class="max-w-6xl mx-auto px-4 mb-6 flex flex-wrap gap-2 justify-center">
-        <button onclick="renderizarSecao('jobs')"    class="px-4 py-2 bg-[#141318] border border-[#3c352a] text-[10px] uppercase hover:border-zinc-500 transition">Classes</button>
-        <button onclick="renderizarSecao('weapons')" class="px-4 py-2 bg-[#141318] border border-[#3c352a] text-[10px] uppercase hover:border-zinc-500 transition">Weapons</button>
-        <button onclick="renderizarSecao('armors')"  class="px-4 py-2 bg-[#141318] border border-[#3c352a] text-[10px] uppercase hover:border-zinc-500 transition">Armors</button>
-        <button onclick="renderizarSecao('bosses')"  class="px-4 py-2 bg-[#141318] border border-[#3c352a] text-[10px] uppercase hover:border-zinc-500 transition">Bosses</button>
+    <!-- Navegação Principal — Atualizada com as 8 abas solicitadas -->
+    <nav class="max-w-6xl mx-auto px-4 mb-6 flex flex-wrap gap-1 justify-center">
+        <button id="btn-nav-quests"   onclick="renderizarSecao('quests')"   class="px-4 py-2 bg-[#140f0c] border border-[#3d2f25] text-[11px] font-bold text-[#a89276] uppercase hover:bg-[#1f1712] hover:border-[#b58c56] hover:text-[#e5c158] transition-colors rounded-none">Quests</button>
+        <button id="btn-nav-weapons"  onclick="renderizarSecao('weapons')"  class="px-4 py-2 bg-[#140f0c] border border-[#3d2f25] text-[11px] font-bold text-[#a89276] uppercase hover:bg-[#1f1712] hover:border-[#b58c56] hover:text-[#e5c158] transition-colors rounded-none">Weapons</button>
+        <button id="btn-nav-armors"   onclick="renderizarSecao('armors')"   class="px-4 py-2 bg-[#140f0c] border border-[#3d2f25] text-[11px] font-bold text-[#a89276] uppercase hover:bg-[#1f1712] hover:border-[#b58c56] hover:text-[#e5c158] transition-colors rounded-none">Armors</button>
+        <button id="btn-nav-recipes"  onclick="renderizarSecao('recipes')"  class="px-4 py-2 bg-[#140f0c] border border-[#3d2f25] text-[11px] font-bold text-[#a89276] uppercase hover:bg-[#1f1712] hover:border-[#b58c56] hover:text-[#e5c158] transition-colors rounded-none">Recipes</button>
+        <button id="btn-nav-npcs"     onclick="renderizarSecao('npcs')"     class="px-4 py-2 bg-[#140f0c] border border-[#3d2f25] text-[11px] font-bold text-[#a89276] uppercase hover:bg-[#1f1712] hover:border-[#b58c56] hover:text-[#e5c158] transition-colors rounded-none">NPCS</button>
+        <button id="btn-nav-monsters" onclick="renderizarSecao('monsters')" class="px-4 py-2 bg-[#140f0c] border border-[#3d2f25] text-[11px] font-bold text-[#a89276] uppercase hover:bg-[#1f1712] hover:border-[#b58c56] hover:text-[#e5c158] transition-colors rounded-none">Monsters</button>
+        <button id="btn-nav-bosses"   onclick="renderizarSecao('bosses')"   class="px-4 py-2 bg-[#140f0c] border border-[#3d2f25] text-[11px] font-bold text-[#a89276] uppercase hover:bg-[#1f1712] hover:border-[#b58c56] hover:text-[#e5c158] transition-colors rounded-none">Raid Bosses</button>
+        <button id="btn-nav-jobs"     onclick="renderizarSecao('jobs')"     class="px-4 py-2 bg-[#140f0c] border border-[#3d2f25] text-[11px] font-bold text-[#a89276] uppercase hover:bg-[#1f1712] hover:border-[#b58c56] hover:text-[#e5c158] transition-colors rounded-none">Classes</button>
     </nav>
 
-    <!-- Subfiltros Fighter / Mage -->
-    <div id="container-subfiltros" class="max-w-6xl mx-auto px-4 mb-8 flex justify-center gap-4">
-        <button onclick="filtrarTipo('todos')"   id="btn-tipo-todos"   class="text-xs uppercase font-bold text-[#d1af66] border-b-2 border-[#d1af66] pb-1 px-2">Todos</button>
-        <button onclick="filtrarTipo('Fighter')" id="btn-tipo-fighter" class="text-xs uppercase font-bold text-zinc-500 hover:text-zinc-300 pb-1 px-2">Fighters</button>
-        <button onclick="filtrarTipo('Mage')"    id="btn-tipo-mage"    class="text-xs uppercase font-bold text-zinc-500 hover:text-zinc-300 pb-1 px-2">Mages</button>
+    <!-- Subfiltros de Classes — Agora organizados por Raça e por Tipo -->
+    <div id="filtros-classes" class="max-w-6xl mx-auto px-4 mb-8 space-y-4 hidden">
+        <!-- Seleção de Raça -->
+        <div class="flex flex-wrap justify-center gap-2 border-b border-[#3d2f25] pb-3">
+            <span class="text-xs uppercase font-bold text-[#a89276] self-center mr-2">Raça:</span>
+            <button onclick="selecionarRaca('all')"     id="btn-raca-all"     class="px-3 py-1 bg-[#140f0c] border border-[#3d2f25] text-xs font-bold text-[#a89276] uppercase hover:border-[#b58c56] hover:text-[#e5c158] transition-colors rounded-none">Todos</button>
+            <button onclick="selecionarRaca('human')"   id="btn-raca-human"   class="px-3 py-1 bg-[#140f0c] border border-[#3d2f25] text-xs font-bold text-[#a89276] uppercase hover:border-[#b58c56] hover:text-[#e5c158] transition-colors rounded-none">Human</button>
+            <button onclick="selecionarRaca('elf')"     id="btn-raca-elf"     class="px-3 py-1 bg-[#140f0c] border border-[#3d2f25] text-xs font-bold text-[#a89276] uppercase hover:border-[#b58c56] hover:text-[#e5c158] transition-colors rounded-none">Elf</button>
+            <button onclick="selecionarRaca('darkelf')" id="btn-raca-darkelf" class="px-3 py-1 bg-[#140f0c] border border-[#3d2f25] text-xs font-bold text-[#a89276] uppercase hover:border-[#b58c56] hover:text-[#e5c158] transition-colors rounded-none">Dark Elf</button>
+            <button onclick="selecionarRaca('orc')"     id="btn-raca-orc"     class="px-3 py-1 bg-[#140f0c] border border-[#3d2f25] text-xs font-bold text-[#a89276] uppercase hover:border-[#b58c56] hover:text-[#e5c158] transition-colors rounded-none">Orc</button>
+            <button onclick="selecionarRaca('dwarf')"   id="btn-raca-dwarf"   class="px-3 py-1 bg-[#140f0c] border border-[#3d2f25] text-xs font-bold text-[#a89276] uppercase hover:border-[#b58c56] hover:text-[#e5c158] transition-colors rounded-none">Dwarf</button>
+        </div>
+        
+        <!-- Seleção de Tipo -->
+        <div class="flex justify-center gap-6">
+            <span class="text-xs uppercase font-bold text-[#a89276] self-center">Tipo:</span>
+            <button onclick="filtrarTipo('todos')"   id="btn-tipo-todos"   class="text-xs uppercase font-bold text-[#e5c158] border-b-2 border-[#e5c158] pb-1 px-2">Todos</button>
+            <button onclick="filtrarTipo('Fighter')" id="btn-tipo-fighter" class="text-xs uppercase font-bold text-[#8a7b6e] hover:text-[#d4c5b3] pb-1 px-2 border-b-2 border-transparent">Fighters</button>
+            <button onclick="filtrarTipo('Mage')"    id="btn-tipo-mage"    class="text-xs uppercase font-bold text-[#8a7b6e] hover:text-[#d4c5b3] pb-1 px-2 border-b-2 border-transparent">Mages</button>
+        </div>
     </div>
 
     <!-- Container principal -->
     <main class="max-w-6xl mx-auto px-4">
-        <div id="container-classes" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+        <div id="container-classes" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
     </main>
 
     <!-- ═══════════════════════════════════════════════════════════════
-         MODAL — mostra APENAS a quest da classe clicada
+         MODAL — Janela clássica no estilo UI do Lineage II
     ════════════════════════════════════════════════════════════════ -->
-    <div id="modal-quest" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden items-center justify-center p-4" style="display:none">
-        <div class="bg-[#141318] border border-[#3c352a] w-full max-w-2xl rounded-lg max-h-[90vh] flex flex-col shadow-2xl">
+    <div id="modal-quest" class="fixed inset-0 bg-black/90 z-50 hidden items-center justify-center p-4" style="display:none">
+        <div class="bg-[#14100d] border-4 border-double border-[#5c4737] w-full max-w-2xl max-h-[90vh] flex flex-col shadow-[0_0_30px_rgba(0,0,0,0.95)] rounded-none">
 
-            <!-- Cabeçalho -->
-            <div class="p-4 border-b border-[#3c352a] flex justify-between items-start bg-[#1a191f]">
+            <!-- Cabeçalho do Modal -->
+            <div class="p-3 border-b-2 border-[#3d2f25] flex justify-between items-start bg-[#0d0907]">
                 <div>
-                    <p id="modal-badge" class="text-[10px] font-mono uppercase tracking-widest mb-1 text-zinc-500"></p>
-                    <h3 id="modal-titulo" class="text-xl font-l2-title text-[#d1af66] uppercase"></h3>
-                    <p id="modal-subtitulo" class="text-xs text-zinc-500 mt-1 uppercase tracking-wider"></p>
+                    <p id="modal-badge" class="text-[10px] uppercase tracking-widest mb-1 text-[#8a7b6e] font-bold"></p>
+                    <h3 id="modal-titulo" class="text-xl font-l2-title text-[#e5c158] uppercase drop-shadow-md"></h3>
+                    <p id="modal-subtitulo" class="text-xs text-[#a89276] mt-1 uppercase tracking-widest font-bold"></p>
                 </div>
-                <button onclick="fecharModal()" class="text-zinc-500 hover:text-zinc-200 text-2xl font-bold px-2 leading-none">&times;</button>
+                <button onclick="fecharModal()" class="text-[#8a7b6e] hover:text-[#ffcc00] text-3xl font-bold px-2 leading-none transition-colors">&times;</button>
             </div>
 
-            <!-- Abas -->
-            <div class="flex border-b border-[#3c352a] bg-[#111014] text-xs uppercase font-semibold">
-                <button onclick="mudarAbaModal('quest')" id="tab-quest" class="flex-1 py-3 text-center border-b-2 border-[#d1af66] text-[#d1af66]">⚔️ Quest de Job</button>
-                <button onclick="mudarAbaModal('info')"  id="tab-info"  class="flex-1 py-3 text-center text-zinc-500 border-b-2 border-transparent hover:text-zinc-300">📊 Status e Info</button>
+            <!-- Abas do Modal -->
+            <div class="flex border-b border-[#3d2f25] bg-[#140f0c] text-xs uppercase font-bold tracking-wide">
+                <button onclick="mudarAbaModal('quest')" id="tab-quest" class="flex-1 py-2 text-center border-b-2 border-[#e5c158] text-[#e5c158] bg-[#1a1410]">⚔️ Quest de Job</button>
+                <button onclick="mudarAbaModal('info')"  id="tab-info"  class="flex-1 py-2 text-center text-[#8a7b6e] border-b-2 border-transparent hover:text-[#d4c5b3] hover:bg-[#100c09]">📊 Status e Info</button>
             </div>
 
-            <!-- Corpo -->
-            <div class="p-6 overflow-y-auto flex-1">
+            <!-- Corpo do Modal -->
+            <div class="p-5 overflow-y-auto flex-1 bg-[#100c09]">
 
-                <!-- Aba Quest: mostra só 1 quest, a da classe clicada -->
+                <!-- Aba Quest -->
                 <div id="conteudo-modal-quest">
-                    <h4 id="modal-quest-titulo" class="text-[#d1af66] font-bold text-sm uppercase mb-3 border-b border-[#3c352a] pb-1"></h4>
-                    <pre id="modal-quest-texto" class="whitespace-pre-wrap font-sans text-xs text-zinc-300 leading-relaxed bg-[#0b0a0d] p-4 rounded border border-zinc-900"></pre>
+                    <h4 id="modal-quest-titulo" class="text-[#e5c158] font-bold text-sm uppercase mb-3 border-b border-[#3d2f25] pb-2"></h4>
+                    <pre id="modal-quest-texto" class="whitespace-pre-wrap font-sans text-xs text-[#d4c5b3] leading-relaxed bg-[#0d0907] p-4 border-2 border-[#3d2f25] rounded-none"></pre>
                 </div>
 
                 <!-- Aba Info -->
-                <div id="conteudo-modal-info" class="hidden space-y-6">
-                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 bg-[#0b0a0d] p-4 rounded border border-zinc-900 text-center">
-                        <div><p class="text-zinc-500 text-[10px] uppercase">STR</p><p id="info-str" class="text-sm font-bold text-zinc-200">-</p></div>
-                        <div><p class="text-zinc-500 text-[10px] uppercase">DEX</p><p id="info-dex" class="text-sm font-bold text-zinc-200">-</p></div>
-                        <div><p class="text-zinc-500 text-[10px] uppercase">CON</p><p id="info-con" class="text-sm font-bold text-zinc-200">-</p></div>
-                        <div><p class="text-zinc-500 text-[10px] uppercase">INT</p><p id="info-int" class="text-sm font-bold text-zinc-200">-</p></div>
-                        <div><p class="text-zinc-500 text-[10px] uppercase">WIT</p><p id="info-wit" class="text-sm font-bold text-zinc-200">-</p></div>
-                        <div><p class="text-zinc-500 text-[10px] uppercase">MEN</p><p id="info-men" class="text-sm font-bold text-zinc-200">-</p></div>
+                <div id="conteudo-modal-info" class="hidden space-y-4">
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-1 bg-[#0d0907] p-3 border-2 border-[#3d2f25] text-center">
+                        <div class="py-1"><p class="text-[#a89276] text-[10px] font-bold uppercase">STR</p><p id="info-str" class="text-sm font-bold text-[#d4c5b3]">-</p></div>
+                        <div class="py-1"><p class="text-[#a89276] text-[10px] font-bold uppercase">DEX</p><p id="info-dex" class="text-sm font-bold text-[#d4c5b3]">-</p></div>
+                        <div class="py-1"><p class="text-[#a89276] text-[10px] font-bold uppercase">CON</p><p id="info-con" class="text-sm font-bold text-[#d4c5b3]">-</p></div>
+                        <div class="py-1"><p class="text-[#a89276] text-[10px] font-bold uppercase">INT</p><p id="info-int" class="text-sm font-bold text-[#d4c5b3]">-</p></div>
+                        <div class="py-1"><p class="text-[#a89276] text-[10px] font-bold uppercase">WIT</p><p id="info-wit" class="text-sm font-bold text-[#d4c5b3]">-</p></div>
+                        <div class="py-1"><p class="text-[#a89276] text-[10px] font-bold uppercase">MEN</p><p id="info-men" class="text-sm font-bold text-[#d4c5b3]">-</p></div>
                     </div>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div class="bg-emerald-950/20 border border-emerald-900/50 p-4 rounded-lg">
-                            <h5 class="text-emerald-400 font-bold text-xs uppercase mb-2">💪 Pontos Fortes</h5>
-                            <ul id="lista-forcas" class="text-xs space-y-1 list-disc list-inside text-zinc-300"></ul>
+                        <div class="bg-[#140f0c] border border-[#5c4737] p-4">
+                            <h5 class="text-[#e5c158] font-bold text-[11px] uppercase mb-2 border-b border-[#3d2f25] pb-1">💪 Pontos Fortes</h5>
+                            <ul id="lista-forcas" class="text-[11px] space-y-1 list-disc list-inside text-[#d4c5b3]"></ul>
                         </div>
-                        <div class="bg-rose-950/20 border border-rose-900/50 p-4 rounded-lg">
-                            <h5 class="text-rose-400 font-bold text-xs uppercase mb-2">⚠️ Pontos Fracos</h5>
-                            <ul id="lista-fraquezas" class="text-xs space-y-1 list-disc list-inside text-zinc-300"></ul>
+                        <div class="bg-[#140f0c] border border-[#5c4737] p-4">
+                            <h5 class="text-[#e5c158] font-bold text-[11px] uppercase mb-2 border-b border-[#3d2f25] pb-1">⚠️ Pontos Fracos</h5>
+                            <ul id="lista-fraquezas" class="text-[11px] space-y-1 list-disc list-inside text-[#d4c5b3]"></ul>
                         </div>
                     </div>
                 </div>
 
             </div>
 
-            <!-- Rodapé -->
-            <div class="p-3 border-t border-[#3c352a] bg-[#1a191f] text-right">
-                <button onclick="fecharModal()" class="bg-[#3c352a] hover:bg-zinc-700 text-zinc-200 text-xs uppercase font-bold px-4 py-2 rounded transition">Fechar</button>
+            <!-- Rodapé do Modal -->
+            <div class="p-3 border-t-2 border-[#3d2f25] bg-[#0d0907] text-right">
+                <button onclick="fecharModal()" class="bg-[#1f1712] border border-[#5c4737] hover:bg-[#5c4737] hover:border-[#b58c56] hover:text-white text-[#e5c158] text-[11px] uppercase font-bold px-6 py-2 transition-colors rounded-none">Close</button>
             </div>
 
         </div>
@@ -129,7 +167,7 @@
     <script src="craft.js"></script>
     <script src="skills.js"></script>
 
-    <!-- LÓGICA PRINCIPAL -->
+    <!-- LÓGICA PRINCIPAL (Atualizada para as 8 seções e filtros aprimorados) -->
     <script>
         // ─── DADOS ───────────────────────────────────────────────────────────────
         const dadosClasses = {
@@ -148,104 +186,130 @@
             ...dadosClasses.dwarf
         ];
 
-        let racaAtual  = 'human';
+        let racaAtual  = 'all'; // Agora inicia listando "Todos"
         let tipoFiltro = 'todos';
         let favoritos  = JSON.parse(localStorage.getItem('l2_favoritos')) || [];
 
         // ─── INIT ────────────────────────────────────────────────────────────────
         window.onload = () => renderizarSecao('jobs');
 
-        // ─── ROTEADOR ────────────────────────────────────────────────────────────
+        // ─── ROTEADOR PRINCIPAL ──────────────────────────────────────────────────
         function renderizarSecao(secao) {
-            const container  = document.getElementById('container-classes');
-            const subfiltros = document.getElementById('container-subfiltros');
+            const container = document.getElementById('container-classes');
+            const filtrosClasses = document.getElementById('filtros-classes');
             container.innerHTML = '';
-            subfiltros.classList.add('hidden');
+            filtrosClasses.classList.add('hidden');
+            
+            atualizarAtivoMainNav(secao);
 
             if (secao === 'jobs') {
-                subfiltros.classList.remove('hidden');
-                selecionarRaca('human');
+                filtrosClasses.classList.remove('hidden');
+                selecionarRaca(racaAtual);
+            } else if (secao === 'quests') {
+                exibirQuests();
             } else if (secao === 'weapons') {
                 exibirWeapons();
+            } else if (secao === 'armors') {
+                exibirArmors();
+            } else if (secao === 'recipes') {
+                exibirRecipes();
+            } else if (secao === 'npcs') {
+                exibirNpcs();
+            } else if (secao === 'monsters') {
+                exibirMonsters();
             } else if (secao === 'bosses') {
                 exibirBosses();
             } else {
-                container.innerHTML = `<div class="col-span-full text-center py-20 text-zinc-500 uppercase tracking-widest">${secao} em desenvolvimento</div>`;
+                container.innerHTML = `<div class="col-span-full text-center py-20 text-[#8a7b6e] font-bold uppercase tracking-widest">${secao} em desenvolvimento</div>`;
             }
         }
 
-        // ─── RAÇAS / FILTROS ─────────────────────────────────────────────────────
+        // Atualiza visualmente o botão ativo do menu principal
+        function atualizarAtivoMainNav(secao) {
+            const secoes = ['quests', 'weapons', 'armors', 'recipes', 'npcs', 'monsters', 'bosses', 'jobs'];
+            secoes.forEach(s => {
+                const btn = document.getElementById(`btn-nav-${s}`);
+                if (btn) {
+                    if (s === secao) {
+                        btn.className = "px-4 py-2 bg-[#1f1712] border border-[#b58c56] text-[11px] font-bold text-[#e5c158] uppercase rounded-none shadow-[0_0_8px_rgba(229,193,88,0.3)]";
+                    } else {
+                        btn.className = "px-4 py-2 bg-[#140f0c] border border-[#3d2f25] text-[11px] font-bold text-[#a89276] uppercase hover:bg-[#1f1712] hover:border-[#b58c56] hover:text-[#e5c158] transition-colors rounded-none";
+                    }
+                }
+            });
+        }
+
+        // ─── SELEÇÃO DE RAÇA (Dentro de Classes) ─────────────────────────────────
         function selecionarRaca(raca) {
             racaAtual = raca;
             document.getElementById('input-busca').value = '';
-            document.getElementById('container-subfiltros').classList.remove('hidden');
+            
+            const racas = ['all', 'human', 'elf', 'darkelf', 'orc', 'dwarf'];
+            racas.forEach(r => {
+                const btn = document.getElementById(`btn-raca-${r}`);
+                if (btn) {
+                    if (r === raca) {
+                        btn.className = "px-3 py-1 bg-[#1f1712] border border-[#b58c56] text-xs font-bold text-[#e5c158] uppercase rounded-none";
+                    } else {
+                        btn.className = "px-3 py-1 bg-[#140f0c] border border-[#3d2f25] text-xs font-bold text-[#a89276] uppercase hover:border-[#b58c56] hover:text-[#e5c158] transition-colors rounded-none";
+                    }
+                }
+            });
+
             filtrarTipo(tipoFiltro);
         }
 
+        // ─── FILTRO DE TIPO (Fighter / Mage / Todos) ──────────────────────────────
         function filtrarTipo(tipo) {
             tipoFiltro = tipo;
             ['todos','Fighter','Mage'].forEach(t => {
                 const b = document.getElementById(`btn-tipo-${t.toLowerCase()}`);
-                if (b) b.className = 'text-xs uppercase font-bold text-zinc-500 hover:text-zinc-300 pb-1 px-2';
+                if (b) b.className = 'text-xs uppercase font-bold text-[#8a7b6e] hover:text-[#d4c5b3] pb-1 px-2 border-b-2 border-transparent';
             });
             const ativo = document.getElementById(`btn-tipo-${tipo.toLowerCase()}`);
-            if (ativo) ativo.className = 'text-xs uppercase font-bold text-[#d1af66] border-b-2 border-[#d1af66] pb-1 px-2';
+            if (ativo) ativo.className = 'text-xs uppercase font-bold text-[#e5c158] border-b-2 border-[#e5c158] pb-1 px-2';
 
-            let lista = dadosClasses[racaAtual] || [];
+            let lista = (racaAtual === 'all') ? todasAsClasses : (dadosClasses[racaAtual] || []);
             if (tipo !== 'todos') lista = lista.filter(c => c.tipo === tipo);
             exibirClasses(lista);
         }
 
-        // ─── CARDS — cada nome da árvore é clicável ───────────────────────────────
+        // ─── CARDS DE CLASSES ────────────────────────────────────────────────────
         function exibirClasses(lista) {
             const container = document.getElementById('container-classes');
             container.innerHTML = '';
 
             if (lista.length === 0) {
-                container.innerHTML = `<div class="col-span-full text-center py-12 text-zinc-500 text-sm uppercase">Nenhuma classe encontrada.</div>`;
+                container.innerHTML = `<div class="col-span-full text-center py-12 text-[#a89276] text-sm font-bold uppercase">Nenhuma classe encontrada.</div>`;
                 return;
             }
 
             lista.forEach(fluxo => {
                 const eFav = favoritos.includes(fluxo.c3);
                 const card = document.createElement('div');
-                card.className = 'bg-[#141318] border border-[#3c352a] rounded-lg p-5 hover:border-zinc-600 transition shadow-lg relative';
+                card.className = 'bg-[#140f0c] border-2 border-[#3d2f25] p-4 hover:border-[#b58c56] transition-colors shadow-md relative rounded-none';
 
                 card.innerHTML = `
-                    <!-- botão favorito -->
                     <button onclick="toggleFavorito('${fluxo.c3}')"
-                            class="absolute top-4 right-4 text-sm transition ${eFav ? '' : 'grayscale hover:grayscale-0'}">
-                        ${eFav ? '⭐' : '☆'}
+                            class="absolute top-3 right-4 text-sm transition-transform hover:scale-110 ${eFav ? 'text-[#ffcc00]' : 'text-[#3d2f25] hover:text-[#b58c56]'}">
+                        ★
                     </button>
-
-                    <!-- raça -->
-                    <span class="text-[10px] text-zinc-500 uppercase tracking-widest font-bold block mb-3">${fluxo.base}</span>
-
-                    <!-- árvore clicável -->
-                    <div class="space-y-2">
-
-                        <!-- 1ª mudança -->
+                    <span class="text-[10px] text-[#a89276] uppercase tracking-widest font-bold block mb-3 border-b border-[#3d2f25] pb-1 inline-block w-4/5">${fluxo.base}</span>
+                    <div class="space-y-1.5 mt-2">
                         <button class="btn-classe w-full text-left" onclick="abrirModal('${fluxo.c3}', 1)">
-                            <span class="text-[10px] bg-zinc-800 text-zinc-400 px-1.5 py-0.5 rounded font-mono shrink-0">1st</span>
-                            <span class="nome-classe text-sm text-zinc-300 font-semibold">${fluxo.c1}</span>
+                            <span class="text-[10px] bg-[#100c09] text-[#8a7b6e] px-1.5 py-0.5 border border-[#3d2f25] font-bold shrink-0">1st</span>
+                            <span class="nome-classe text-xs text-[#d4c5b3] font-bold">${fluxo.c1}</span>
                         </button>
-
-                        <div class="text-zinc-600 text-xs pl-2">↓</div>
-
-                        <!-- 2ª mudança -->
+                        <div class="text-[#3d2f25] text-[10px] pl-3 leading-none font-bold">▼</div>
                         <button class="btn-classe w-full text-left" onclick="abrirModal('${fluxo.c3}', 2)">
-                            <span class="text-[10px] bg-amber-950/40 text-amber-500 px-1.5 py-0.5 rounded font-mono border border-amber-900/30 shrink-0">2nd</span>
-                            <span class="nome-classe text-sm text-zinc-300 font-semibold">${fluxo.c2}</span>
+                            <span class="text-[10px] bg-[#1a1410] text-[#a89276] px-1.5 py-0.5 border border-[#5c4737] font-bold shrink-0">2nd</span>
+                            <span class="nome-classe text-sm text-[#e3dac9] font-bold">${fluxo.c2}</span>
                         </button>
-
-                        <div class="text-zinc-600 text-xs pl-2">↓</div>
-
-                        <!-- 3ª mudança -->
+                        <div class="text-[#5c4737] text-[10px] pl-3 leading-none font-bold">▼</div>
                         <button class="btn-classe w-full text-left" onclick="abrirModal('${fluxo.c3}', 3)">
-                            <span class="text-[10px] bg-[#d1af66]/10 text-[#d1af66] px-1.5 py-0.5 rounded font-mono border border-[#d1af66]/20 shrink-0">3rd</span>
-                            <span class="nome-classe text-base text-[#d1af66] font-bold tracking-wide">${fluxo.c3}</span>
+                            <span class="text-[10px] bg-[#241c16] text-[#e5c158] px-1.5 py-0.5 border border-[#8c6f4f] font-bold shrink-0">3rd</span>
+                            <span class="nome-classe text-[15px] text-[#e5c158] font-bold tracking-wide">${fluxo.c3}</span>
                         </button>
-
                     </div>
                 `;
                 container.appendChild(card);
@@ -266,7 +330,7 @@
         function buscarClasse(termo) {
             termo = termo.toLowerCase().trim();
             if (!termo) { selecionarRaca(racaAtual); return; }
-            document.getElementById('container-subfiltros').classList.add('hidden');
+            document.getElementById('filtros-classes').classList.add('hidden');
             const res = todasAsClasses.filter(c =>
                 c.c3.toLowerCase().includes(termo) ||
                 c.c2.toLowerCase().includes(termo) ||
@@ -275,29 +339,196 @@
             exibirClasses(res);
         }
 
+        // ─── RENDERS DE ABAS EXTRAS (Fallback automático caso offline) ───────────
+        function exibirQuests() {
+            const c = document.getElementById('container-classes');
+            const source = (typeof dadosQuests !== 'undefined' ? dadosQuests : (typeof l2DataQuests !== 'undefined' ? l2DataQuests : []));
+            if (source.length === 0) {
+                const sampleQuests = [
+                    { nome: "Fate's Whisper", lvl: "75+", npc: "Maestro Reirin", desc: "Quest de Subclasse crucial para coletar Reirin's Cabalist Stone." },
+                    { nome: "Mimir's Elixir", lvl: "75+", npc: "Ladd", desc: "Alquimia na Ivory Tower para liberar o direito à subclasse." },
+                    { nome: "Legacy of Insolence", lvl: "59+", npc: "Walond", desc: "Farme de pergaminhos antigos na Tower of Insolence." },
+                    { nome: "Alliance with Ketra Orcs", lvl: "74+", npc: "Wahkan", desc: "Aliança política para obter materiais S-grade." },
+                    { nome: "Saga of the Archmage", lvl: "76+", npc: "Information Broker", desc: "Busca pelas 6 Stone of Commune para a 3ª classe." }
+                ];
+                c.innerHTML = sampleQuests.map(q => `
+                    <div class="bg-[#140f0c] border-2 border-[#3d2f25] p-4 rounded-none hover:border-[#b58c56] transition-colors">
+                        <div class="flex justify-between items-start">
+                            <h3 class="text-[#e5c158] font-bold text-sm uppercase">${q.nome}</h3>
+                            <span class="text-[10px] bg-[#100c09] text-[#a89276] px-1.5 py-0.5 border border-[#3d2f25] font-bold">Lv ${q.lvl}</span>
+                        </div>
+                        <p class="text-[11px] text-[#8a7b6e] mt-1 font-bold">NPC Inicial: ${q.npc}</p>
+                        <p class="text-[11px] text-[#a89276] mt-1 italic">${q.desc}</p>
+                    </div>`).join('');
+            } else {
+                c.innerHTML = source.map(q => `
+                    <div class="bg-[#140f0c] border-2 border-[#3d2f25] p-4 rounded-none hover:border-[#b58c56] transition-colors">
+                        <h3 class="text-[#e5c158] font-bold text-sm uppercase">${q.nome || q.name}</h3>
+                        <p class="text-[11px] text-[#a89276] mt-1 font-bold">NPC: ${q.npc || 'Desconhecido'} | Nível: ${q.level || 'Qualquer'}</p>
+                    </div>`).join('');
+            }
+        }
+
+        function exibirWeapons() {
+            const c = document.getElementById('container-classes');
+            const source = (typeof dadosWeapons !== 'undefined' ? dadosWeapons : (typeof l2DataWeapons !== 'undefined' ? l2DataWeapons : []));
+            if (source.length === 0) {
+                const sampleWeapons = [
+                    { nome: "Sword of Miracles (A-grade)", sa: "Acumen / Magic Power" },
+                    { nome: "Draconic Bow (S-grade)", sa: "Focus" },
+                    { nome: "Imperial Staff (S-grade)", sa: "Empower" },
+                    { nome: "Angel Slayer (S-grade)", sa: "Haste / Critical Damage" }
+                ];
+                c.innerHTML = sampleWeapons.map(w => `
+                    <div class="bg-[#140f0c] border-2 border-[#3d2f25] p-4 rounded-none hover:border-[#b58c56] transition-colors">
+                        <h3 class="text-[#e5c158] font-bold text-sm uppercase">${w.nome}</h3>
+                        <p class="text-[11px] text-[#a89276] mt-1 font-bold">SA recomendados: ${w.sa}</p>
+                    </div>`).join('');
+            } else {
+                c.innerHTML = source.map(w => `
+                    <div class="bg-[#140f0c] border-2 border-[#3d2f25] p-4 rounded-none hover:border-[#b58c56] transition-colors">
+                        <h3 class="text-[#e5c158] font-bold text-sm uppercase">${w.nome}</h3>
+                        <p class="text-[11px] text-[#a89276] mt-1 font-bold">SA: ${w.sa}</p>
+                    </div>`).join('');
+            }
+        }
+
+        function exibirArmors() {
+            const c = document.getElementById('container-classes');
+            const source = (typeof dadosArmors !== 'undefined' ? dadosArmors : (typeof l2DataArmors !== 'undefined' ? l2DataArmors : []));
+            if (source.length === 0) {
+                const sampleArmors = [
+                    { nome: "Imperial Crusader Set (Heavy)", bonus: "P. Def +8%, Max HP +445, Sleep/Hold Resistance +70%" },
+                    { nome: "Draconic Leather Set (Light)", bonus: "P. Atk +4%, P. Atk Spd +4%, Max MP +289, Weight Limit +5759" },
+                    { nome: "Major Arcana Set (Robes)", bonus: "M. Atk +17%, Speed +7, Casting Spd +15%, Stun Resistance +50%" }
+                ];
+                c.innerHTML = sampleArmors.map(a => `
+                    <div class="bg-[#140f0c] border-2 border-[#3d2f25] p-4 rounded-none hover:border-[#b58c56] transition-colors">
+                        <h3 class="text-[#e5c158] font-bold text-sm uppercase">${a.nome}</h3>
+                        <p class="text-[11px] text-[#a89276] mt-1 font-bold">Bônus do Set: ${a.bonus}</p>
+                    </div>`).join('');
+            } else {
+                c.innerHTML = source.map(a => `
+                    <div class="bg-[#140f0c] border-2 border-[#3d2f25] p-4 rounded-none hover:border-[#b58c56] transition-colors">
+                        <h3 class="text-[#e5c158] font-bold text-sm uppercase">${a.nome || a.name}</h3>
+                        <p class="text-[11px] text-[#a89276] mt-1 font-bold">Bônus: ${a.bonus || 'N/A'}</p>
+                    </div>`).join('');
+            }
+        }
+
+        function exibirRecipes() {
+            const c = document.getElementById('container-classes');
+            const source = (typeof dadosCraft !== 'undefined' ? dadosCraft : (typeof l2DataCraft !== 'undefined' ? l2DataCraft : []));
+            if (source.length === 0) {
+                const sampleRecipes = [
+                    { nome: "Recipe: Draconic Bow (60%)", mat: "10x Draconic Bow Shaft, 10x Leonard, 10x Sophia, 4x S-grade Crystal" },
+                    { nome: "Recipe: Forgotten Blade (60%)", mat: "10x Forgotten Blade Edge, 10x Sophia, 10x Asofe, 4x S-grade Crystal" }
+                ];
+                c.innerHTML = sampleRecipes.map(r => `
+                    <div class="bg-[#140f0c] border-2 border-[#3d2f25] p-4 rounded-none hover:border-[#b58c56] transition-colors">
+                        <h3 class="text-[#e5c158] font-bold text-sm uppercase">${r.nome}</h3>
+                        <p class="text-[11px] text-[#a89276] mt-1 font-bold">Materiais Chave: ${r.mat}</p>
+                    </div>`).join('');
+            } else {
+                c.innerHTML = source.map(r => `
+                    <div class="bg-[#140f0c] border-2 border-[#3d2f25] p-4 rounded-none hover:border-[#b58c56] transition-colors">
+                        <h3 class="text-[#e5c158] font-bold text-sm uppercase">${r.nome || r.name}</h3>
+                        <p class="text-[11px] text-[#a89276] mt-1 font-bold">Materiais: ${r.materiais || 'N/A'}</p>
+                    </div>`).join('');
+            }
+        }
+
+        function exibirNpcs() {
+            const c = document.getElementById('container-classes');
+            const source = (typeof dadosNpcs !== 'undefined' ? dadosNpcs : (typeof l2DataNpcs !== 'undefined' ? l2DataNpcs : []));
+            if (source.length === 0) {
+                const sampleNpcs = [
+                    { nome: "Blacksmith of Wind Lombert", local: "Giran Castle Town", funcao: "Upgrade de Equipamentos A-grade e trocas de armas" },
+                    { nome: "High Priest Maximilian", local: "Town of Aden", funcao: "Líder espiritual humano, responsável por quests de mudança de classe" }
+                ];
+                c.innerHTML = sampleNpcs.map(n => `
+                    <div class="bg-[#140f0c] border-2 border-[#3d2f25] p-4 rounded-none hover:border-[#b58c56] transition-colors">
+                        <h3 class="text-[#e5c158] font-bold text-sm uppercase">${n.nome}</h3>
+                        <p class="text-[11px] text-[#a89276] mt-1 font-bold">Local: ${n.local}</p>
+                        <p class="text-[11px] text-[#8a7b6e] mt-1 italic">${n.funcao}</p>
+                    </div>`).join('');
+            } else {
+                c.innerHTML = source.map(n => `
+                    <div class="bg-[#140f0c] border-2 border-[#3d2f25] p-4 rounded-none hover:border-[#b58c56] transition-colors">
+                        <h3 class="text-[#e5c158] font-bold text-sm uppercase">${n.nome || n.name}</h3>
+                        <p class="text-[11px] text-[#a89276] mt-1 font-bold">Local: ${n.local || 'N/A'}</p>
+                    </div>`).join('');
+            }
+        }
+
+        function exibirMonsters() {
+            const c = document.getElementById('container-classes');
+            const source = (typeof dadosMonsters !== 'undefined' ? dadosMonsters : (typeof l2DataMonsters !== 'undefined' ? l2DataMonsters : []));
+            if (source.length === 0) {
+                const sampleMonsters = [
+                    { nome: "Lilith's Minion", lvl: 78, local: "Catacomb of Dark Omens", drop: "Seal Stones, S-grade Enchants" },
+                    { nome: "Karik", lvl: 70, local: "Dragon Valley Cave (DVC)", drop: "Tallum & Majestic Recipes / Keymats" }
+                ];
+                c.innerHTML = sampleMonsters.map(m => `
+                    <div class="bg-[#140f0c] border-2 border-[#3d2f25] p-4 rounded-none hover:border-[#b58c56] transition-colors">
+                        <div class="flex justify-between items-start">
+                            <h3 class="text-[#e5c158] font-bold text-sm uppercase">${m.nome}</h3>
+                            <span class="text-[10px] bg-[#100c09] text-[#a89276] px-1.5 py-0.5 border border-[#3d2f25] font-bold">Lv ${m.lvl}</span>
+                        </div>
+                        <p class="text-[11px] text-[#8a7b6e] mt-1 font-bold">Local: ${m.local}</p>
+                        <p class="text-[11px] text-[#a89276] mt-1">Drops/Spoils: ${m.drop}</p>
+                    </div>`).join('');
+            } else {
+                c.innerHTML = source.map(m => `
+                    <div class="bg-[#140f0c] border-2 border-[#3d2f25] p-4 rounded-none hover:border-[#b58c56] transition-colors">
+                        <h3 class="text-[#e5c158] font-bold text-sm uppercase">${m.nome || m.name}</h3>
+                        <p class="text-[11px] text-[#a89276] mt-1 font-bold">Local: ${m.local || 'N/A'}</p>
+                    </div>`).join('');
+            }
+        }
+
+        function exibirBosses() {
+            const c = document.getElementById('container-classes');
+            const source = (typeof dadosBosses !== 'undefined' ? dadosBosses : (typeof l2DataBosses !== 'undefined' ? l2DataBosses : []));
+            if (source.length === 0) {
+                const sampleBosses = [
+                    { nome: "Antharas", local: "Antharas' Nest (Dragon Valley)" },
+                    { nome: "Valakas", local: "Valakas' Lair (Goddard)" },
+                    { nome: "Baium", local: "Tower of Insolence (14th floor)" },
+                    { nome: "Frintezza", local: "Imperial Tomb" }
+                ];
+                c.innerHTML = sampleBosses.map(b => `
+                    <div class="bg-[#140f0c] border-2 border-[#5c2424] p-4 rounded-none hover:border-[#9c3a3a] transition-colors">
+                        <h3 class="text-[#ff9e9e] font-bold text-sm uppercase">${b.nome}</h3>
+                        <p class="text-[11px] text-[#c47070] mt-1 font-bold">Local: ${b.local}</p>
+                    </div>`).join('');
+            } else {
+                c.innerHTML = source.map(b => `
+                    <div class="bg-[#140f0c] border-2 border-[#5c2424] p-4 rounded-none hover:border-[#9c3a3a] transition-colors">
+                        <h3 class="text-[#ff9e9e] font-bold text-sm uppercase">${b.nome}</h3>
+                        <p class="text-[11px] text-[#c47070] mt-1 font-bold">Local: ${b.local}</p>
+                    </div>`).join('');
+            }
+        }
+
         // ─── MODAL ───────────────────────────────────────────────────────────────
-        // numJob: 1 = 1ª mudança, 2 = 2ª mudança, 3 = 3ª mudança
         function abrirModal(nomeC3, numJob) {
             const fluxo = todasAsClasses.find(c => c.c3 === nomeC3);
             if (!fluxo) { console.error('Não encontrado:', nomeC3); return; }
 
-            // Qual classe foi clicada e qual quest mostrar
             const config = {
                 1: { nome: fluxo.c1, badge: '1ª Mudança de Classe — Lv 20', questKey: 'quest1' },
                 2: { nome: fluxo.c2, badge: '2ª Mudança de Classe — Lv 40', questKey: 'quest2' },
                 3: { nome: fluxo.c3, badge: '3ª Mudança de Classe — Lv 76', questKey: 'quest3' }
             }[numJob];
 
-            // Cabeçalho
-            document.getElementById('modal-badge').innerText    = config.badge;
+            document.getElementById('modal-badge').innerText     = config.badge;
             document.getElementById('modal-titulo').innerText   = config.nome;
-            document.getElementById('modal-subtitulo').innerText = `${fluxo.base} → ${fluxo.c1} → ${fluxo.c2} → ${fluxo.c3}`;
+            document.getElementById('modal-subtitulo').innerText = `${fluxo.base} » ${fluxo.c1} » ${fluxo.c2} » ${fluxo.c3}`;
 
-            // Quest — só a da mudança clicada
             document.getElementById('modal-quest-titulo').innerText = `Quest: ${config.nome}`;
-            document.getElementById('modal-quest-texto').innerText  = fluxo[config.questKey] || 'Quest não cadastrada ainda.';
+            document.getElementById('modal-quest-texto').innerText  = fluxo[config.questKey] || 'Registro da quest não encontrado no database.';
 
-            // Status (aba Info)
             const s = fluxo.status || { str:40, dex:30, con:43, int:21, wit:11, men:25 };
             ['str','dex','con','int','wit','men'].forEach(a => {
                 document.getElementById(`info-${a}`).innerText = s[a] ?? '-';
@@ -319,40 +550,13 @@
         }
 
         function mudarAbaModal(aba) {
-            const ativo   = 'flex-1 py-3 text-center border-b-2 border-[#d1af66] text-[#d1af66]';
-            const inativo = 'flex-1 py-3 text-center text-zinc-500 border-b-2 border-transparent hover:text-zinc-300';
+            const ativo   = 'flex-1 py-2 text-center border-b-2 border-[#e5c158] text-[#e5c158] bg-[#1a1410]';
+            const inativo = 'flex-1 py-2 text-center text-[#8a7b6e] border-b-2 border-[#3d2f25] hover:text-[#e5c158] hover:bg-[#100c09]';
             const isQuest = aba === 'quest';
             document.getElementById('tab-quest').className = isQuest ? ativo : inativo;
             document.getElementById('tab-info').className  = isQuest ? inativo : ativo;
             document.getElementById('conteudo-modal-quest').classList.toggle('hidden', !isQuest);
             document.getElementById('conteudo-modal-info').classList.toggle('hidden',   isQuest);
-        }
-
-        // ─── WEAPONS / BOSSES ────────────────────────────────────────────────────
-        function exibirWeapons() {
-            const c = document.getElementById('container-classes');
-            if (typeof dadosWeapons === 'undefined' || !dadosWeapons.length) {
-                c.innerHTML = `<div class="col-span-full text-center py-20 text-zinc-500 uppercase">Weapons em desenvolvimento</div>`;
-                return;
-            }
-            c.innerHTML = dadosWeapons.map(w => `
-                <div class="bg-[#141318] border border-[#3c352a] p-5 rounded-lg">
-                    <h3 class="text-[#d1af66] font-bold">${w.nome}</h3>
-                    <p class="text-xs text-zinc-400 mt-1">SA: ${w.sa}</p>
-                </div>`).join('');
-        }
-
-        function exibirBosses() {
-            const c = document.getElementById('container-classes');
-            if (typeof dadosBosses === 'undefined' || !dadosBosses.length) {
-                c.innerHTML = `<div class="col-span-full text-center py-20 text-zinc-500 uppercase">Bosses em desenvolvimento</div>`;
-                return;
-            }
-            c.innerHTML = dadosBosses.map(b => `
-                <div class="bg-[#141318] border border-red-900/30 p-5 rounded-lg">
-                    <h3 class="text-red-500 font-bold">${b.nome}</h3>
-                    <p class="text-xs text-zinc-400 mt-1">Local: ${b.local}</p>
-                </div>`).join('');
         }
     </script>
 </body>
