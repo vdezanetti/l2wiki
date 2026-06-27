@@ -575,6 +575,19 @@
                 const res = source.filter(a => (a.nome || a.name || '').toLowerCase().includes(termo));
                 renderArmors(res);
             }
+            // ─── BLOCO ADICIONADO PARA FILTRAR OS BOSSES ───
+            else if (secaoAtiva === 'bosses') {
+                let source = [];
+                if (typeof dadosBosses !== 'undefined' && dadosBosses.length > 0) source = dadosBosses;
+                else if (typeof l2DataBosses !== 'undefined' && l2DataBosses.length > 0) source = l2DataBosses;
+                else source = fallbacksLocais.bosses;
+
+                const res = source.filter(b => 
+                    (b.nome || b.name || '').toLowerCase().includes(termo) ||
+                    (b.local || b.location || '').toLowerCase().includes(termo)
+                );
+                exibirBosses(res);
+            }
         }
 
         // ─── SEÇÃO: QUESTS ───────────────────────────────────────────────────────
@@ -868,12 +881,16 @@
                 </div>`).join('');
         }
 
-        function exibirBosses() {
+        function exibirBosses(lista) {
             const c = document.getElementById('container-classes');
-            let source = [];
-            if (typeof dadosBosses !== 'undefined' && dadosBosses.length > 0) source = dadosBosses;
-            else if (typeof l2DataBosses !== 'undefined' && l2DataBosses.length > 0) source = l2DataBosses;
-            else source = fallbacksLocais.bosses;
+            let source = lista;
+            
+            // Se nenhuma lista específica for passada (carregamento normal), usa a base de dados padrão
+            if (!source) {
+                if (typeof dadosBosses !== 'undefined' && dadosBosses.length > 0) source = dadosBosses;
+                else if (typeof l2DataBosses !== 'undefined' && l2DataBosses.length > 0) source = l2DataBosses;
+                else source = fallbacksLocais.bosses;
+            }
 
             c.innerHTML = source.map(b => `
                 <div onclick="exibirDetalheBoss('${b.nome || b.name}')" 
@@ -883,7 +900,7 @@
                     <div class="w-16 h-24 md:w-20 md:h-28 shrink-0 bg-[#0d0907] border border-[#5c2424] overflow-hidden flex items-center justify-center relative">
                         <img src="img/bosses/${(b.name || b.nome).toLowerCase()}.webp" 
                              alt="${b.nome}" 
-                             class="w-full h-full object-cover object-top transition-transform duration-300 group-hover:scale-110"
+                             class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 object-top"
                              onerror="this.onerror=null; this.src='https://placehold.co/100x150/140f0c/ff9e9e?text=L2';">
                     </div>
 
