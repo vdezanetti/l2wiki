@@ -362,7 +362,7 @@ const l2DataQuests = [
                                     <img src="img/materials/hellfire_oil.png" class="w-3.5 h-3.5 object-contain shrink-0" alt="Hellfire Oil" onerror="this.onerror=null; this.src='https://placehold.co/16x16/140f0c/e5c158?text=H';">1 Hellfire Oil
                                 </span> e 
                                 <span class="inline-flex items-center gap-1 bg-[#100c09] border border-[#3d2f25] px-1 py-0.5 text-[10px] text-[#e5c158] font-mono leading-none">
-                                    <img src="img/materials/lunaragent.png" class="w-3.5 h-3.5 object-contain shrink-0" alt="Lunaragent" onerror="this.onerror=null; this.src='https://placehold.co/16x16/140f0c/e5c158?text=L';">5 Lunaragents
+                                    <img src="img/materials/lunargent.png" class="w-3.5 h-3.5 object-contain shrink-0" alt="Lunargent" onerror="this.onerror=null; this.src='https://placehold.co/16x16/140f0c/e5c158?text=L';">5 Lunargents
                                 </span> (obtidos na quest Supplier of Reagents em Ivory Tower)
                             </p>
                         </div>
@@ -406,7 +406,7 @@ const l2DataQuests = [
                                     <img src="img/materials/hellfire_oil.png" class="w-3.5 h-3.5 object-contain shrink-0" alt="Hellfire Oil" onerror="this.style.display='none';">1 Hellfire Oil
                                 </span> e 
                                 <span class="inline-flex items-center gap-1 bg-[#100c09] border border-[#3d2f25] px-1 py-0.5 text-xs text-[#e5c158] font-mono leading-none">
-                                    <img src="img/materials/lunaragent.png" class="w-3.5 h-3.5 object-contain shrink-0" alt="Lunaragent" onerror="this.style.display='none';">5 Lunaragents
+                                    <img src="img/materials/Lunargent.png" class="w-3.5 h-3.5 object-contain shrink-0" alt="Lunargent" onerror="this.style.display='none';">5 Lunargents
                                 </span>. 
                                 Retorne a Caradine para finalizar esta etapa. Você receberá experiência e a 
                                 <span class="inline-flex items-center gap-1 bg-[#100c09] border border-[#3d2f25] px-1 py-0.5 text-xs text-[#e5c158] font-mono leading-none">
@@ -431,7 +431,7 @@ const l2DataQuests = [
                                     <img src="img/materials/hellfire_oil.png" class="w-3.5 h-3.5 object-contain shrink-0" alt="Hellfire Oil" onerror="this.onerror=null; this.src='https://placehold.co/16x16/140f0c/e5c158?text=H';">1 Hellfire Oil
                                 </span> and 
                                 <span class="inline-flex items-center gap-1 bg-[#100c09] border border-[#3d2f25] px-1 py-0.5 text-[10px] text-[#e5c158] font-mono leading-none">
-                                    <img src="img/materials/lunaragent.png" class="w-3.5 h-3.5 object-contain shrink-0" alt="Lunaragent" onerror="this.onerror=null; this.src='https://placehold.co/16x16/140f0c/e5c158?text=L';">5 Lunaragents
+                                    <img src="img/materials/Lunargent.png" class="w-3.5 h-3.5 object-contain shrink-0" alt="Lunargent" onerror="this.onerror=null; this.src='https://placehold.co/16x16/140f0c/e5c158?text=L';">5 Lunargents
                                 </span> (obtained from Supplier of Reagents quest in Ivory Tower)
                             </p>
                         </div>
@@ -475,7 +475,7 @@ const l2DataQuests = [
                                     <img src="img/materials/hellfire_oil.png" class="w-3.5 h-3.5 object-contain shrink-0" alt="Hellfire Oil" onerror="this.onerror=null; this.src='https://placehold.co/16x16/140f0c/e5c158?text=H';">1 Hellfire Oil
                                 </span> and 
                                 <span class="inline-flex items-center gap-1 bg-[#100c09] border border-[#3d2f25] px-1 py-0.5 text-xs text-[#e5c158] font-mono leading-none">
-                                    <img src="img/materials/lunaragent.png" class="w-3.5 h-3.5 object-contain shrink-0" alt="Lunaragent" onerror="this.onerror=null; this.src='https://placehold.co/16x16/140f0c/e5c158?text=L';">5 Lunaragents
+                                    <img src="img/materials/Lunargent.png" class="w-3.5 h-3.5 object-contain shrink-0" alt="Lunargent" onerror="this.onerror=null; this.src='https://placehold.co/16x16/140f0c/e5c158?text=L';">5 Lunargents
                                 </span>. 
                                 Finally, talk to Caradine again to finish the quest. You will receive experience and 
                                 <span class="inline-flex items-center gap-1 bg-[#100c09] border border-[#3d2f25] px-1 py-0.5 text-xs text-[#e5c158] font-mono leading-none">

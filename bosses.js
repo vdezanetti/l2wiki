@@ -7,9 +7,8 @@ function obterIdiomaAtivo() {
     return (typeof idiomaAtual !== 'undefined') ? idiomaAtual : 'pt';
 }
 
-// Base de dados completa de drops do Antharas (PT/US) com caminhos de ícones mapeados
+// ─── TABELA DE DROPS: ANTHARAS ───────────────────────────────────────────
 const dropsAntharas = [
-    // [ID_Imagem, Nome_EN, Nome_PT, Crystals, Chance]
     ["adena", "Adena (14,000,000 - 18,000,000)", "Adena (14.000.000 - 18.000.000)", "-", "100.00%"],
     ["adena", "Adena (14,000,000 - 18,000,000)", "Adena (14.000.000 - 18.000.000)", "-", "100.00%"],
     ["adena", "Adena (9,000,000 - 13,000,000)", "Adena (9.000.000 - 13.000.000)", "-", "100.00%"],
@@ -20,77 +19,47 @@ const dropsAntharas = [
     ["divine_inspiration", "Ancient Book - Divine Inspiration (Manuscript) (12-29)", "Ancient Book - Divine Inspiration (Manuscript) (12-29)", "-", "100.00%"],
     ["b_soe", "Blessed Scroll Of Escape (1-59)", "Scroll de Escape Abençoado (1-59)", "-", "100.00%"],
     ["b_res", "Blessed Scroll Of Resurrection (1-39)", "Scroll de Ressurreição Abençoado (1-39)", "-", "100.00%"],
+    ["fs_protection_of_alignment", "Forgotten Scroll - Protection Of Alignment", "Forgotten Scroll - Protection Of Alignment", "-", "33.33%"],
+    ["fs_protection_of_elemental", "Forgotten Scroll - Protection Of Elemental", "Forgotten Scroll - Protection Of Elemental", "-", "33.33%"],
+    ["fs_protection_of_rune", "Forgotten Scroll - Protection Of Rune", "Forgotten Scroll - Protection Of Rune", "-", "33.33%"],
     ["ls_high_70", "High-Grade Life Stone: Level 70 (2-4)", "Pedra da Vida High-Grade: Nível 70 (2-4)", "-", "45.00%"],
     ["ls_high_76", "High-Grade Life Stone: Level 76 (2-4)", "Pedra da Vida High-Grade: Nível 76 (2-4)", "-", "40.00%"],
     ["scroll_enchant_weapon_a", "Scroll: Enchant Weapon (A) (1-19)", "Scroll: Enchant Weapon (A) (1-19)", "-", "100.00%"],
+    ["sealed_holy_spirits_cloak", "Sealed Holy Spirit's Cloak (1-2)", "Sealed Holy Spirit's Cloak (1-2)", "-", "100.00%"],
     ["ls_top_70", "Top-Grade Life Stone: Level 70 (1-2)", "Pedra da Vida Top-Grade: Nível 70 (1-2)", "-", "10.00%"],
     ["ls_top_76", "Top-Grade Life Stone: Level 76 (1-2)", "Pedra da Vida Top-Grade: Nível 76 (1-2)", "-", "5.00%"],
-    
-    // Weapons S
     ["angel_slayer", "Angel Slayer", "Angel Slayer", "2052 (S)", "20.00%"],
     ["arcana_mace", "Arcana Mace", "Arcana Mace", "2052 (S)", "20.00%"],
     ["basalt_battlehammer", "Basalt Battlehammer", "Basalt Battlehammer", "2052 (S)", "17.00%"],
-    
-    // Weapons A
     ["blood_tornado", "Blood Tornado (1-2)", "Blood Tornado (1-2)", "1128 (A)", "25.00%"],
     ["bloody_orchid", "Bloody Orchid (1-2)", "Bloody Orchid (1-2)", "1128 (A)", "25.00%"],
     ["branch_of_the_mother_tree", "Branch Of The Mother Tree (1-2)", "Branch Of The Mother Tree (1-2)", "1659 (A)", "20.00%"],
     ["carnage_bow", "Carnage Bow (1-2)", "Carnage Bow (1-2)", "1128 (A)", "25.00%"],
     ["dark_legions_edge", "Dark Legion's Edge (1-2)", "Dark Legion's Edge (1-2)", "1659 (A)", "25.00%"],
     ["dasparions_staff", "Dasparion's Staff (1-2)", "Dasparion's Staff (1-2)", "1128 (A)", "25.00%"],
-    
-    // Weapons S
     ["demon_splinter", "Demon Splinter", "Demon Splinter", "2052 (S)", "20.00%"],
     ["draconic_bow", "Draconic Bow", "Draconic Bow", "2052 (S)", "20.00%"],
-    
-    // Weapons A
     ["dragon_grinder", "Dragon Grinder (1-2)", "Dragon Grinder (1-2)", "1659 (A)", "20.00%"],
-    
-    // Weapons S
     ["dragon_hunter_axe", "Dragon Hunter Axe", "Dragon Hunter Axe", "2052 (S)", "17.00%"],
-    
-    // Weapons A
     ["dragon_slayer", "Dragon Slayer (1-2)", "Dragon Slayer (1-2)", "1659 (A)", "25.00%"],
     ["elemental_sword", "Elemental Sword (1-2)", "Elemental Sword (1-2)", "1128 (A)", "25.00%"],
     ["elysian", "Elysian (1-2)", "Elysian (1-2)", "1659 (A)", "25.00%"],
-    
-    // Weapons S
     ["forgotten_blade", "Forgotten Blade", "Forgotten Blade", "2052 (S)", "17.00%"],
-    
-    // Weapons A
     ["halberd", "Halberd (1-2)", "Halberd (1-2)", "1128 (A)", "25.00%"],
-    
-    // Weapons S
     ["heavens_divider", "Heaven's Divider", "Heaven's Divider", "2052 (S)", "16.00%"],
     ["imperial_staff", "Imperial Staff", "Imperial Staff", "2052 (S)", "20.00%"],
-    
-    // Weapons A
     ["meteor_shower", "Meteor Shower (1-2)", "Meteor Shower (1-2)", "1128 (A)", "25.00%"],
-    
-    // Weapons S
     ["saint_spear", "Saint Spear", "Saint Spear", "2052 (S)", "17.00%"],
-    
-    // Shields
     ["sealed_dark_crystal_shield", "Sealed Dark Crystal Shield (1-3)", "Sealed Dark Crystal Shield (1-3)", "75 (A)", "40.00%"],
     ["sealed_imperial_crusader_shield", "Sealed Imperial Crusader Shield", "Sealed Imperial Crusader Shield", "161 (S)", "20.00%"],
     ["sealed_shield_of_nightmare", "Sealed Shield Of Nightmare (1-3)", "Sealed Shield Of Nightmare (1-3)", "114 (A)", "40.00%"],
-    
-    // Weapons A
     ["soul_bow", "Soul Bow (1-2)", "Soul Bow (1-2)", "1659 (A)", "20.00%"],
     ["soul_separator", "Soul Separator (1-2)", "Soul Separator (1-2)", "1659 (A)", "20.00%"],
     ["sword_of_miracles", "Sword Of Miracles (1-2)", "Sword Of Miracles (1-2)", "1659 (A)", "25.00%"],
     ["tallum_blade", "Tallum Blade (1-2)", "Tallum Blade (1-2)", "1128 (A)", "25.00%"],
-    
-    // Weapons S
     ["tallum_blade_dark_legions_edge", "Tallum Blade*Dark Legion's Edge", "Tallum Blade*Dark Legion's Edge", "2052 (S)", "16.00%"],
-    
-    // Weapons A
     ["tallum_glaive", "Tallum Glaive (1-2)", "Tallum Glaive (1-2)", "1659 (A)", "20.00%"],
-    
-    // Epic Jewel
-    ["earring_of_antharas", "Earring Of Antharas", "Brinco de Antharas (Epic)", "178 (S)", "100.00%"],
-    
-    // Armors A/S
+    ["earring_of_antharas", "Earring Of Antharas", "Brinco de Antharas (Épico)", "178 (S)", "100.00%"],
     ["sealed_armor_of_nightmare", "Sealed Armor Of Nightmare (1-3)", "Sealed Armor Of Nightmare (1-3)", "704 (A)", "35.00%"],
     ["sealed_boots_of_nightmare", "Sealed Boots Of Nightmare (1-3)", "Sealed Boots Of Nightmare (1-3)", "108 (A)", "25.00%"],
     ["sealed_dark_crystal_boots", "Sealed Dark Crystal Boots (1-3)", "Sealed Dark Crystal Boots (1-3)", "71 (A)", "25.00%"],
@@ -142,6 +111,135 @@ const dropsAntharas = [
     ["sealed_tateossian_ring", "Sealed Tateossian Ring", "Sealed Tateossian Ring", "105 (S)", "35.00%"]
 ];
 
+// ─── TABELA DE DROPS: BAIUM ──────────────────────────────────────────────
+const dropsBaium = [
+    // [ID_Imagem, Nome_EN, Nome_PT, Crystals, Chance]
+    ["divine_inspiration", "Ancient Book - Divine Inspiration (Manuscript) (5-15)", "Ancient Book - Divine Inspiration (Manuscript) (5-15)", "-", "100.00%"],
+    ["ls_high_70", "High-Grade Life Stone: Level 70 (1-2)", "Pedra da Vida High-Grade: Nível 70 (1-2)", "-", "45.00%"],
+    ["ls_high_76", "High-Grade Life Stone: Level 76 (1-2)", "Pedra da Vida High-Grade: Nível 76 (1-2)", "-", "40.00%"],
+    ["ls_top_70", "Top-Grade Life Stone: Level 70", "Pedra da Vida Top-Grade: Nível 70", "-", "10.00%"],
+    ["ls_top_76", "Top-Grade Life Stone: Level 76", "Pedra da Vida Top-Grade: Nível 76", "-", "5.00%"],
+    
+    // Weapons S
+    ["angel_slayer", "Angel Slayer", "Angel Slayer", "2052 (S)", "1/111"],
+    ["arcana_mace", "Arcana Mace", "Arcana Mace", "2052 (S)", "1.20%"],
+    ["basalt_battlehammer", "Basalt Battlehammer", "Basalt Battlehammer", "2052 (S)", "1.20%"],
+    
+    // Weapons A
+    ["blood_tornado", "Blood Tornado", "Blood Tornado", "1128 (A)", "6.00%"],
+    ["bloody_orchid", "Bloody Orchid", "Bloody Orchid", "1128 (A)", "6.00%"],
+    ["carnage_bow", "Carnage Bow", "Carnage Bow", "1128 (A)", "6.00%"],
+    ["dasparions_staff", "Dasparion's Staff", "Dasparion's Staff", "1128 (A)", "6.00%"],
+    
+    // Weapons S
+    ["demon_splinter", "Demon Splinter", "Demon Splinter", "2052 (S)", "1.20%"],
+    ["draconic_bow", "Draconic Bow", "Draconic Bow", "2052 (S)", "1.20%"],
+    ["dragon_hunter_axe", "Dragon Hunter Axe", "Dragon Hunter Axe", "2052 (S)", "1/111"],
+    
+    // Weapons A
+    ["elemental_sword", "Elemental Sword", "Elemental Sword", "1128 (A)", "6.00%"],
+    
+    // Weapons S
+    ["forgotten_blade", "Forgotten Blade", "Forgotten Blade", "2052 (S)", "1.20%"],
+    
+    // Weapons A
+    ["halberd", "Halberd", "Halberd", "1128 (A)", "6.00%"],
+    
+    // Weapons S
+    ["heavens_divider", "Heaven's Divider", "Heaven's Divider", "2052 (S)", "1.20%"],
+    ["imperial_staff", "Imperial Staff", "Imperial Staff", "2052 (S)", "1.20%"],
+    
+    // Weapons A
+    ["meteor_shower", "Meteor Shower", "Meteor Shower", "1128 (A)", "6.00%"],
+    
+    // Weapons S
+    ["saint_spear", "Saint Spear", "Saint Spear", "2052 (S)", "1/111"],
+    
+    // Weapons A
+    ["tallum_blade", "Tallum Blade", "Tallum Blade", "1128 (A)", "6.00%"],
+    
+    // Weapons S
+    ["tallum_blade_dark_legions_edge", "Tallum Blade*Dark Legion's Edge", "Tallum Blade*Dark Legion's Edge", "2052 (S)", "1/111"],
+    
+    // Epic S Jewel
+    ["ring_of_baium", "Ring Of Baium", "Anel de Baium (Épico)", "83 (S)", "100.00%"]
+];
+
+// ─── GERADOR DE GUIA GENÉRICO (Evita duplicação de HTML) ───────────────────
+function gerarGuiaBoss(nome, level, image, mapImage, drops) {
+    const lang = obterIdiomaAtivo();
+    const btnMapText = lang === 'pt' ? "Ver Localização no Mapa" : "View Location on Map";
+    const tableTitle = lang === 'pt' ? "Tabela de Drops" : "Drop Table";
+    const thItem = lang === 'pt' ? "Item" : "Item";
+    const thCrystals = lang === 'pt' ? "Cristais / Tipo" : "Crystals / Grade";
+    const thChance = lang === 'pt' ? "Chance" : "Chance";
+
+    const dropRows = drops.map(d => {
+        const imgName = d[0];
+        const nomeExibido = lang === 'pt' ? d[2] : d[1];
+        const crystals = d[3];
+        const chance = d[4];
+
+        return `
+            <tr class="border-b border-[#1f1712] hover:bg-[#140f0c] transition-colors">
+                <td class="p-2.5 border-r border-[#3d2f25] flex items-center gap-2 font-bold text-[#ff9e9e]">
+                    <img src="img/materials/${imgName}.png" class="w-4 h-4 object-contain shrink-0" onerror="this.style.display='none';" alt="${nomeExibido}">
+                    ${nomeExibido}
+                </td>
+                <td class="p-2.5 border-r border-[#3d2f25] text-center text-[#a89276]">${crystals}</td>
+                <td class="p-2.5 text-center text-[#ff9e9e] font-bold">${chance}</td>
+            </tr>
+        `;
+    }).join('');
+
+    return `
+        <div class="flex flex-col items-center space-y-6">
+            <!-- Nome e Nível Centralizado -->
+            <div class="text-center">
+                <h2 class="text-3xl font-l2-title text-[#ff9e9e] uppercase tracking-widest">${nome.toUpperCase()}</h2>
+                <p class="text-xs text-[#c47070] font-bold uppercase tracking-widest mt-1">Level ${level}</p>
+            </div>
+
+            <!-- Quadro de Imagem (Aprox. 600x400) -->
+            <div class="w-full max-w-[600px] aspect-[3/2] bg-[#0d0907] border-4 border-double border-[#5c2424] overflow-hidden flex items-center justify-center shadow-lg relative">
+                <img src="${image}" alt="${nome}" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://placehold.co/600x400/140f0c/5c2424?text=${nome}';">
+            </div>
+
+            <!-- Bandeirinha Vermelha Clicável (Location) -->
+            <div class="text-center w-full max-w-[600px]">
+                <button onclick="toggleMap()" class="px-5 py-2 bg-[#5c2424] border border-[#9c3a3a] hover:bg-[#9c3a3a] hover:border-[#ff9e9e] text-[#ff9e9e] text-xs font-bold uppercase tracking-widest transition-all rounded-none shadow-[0_0_8px_rgba(92,36,36,0.4)]">
+                    🚩 ${btnMapText}
+                </button>
+                
+                <!-- Mapa Oculto (Abre ao clicar) -->
+                <div id="boss-map-container" class="hidden mt-4 border-2 border-[#5c2424] bg-[#0d0907] p-2 max-w-[500px] mx-auto transition-all">
+                    <img src="${mapImage}" alt="${nome} Lair Map" class="w-full h-auto object-contain" onerror="this.onerror=null; this.src='https://placehold.co/500x350/0d0907/ff9e9e?text=Map+Not+Found';">
+                </div>
+            </div>
+
+            <!-- Tabela de Drops com Rolagem Interna -->
+            <div class="w-full max-w-[600px] space-y-2">
+                <h3 class="text-[#ff9e9e] font-bold text-sm uppercase border-b border-[#5c2424] pb-1">${tableTitle}</h3>
+                <div class="overflow-y-auto max-h-[350px] border border-[#5c2424] bg-[#0d0907]">
+                    <table class="w-full text-xs text-left font-mono border-collapse">
+                        <thead class="sticky top-0 bg-[#140f0c] text-[#ff9e9e] border-b border-[#5c2424] z-10">
+                            <tr>
+                                        <th class="p-2.5 border-r border-[#3d2f25]">${thItem}</th>
+                                        <th class="p-2.5 border-r border-[#3d2f25] text-center">${thCrystals}</th>
+                                        <th class="p-2.5 text-center">${thChance}</th>
+                            </tr>
+                        </thead>
+                                <tbody class="text-[#d4c5b3] divide-y divide-[#1f1712]">
+                                    ${dropRows}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            `;
+}
+
+// ─── LISTA DE BOSSES DA DATABASE ──────────────────────────────────────────
 const l2DataBosses = [
     {
         nome: "Antharas",
@@ -157,77 +255,24 @@ const l2DataBosses = [
         get location() { return this.local; },
 
         get guia() {
-            const lang = obterIdiomaAtivo();
-            const btnMapText = lang === 'pt' ? "Ver Localização no Mapa" : "View Location on Map";
-            const tableTitle = lang === 'pt' ? "Tabela de Drops" : "Drop Table";
-            const thItem = lang === 'pt' ? "Item" : "Item";
-            const thCrystals = lang === 'pt' ? "Cristais / Tipo" : "Crystals / Grade";
-            const thChance = lang === 'pt' ? "Chance" : "Chance";
+            return gerarGuiaBoss(this.nome, this.level, "img/bosses/antharas.png", "img/bosses/antharas_lair.png", dropsAntharas);
+        }
+    },
+    {
+        nome: "Baium",
+        name: "Baium",
+        level: 75,
+        lvl: 75,
+        
+        get local() {
+            return obterIdiomaAtivo() === 'pt' 
+                ? "Tower of Insolence (14º Andar)" 
+                : "Tower of Insolence (14th Floor)";
+        },
+        get location() { return this.local; },
 
-            // Geração automática e higienizada das linhas de drops da tabela
-            const dropRows = dropsAntharas.map(d => {
-                const imgName = d[0];
-                const nomeExibido = lang === 'pt' ? d[2] : d[1];
-                const crystals = d[3];
-                const chance = d[4];
-
-                return `
-                    <tr class="border-b border-[#1f1712] hover:bg-[#140f0c] transition-colors">
-                        <td class="p-2.5 border-r border-[#3d2f25] flex items-center gap-2 font-bold text-[#ff9e9e]">
-                            <img src="img/materials/${imgName}.png" class="w-4 h-4 object-contain shrink-0" onerror="this.style.display='none';" alt="${nomeExibido}">
-                            ${nomeExibido}
-                        </td>
-                        <td class="p-2.5 border-r border-[#3d2f25] text-center text-[#a89276]">${crystals}</td>
-                        <td class="p-2.5 text-center text-[#ff9e9e] font-bold">${chance}</td>
-                    </tr>
-                `;
-            }).join('');
-
-            return `
-                <div class="flex flex-col items-center space-y-6">
-                    <!-- Nome e Nível Centralizado -->
-                    <div class="text-center">
-                        <h2 class="text-3xl font-l2-title text-[#ff9e9e] uppercase tracking-widest">ANTHARAS</h2>
-                        <p class="text-xs text-[#c47070] font-bold uppercase tracking-widest mt-1">Level 79</p>
-                    </div>
-
-                    <!-- Quadro de Imagem (Aprox. 600x400) -->
-                    <div class="w-full max-w-[600px] aspect-[3/2] bg-[#0d0907] border-4 border-double border-[#5c2424] overflow-hidden flex items-center justify-center shadow-lg relative">
-                        <img src="img/bosses/antharas.png" alt="Antharas" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://placehold.co/600x400/140f0c/5c2424?text=Antharas';">
-                    </div>
-
-                    <!-- Bandeirinha Vermelha Clicável (Location) -->
-                    <div class="text-center w-full max-w-[600px]">
-                        <button onclick="toggleMap()" class="px-5 py-2 bg-[#5c2424] border border-[#9c3a3a] hover:bg-[#9c3a3a] hover:border-[#ff9e9e] text-[#ff9e9e] text-xs font-bold uppercase tracking-widest transition-all rounded-none shadow-[0_0_8px_rgba(92,36,36,0.4)]">
-                            🚩 ${btnMapText}
-                        </button>
-                        
-                        <!-- Mapa Oculto (Abre ao clicar) -->
-                        <div id="boss-map-container" class="hidden mt-4 border-2 border-[#5c2424] bg-[#0d0907] p-2 max-w-[500px] mx-auto transition-all">
-                            <img src="img/bosses/antharas_lair.png" alt="Antharas Lair Map" class="w-full h-auto object-contain" onerror="this.onerror=null; this.src='https://placehold.co/500x350/0d0907/ff9e9e?text=Map+Not+Found';">
-                        </div>
-                    </div>
-
-                    <!-- Tabela de Drops com Rolagem Interna -->
-                    <div class="w-full max-w-[600px] space-y-2">
-                        <h3 class="text-[#ff9e9e] font-bold text-sm uppercase border-b border-[#5c2424] pb-1">${tableTitle}</h3>
-                        <div class="overflow-y-auto max-h-[350px] border border-[#5c2424] bg-[#0d0907]">
-                            <table class="w-full text-xs text-left font-mono border-collapse">
-                                <thead class="sticky top-0 bg-[#140f0c] text-[#ff9e9e] border-b border-[#5c2424] z-10">
-                                    <tr>
-                                        <th class="p-2.5 border-r border-[#3d2f25]">${thItem}</th>
-                                        <th class="p-2.5 border-r border-[#3d2f25] text-center">${thCrystals}</th>
-                                        <th class="p-2.5 text-center">${thChance}</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="text-[#d4c5b3] divide-y divide-[#1f1712]">
-                                    ${dropRows}
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            `;
+        get guia() {
+            return gerarGuiaBoss(this.nome, this.level, "img/bosses/baium.jpg", "img/bosses/baium_toi.png", dropsBaium);
         }
     }
 ];
