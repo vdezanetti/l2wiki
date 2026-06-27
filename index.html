@@ -334,7 +334,7 @@
                 { nome: "Lilith's Minion", lvl: 78, local: "Catacomb of Dark Omens", drop: "Seal Stones, S-grade Enchants" }
             ],
             bosses: [
-                { nome: "Antharas", local: "Antharas' Nest (Dragon Valley)" }
+                { nome: "Antharas", Description: "Antharas, The Land Dragon, was the first Epic Raid Boss, introduced in C1" }
             ]
         };
 
@@ -876,9 +876,28 @@
             else source = fallbacksLocais.bosses;
 
             c.innerHTML = source.map(b => `
-                <div class="bg-[#140f0c] border-2 border-[#5c2424] p-4 rounded-none hover:border-[#9c3a3a] transition-colors shadow-md">
-                    <h3 class="text-[#ff9e9e] font-bold text-sm uppercase">${b.nome}</h3>
-                    <p class="text-[11px] text-[#c47070] mt-1 font-bold">${textos[idiomaAtual].location}: ${b.local}</p>
+                <div onclick="exibirDetalheBoss('${b.nome || b.name}')" 
+                     class="bg-[#140f0c] border-2 border-[#5c2424] p-3 rounded-none hover:border-[#9c3a3a] hover:bg-[#1a1410] transition-colors shadow-md cursor-pointer group flex flex-row gap-4 items-center">
+                    
+                    <!-- Foto Vertical do Boss -->
+                    <div class="w-16 h-24 md:w-20 md:h-28 shrink-0 bg-[#0d0907] border border-[#5c2424] overflow-hidden flex items-center justify-center relative">
+                        <img src="img/bosses/${(b.name || b.nome).toLowerCase()}.webp" 
+                             alt="${b.nome}" 
+                             class="w-full h-full object-cover object-top transition-transform duration-300 group-hover:scale-110"
+                             onerror="this.onerror=null; this.src='https://placehold.co/100x150/140f0c/ff9e9e?text=L2';">
+                    </div>
+
+                    <!-- Informações à Direita (Alinhadas verticalmente à foto) -->
+                    <div class="flex-1 self-stretch flex flex-col justify-between py-1">
+                        <div>
+                            <h3 class="text-[#ff9e9e] font-bold text-sm uppercase group-hover:text-[#ffcccc] transition-colors">${b.nome}</h3>
+                            <p class="text-[11px] text-[#c47070] mt-1 font-bold">${obterIdiomaAtivo() === 'pt' ? 'Local' : 'Location'}: ${b.local || b.location}</p>
+                        </div>
+                        <div class="text-right border-t border-[#3d2424] pt-1.5">
+                            <span class="text-[9px] text-[#c47070] uppercase font-bold group-hover:underline">📖 ${obterIdiomaAtivo() === 'pt' ? 'Ver Status & Drop →' : 'View Stats & Drop →'}</span>
+                        </div>
+                    </div>
+
                 </div>`).join('');
         }
 
@@ -930,6 +949,54 @@
             document.getElementById('tab-info').className  = isQuest ? inativo : ativo;
             document.getElementById('conteudo-modal-quest').classList.toggle('hidden', !isQuest);
             document.getElementById('conteudo-modal-info').classList.toggle('hidden',   isQuest);
+        }
+
+        function exibirDetalheBoss(nomeBoss) {
+            let source = [];
+            if (typeof dadosBosses !== 'undefined' && dadosBosses.length > 0) source = dadosBosses;
+            else if (typeof l2DataBosses !== 'undefined' && l2DataBosses.length > 0) source = l2DataBosses;
+            else source = fallbacksLocais.bosses;
+
+            const boss = source.find(b => (b.nome === nomeBoss || b.name === nomeBoss));
+            if (!boss) { console.error('Boss não encontrado:', nomeBoss); return; }
+
+            document.getElementById('container-busca').classList.add('hidden');
+
+            const container = document.getElementById('container-classes');
+            container.className = "max-w-4xl mx-auto space-y-6";
+
+            let tutorialHtml = boss.guia || '<p class="text-center py-6">Guia do Boss em desenvolvimento.</p>';
+
+            container.innerHTML = `
+                <!-- Botão Voltar -->
+                <div class="mb-2">
+                    <button onclick="renderizarSecao('bosses')" class="bg-[#1f1212] border border-[#5c2424] hover:bg-[#5c2424] hover:border-[#9c3a3a] hover:text-white text-[#ff9e9e] text-xs font-bold px-4 py-2 transition-colors rounded-none flex items-center gap-2">
+                        ← ${obterIdiomaAtivo() === 'pt' ? 'Voltar para Bosses' : 'Back to Bosses'}
+                    </button>
+                </div>
+
+                <!-- Painel do Boss Clássico (Estilo Vermelho/Boss) -->
+                <div class="bg-[#140f0c] border-4 border-double border-[#5c2424] p-6 rounded-none shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
+                    <div class="text-sm text-[#d4c5b3] leading-relaxed space-y-4 font-sans prose prose-invert max-w-none">
+                        ${tutorialHtml}
+                    </div>
+                </div>
+
+                <!-- Botão Voltar Inferior -->
+                <div class="pt-4 text-center">
+                    <button onclick="renderizarSecao('bosses')" class="bg-[#1f1212] border border-[#5c2424] hover:bg-[#5c2424] hover:border-[#9c3a3a] hover:text-white text-[#ff9e9e] text-xs font-bold px-6 py-2.5 transition-colors rounded-none inline-block">
+                        ← ${obterIdiomaAtivo() === 'pt' ? 'Voltar para a Listagem de Bosses' : 'Back to Bosses List'}
+                    </button>
+                </div>
+            `;
+        }
+
+        // Controla a exibição do mapa de localização de forma dinâmica
+        function toggleMap() {
+            const mapContainer = document.getElementById('boss-map-container');
+            if (mapContainer) {
+                mapContainer.classList.toggle('hidden');
+            }
         }
     </script>
 </body>
