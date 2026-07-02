@@ -377,7 +377,7 @@
                 "NG": "border-[#1c1511] text-[#6b584e]"
             };
             const cor = cores[grade] || "border-[#1c1511] text-[#6b584e]";
-            return `<span class="w-8 h-8 flex items-center justify-center border font-medium text-xs uppercase ${cor} bg-[#0d0907] shrink-0 font-mono">${grade}</span>`;
+            return `<span class="w-8 h-8 flex items-center justify-center border font-medium text-xs uppercase ${cor} bg-[#0d0907] shrink-0 tracking-wide">${grade}</span>`;
         }
 
         // ─── ROTEADOR PRINCIPAL ──────────────────────────────────────────────────
@@ -447,7 +447,7 @@
                 <!-- Grid de arquivos/seções (Archives) -->
                 <div class="grid grid-cols-2 gap-3 mb-6">
                     <div onclick="renderizarSecao('weapons')" class="bg-[#110c09] border border-[#2a1e16] hover:border-[#8c6c48] p-4 cursor-pointer transition-all flex flex-col justify-between h-28 relative group">
-                        <span class="absolute top-3 right-4 text-xs font-mono text-[#8a705a] group-hover:text-[#e5c158]">${counts.items}</span>
+                        <span class="absolute top-3 right-4 text-xs text-[#8a705a] group-hover:text-[#e5c158] font-medium tracking-wide">${counts.items}</span>
                         <svg class="w-5 h-5 text-[#8c6c48]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
                         <div>
                             <h3 class="font-l2-title text-[13px] text-[#9ca3af] uppercase font-medium tracking-wider">Items</h3>
@@ -455,7 +455,7 @@
                         </div>
                     </div>
                     <div onclick="renderizarSecao('monsters')" class="bg-[#110c09] border border-[#2a1e16] hover:border-[#8c6c48] p-4 cursor-pointer transition-all flex flex-col justify-between h-28 relative group">
-                        <span class="absolute top-3 right-4 text-xs font-mono text-[#8a705a] group-hover:text-[#e5c158]">${counts.mobs}</span>
+                        <span class="absolute top-3 right-4 text-xs text-[#8a705a] group-hover:text-[#e5c158] font-medium tracking-wide">${counts.mobs}</span>
                         <svg class="w-5 h-5 text-[#8c6c48]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
                         <div>
                             <h3 class="font-l2-title text-[13px] text-[#9ca3af] uppercase font-medium tracking-wider">Mobs</h3>
@@ -463,7 +463,7 @@
                         </div>
                     </div>
                     <div onclick="renderizarSecao('bosses')" class="bg-[#110c09] border border-[#2a1e16] hover:border-[#8c6c48] p-4 cursor-pointer transition-all flex flex-col justify-between h-28 relative group">
-                        <span class="absolute top-3 right-4 text-xs font-mono text-[#8a705a] group-hover:text-[#e5c158]">${counts.bosses}</span>
+                        <span class="absolute top-3 right-4 text-xs text-[#8a705a] group-hover:text-[#e5c158] font-medium tracking-wide">${counts.bosses}</span>
                         <svg class="w-5 h-5 text-[#8c6c48]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                         <div>
                             <h3 class="font-l2-title text-[13px] text-[#9ca3af] uppercase font-medium tracking-wider">Bosses</h3>
@@ -471,7 +471,7 @@
                         </div>
                     </div>
                     <div onclick="renderizarSecao('quests')" class="bg-[#110c09] border border-[#2a1e16] hover:border-[#8c6c48] p-4 cursor-pointer transition-all flex flex-col justify-between h-28 relative group">
-                        <span class="absolute top-3 right-4 text-xs font-mono text-[#8a705a] group-hover:text-[#e5c158]">${counts.quests}</span>
+                        <span class="absolute top-3 right-4 text-xs text-[#8a705a] group-hover:text-[#e5c158] font-medium tracking-wide">${counts.quests}</span>
                         <svg class="w-5 h-5 text-[#8c6c48]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
                         <div>
                             <h3 class="font-l2-title text-[13px] text-[#9ca3af] uppercase font-medium tracking-wider">Quests</h3>
@@ -479,7 +479,7 @@
                         </div>
                     </div>
                     <div onclick="renderizarSecao('recipes')" class="bg-[#110c09] border border-[#2a1e16] hover:border-[#8c6c48] p-4 cursor-pointer transition-all flex flex-col justify-between h-28 relative group col-span-2">
-                        <span class="absolute top-3 right-4 text-xs font-mono text-[#8a705a] group-hover:text-[#e5c158]">${counts.recipes}</span>
+                        <span class="absolute top-3 right-4 text-xs text-[#8a705a] group-hover:text-[#e5c158] font-medium tracking-wide">${counts.recipes}</span>
                         <svg class="w-5 h-5 text-[#8c6c48]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"/></svg>
                         <div>
                             <h3 class="font-l2-title text-[13px] text-[#9ca3af] uppercase font-medium tracking-wider">Recipes</h3>
@@ -492,26 +492,26 @@
                 <div class="space-y-3">
                     <h3 class="text-xs uppercase tracking-widest text-[#8c6c48] font-bold">Legendary Bosses</h3>
                     <div class="grid grid-cols-1 gap-2.5">
-                        <div onclick="exibirDetalheBoss('Antharas')" class="bg-[#110c09] border border-[#5c2424] hover:border-[#9c3a3a] p-3 flex justify-between items-center cursor-pointer transition-all group">
+                        <div onclick="exibirDetalheBoss('Antharas')" class="bg-[#110c09] border border-[#8c6c48]/50 hover:border-[#e5c158] p-3 flex justify-between items-center cursor-pointer transition-all group">
                             <div class="flex items-center gap-3">
-                                <span class="bg-[#5c2424]/20 border border-[#5c2424] text-[#ff9e9e] text-[9px] font-bold px-1.5 py-0.5 uppercase tracking-wider">Grand</span>
+                                <span class="bg-[#8c6f4f]/10 border border-[#8c6f4f] text-[#e5c158] text-[9px] font-medium px-1.5 py-0.5 uppercase tracking-wider">Grand</span>
                                 <span class="text-sm font-l2-title text-[#d4c5b3] uppercase tracking-wide group-hover:text-white transition-colors">Antharas</span>
                             </div>
-                            <span class="text-[11px] font-mono text-[#c47070] font-bold">Lv 79 ›</span>
+                            <span class="text-[11px] text-[#a89276] font-medium tracking-wider">Lv 79 ›</span>
                         </div>
-                        <div onclick="exibirDetalheBoss('Baium')" class="bg-[#110c09] border border-[#5c2424] hover:border-[#9c3a3a] p-3 flex justify-between items-center cursor-pointer transition-all group">
+                        <div onclick="exibirDetalheBoss('Baium')" class="bg-[#110c09] border border-[#8c6c48]/50 hover:border-[#e5c158] p-3 flex justify-between items-center cursor-pointer transition-all group">
                             <div class="flex items-center gap-3">
-                                <span class="bg-[#5c2424]/20 border border-[#5c2424] text-[#ff9e9e] text-[9px] font-bold px-1.5 py-0.5 uppercase tracking-wider">Grand</span>
+                                <span class="bg-[#8c6f4f]/10 border border-[#8c6f4f] text-[#e5c158] text-[9px] font-medium px-1.5 py-0.5 uppercase tracking-wider">Grand</span>
                                 <span class="text-sm font-l2-title text-[#d4c5b3] uppercase tracking-wide group-hover:text-white transition-colors">Baium</span>
                             </div>
-                            <span class="text-[11px] font-mono text-[#c47070] font-bold">Lv 75 ›</span>
+                            <span class="text-[11px] text-[#a89276] font-medium tracking-wider">Lv 75 ›</span>
                         </div>
-                        <div onclick="exibirDetalheBoss('Valakas')" class="bg-[#110c09] border border-[#5c2424] hover:border-[#9c3a3a] p-3 flex justify-between items-center cursor-pointer transition-all group">
+                        <div onclick="exibirDetalheBoss('Valakas')" class="bg-[#110c09] border border-[#8c6c48]/50 hover:border-[#e5c158] p-3 flex justify-between items-center cursor-pointer transition-all group">
                             <div class="flex items-center gap-3">
-                                <span class="bg-[#5c2424]/20 border border-[#5c2424] text-[#ff9e9e] text-[9px] font-bold px-1.5 py-0.5 uppercase tracking-wider">Grand</span>
+                                <span class="bg-[#8c6f4f]/10 border border-[#8c6f4f] text-[#e5c158] text-[9px] font-medium px-1.5 py-0.5 uppercase tracking-wider">Grand</span>
                                 <span class="text-sm font-l2-title text-[#d4c5b3] uppercase tracking-wide group-hover:text-white transition-colors">Valakas</span>
                             </div>
-                            <span class="text-[11px] font-mono text-[#c47070] font-bold">Lv 85 ›</span>
+                            <span class="text-[11px] text-[#a89276] font-medium tracking-wider">Lv 85 ›</span>
                         </div>
                     </div>
                 </div>
@@ -571,7 +571,7 @@
                             <p class="text-[10px] text-[#8a705a] mt-0.5 capitalize">${item.tipoGeral.toLowerCase()}</p>
                         </div>
                     </div>
-                    <span class="text-[#8c6c48] group-hover:text-[#e5c158] transition-colors font-mono text-xs">›</span>
+                    <span class="text-[#8c6c48] group-hover:text-[#e5c158] transition-colors text-xs tracking-wider">›</span>
                 </div>
             `).join('');
         }
@@ -752,7 +752,7 @@
                             <p class="text-[10px] text-[#8a705a] mt-0.5 capitalize">${item.tipoGeral ? item.tipoGeral.toLowerCase() : ''}</p>
                         </div>
                     </div>
-                    <span class="text-[#8c6c48] group-hover:text-[#e5c158] transition-colors font-mono text-xs">›</span>
+                    <span class="text-[#8c6c48] group-hover:text-[#e5c158] transition-colors text-xs tracking-wider">›</span>
                 </div>
             `).join('');
         }
@@ -783,13 +783,13 @@
                     <div onclick="exibirDetalheQuest('${q.nome || q.name}')" 
                          class="bg-[#110c09] border border-[#2a1e16] hover:border-[#8c6c48] p-3 flex justify-between items-center cursor-pointer transition-all group">
                         <div class="flex items-center gap-3">
-                            <span class="bg-[#2a1e16]/40 border border-[#2a1e16] text-[#8a705a] text-[9px] font-bold px-1.5 py-0.5 uppercase tracking-wider">${badgeType}</span>
+                            <span class="bg-[#2a1e16]/40 border border-[#2a1e16] text-[#8a705a] text-[9px] font-medium px-1.5 py-0.5 uppercase tracking-wider">${badgeType}</span>
                             <div>
                                 <h3 class="text-sm font-l2-title text-[#d4c5b3] uppercase tracking-wider group-hover:text-white transition-colors">${q.nome || q.name}</h3>
                                 <p class="text-[10px] text-[#8a705a] mt-0.5">${q.npc || 'Desconhecido'}</p>
                             </div>
                         </div>
-                        <span class="text-[11px] font-mono text-[#a89276] font-bold">Lv ${q.level || q.lvl || 'Any'} ›</span>
+                        <span class="text-[11px] text-[#a89276] font-medium tracking-wider">Lv ${q.level || q.lvl || 'Any'} ›</span>
                     </div>
                 `;
             }).join('');
@@ -878,7 +878,7 @@
                                 <p class="text-[10px] text-[#8a705a] mt-0.5">recipe · 60% success</p>
                             </div>
                         </div>
-                        <span class="text-[11px] font-mono text-[#a89276] font-bold">Lv 4 ›</span>
+                        <span class="text-[11px] text-[#a89276] font-medium tracking-wider">Lv 4 ›</span>
                     </div>
                 `;
             }).join('');
@@ -935,8 +935,8 @@
                 recipe = {
                     nome: coreName,
                     arvoreHtml: `
-                        <div class="font-mono text-xs bg-[#0b0806] p-4 border border-[#2a1e16] space-y-1 text-[#d4c5b3] shadow-inner">
-                            <div class="text-[#e5c158] font-bold pb-2 border-b border-[#2a1e16] mb-2">Recipe: ${coreName} (60%) (recipe 100%)</div>
+                        <div class="text-xs bg-[#0b0806] p-4 border border-[#2a1e16] space-y-1 text-[#d4c5b3] shadow-inner tracking-wide">
+                            <div class="text-[#e5c158] font-medium pb-2 border-b border-[#2a1e16] mb-2">Recipe: ${coreName} (60%) (recipe 100%)</div>
                             <div>├── 📄 <strong>Recipe: ${coreName} (60%)</strong> [Qtd: 1]</div>
                             <div>├── 🔹 <strong>${coreName} Key Material</strong> [Qtd: 17]</div>
                             <div>├── 🔹 <strong>Gemstone S</strong> [Qtd: 43]</div>
@@ -945,11 +945,11 @@
                         </div>
                     `,
                     totaisHtml: `
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-mono bg-[#0b0806] p-4 border border-[#2a1e16] text-[#d4c5b3]">
-                            <div class="flex justify-between border-b border-[#110c09] pb-1"><span>Recipe: ${coreName} (60%)</span><span class="text-[#e5c158] font-bold">1</span></div>
-                            <div class="flex justify-between border-b border-[#110c09] pb-1"><span>${coreName} Key Material</span><span class="text-[#e5c158] font-bold">17</span></div>
-                            <div class="flex justify-between border-b border-[#110c09] pb-1"><span>Gemstone S</span><span class="text-[#e5c158] font-bold">43</span></div>
-                            <div class="flex justify-between border-b border-[#110c09] pb-1"><span>Crystal: S Grade</span><span class="text-[#e5c158] font-bold">214</span></div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs bg-[#0b0806] p-4 border border-[#2a1e16] text-[#d4c5b3] tracking-wide">
+                            <div class="flex justify-between border-b border-[#110c09] pb-1"><span>Recipe: ${coreName} (60%)</span><span class="text-[#e5c158] font-medium">1</span></div>
+                            <div class="flex justify-between border-b border-[#110c09] pb-1"><span>${coreName} Key Material</span><span class="text-[#e5c158] font-medium">17</span></div>
+                            <div class="flex justify-between border-b border-[#110c09] pb-1"><span>Gemstone S</span><span class="text-[#e5c158] font-medium">43</span></div>
+                            <div class="flex justify-between border-b border-[#110c09] pb-1"><span>Crystal: S Grade</span><span class="text-[#e5c158] font-medium">214</span></div>
                         </div>
                     `
                 };
@@ -978,8 +978,8 @@
                             <h3 class="text-sm font-l2-title text-[#e5c158] uppercase tracking-wider">${m.nome}</h3>
                             <p class="text-[10px] text-[#8a705a] mt-0.5">${m.local}</p>
                         </div>
-                        <div class="flex flex-col items-end gap-1 font-mono">
-                            <span class="text-xs text-[#a89276] font-bold">Lv ${m.lvl || m.level || 'N/A'}</span>
+                        <div class="flex flex-col items-end gap-1">
+                            <span class="text-xs text-[#a89276] font-medium tracking-wider">Lv ${m.lvl || m.level || 'N/A'}</span>
                             ${isAggro ? `<span class="bg-[#5c2424]/20 border border-[#5c2424] text-[#ff9e9e] text-[8px] font-bold px-1 uppercase tracking-wider">Aggro</span>` : ''}
                         </div>
                     </div>
@@ -1004,19 +1004,19 @@
 
                 if (b.nome.toLowerCase() === 'frintezza') {
                     badge = "EPIC";
-                    badgeColor = "bg-[#5c2424]/20 border-[#5c2424] text-[#ff9e9e]";
+                    badgeColor = "bg-[#8c6f4f]/10 border-[#8c6f4f] text-[#e5c158]";
                     respawn = "48h";
                 } else if (b.nome.toLowerCase() === 'antharas') {
                     badge = "GRAND";
-                    badgeColor = "bg-[#8c6f4f]/20 border-[#8c6f4f] text-[#e5c158]";
+                    badgeColor = "bg-[#8c6f4f]/10 border-[#8c6f4f] text-[#e5c158]";
                     respawn = "192-197h";
                 } else if (b.nome.toLowerCase() === 'baium') {
                     badge = "GRAND";
-                    badgeColor = "bg-[#8c6f4f]/20 border-[#8c6f4f] text-[#e5c158]";
+                    badgeColor = "bg-[#8c6f4f]/10 border-[#8c6f4f] text-[#e5c158]";
                     respawn = "121-125h";
                 } else if (b.nome.toLowerCase() === 'valakas') {
                     badge = "GRAND";
-                    badgeColor = "bg-[#8c6f4f]/20 border-[#8c6f4f] text-[#e5c158]";
+                    badgeColor = "bg-[#8c6f4f]/10 border-[#8c6f4f] text-[#e5c158]";
                     respawn = "192-197h";
                 }
 
@@ -1024,7 +1024,6 @@
                     <div onclick="exibirDetalheBoss('${b.nome || b.name}')" 
                          class="bg-[#110c09] border border-[#2a1e16] hover:border-[#8c6c48] p-3 flex justify-between items-center cursor-pointer transition-all group">
                         <div class="flex items-center gap-3">
-                            <!-- Foto Vertical Compacta à Esquerda -->
                             <div class="w-12 h-16 shrink-0 bg-[#0b0806] border border-[#2a1e16] overflow-hidden flex items-center justify-center">
                                 <img src="img/bosses/${(b.name || b.nome).toLowerCase()}.webp" 
                                      alt="${b.nome}" 
@@ -1039,8 +1038,8 @@
                                 <p class="text-[10px] text-[#8a705a] mt-1">${b.local || b.location}</p>
                             </div>
                         </div>
-                        <div class="flex flex-col items-end gap-1 font-mono">
-                            <span class="text-xs text-[#a89276] font-bold">Lv ${b.lvl || b.level || 'N/A'}</span>
+                        <div class="flex flex-col items-end gap-1">
+                            <span class="text-xs text-[#a89276] font-medium tracking-wider">Lv ${b.lvl || b.level || 'N/A'}</span>
                             <span class="text-[9px] text-[#8a705a]">${respawn} ›</span>
                         </div>
                     </div>

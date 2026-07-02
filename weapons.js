@@ -6,42 +6,42 @@
 const l2DataWeapons = [
     // ─── GRADE S ──────────────────────────────────────────────────────────
     {
-        nome: "[Grade S] Draconic Bow - Bow",
+        nome: "Draconic Bow - Bow",
         sa: "Focus (Red Stage 13) | Cheap Shot (Green Stage 13) | Guidance (Blue Stage 13)",
         grade: "S",
         tipo: "Bow",
         imagem: "img/weapons/draconic_bow.png"
     },
     {
-        nome: "Forgotten Blade [Grade S] - Sword",
+        nome: "Forgotten Blade - Sword",
         sa: "Focus (Red Stage 13) | Health (Green Stage 13) | Haste (Blue Stage 13)",
         grade: "S",
         tipo: "Sword",
         imagem: "img/weapons/forgotten_blade.png"
     },
     {
-        nome: "Angel Slayer [Grade S] - Dagger",
+        nome: "Angel Slayer - Dagger",
         sa: "Critical Damage (Red Stage 13) | HP Drain (Green Stage 13) | Haste (Blue Stage 13)",
         grade: "S",
         tipo: "Dagger",
         imagem: "img/weapons/angel_slayer.png"
     },
     {
-        nome: "Arcana Mace [Grade S] - Mage Blunt",
+        nome: "Arcana Mace - Mage Blunt",
         sa: "Acumen (Red Stage 13) | MP Regeneration (Green Stage 13) | Mana Up (Blue Stage 13)",
         grade: "S",
         tipo: "Blunt",
         imagem: "img/weapons/arcana_mace.png"
     },
     {
-        nome: "Imperial Staff [Grade S] - Mage Staff",
+        nome: "Imperial Staff - Mage Staff",
         sa: "Empower (Red Stage 13) | MP Regeneration (Green Stage 13) | Magic Hold (Blue Stage 13)",
         grade: "S",
         tipo: "Staff",
         imagem: "img/weapons/imperial_staff.png"
     },
     {
-        nome: "Heaven's Divider [Grade S] - Two-Handed Sword",
+        nome: "Heaven's Divider - Two-Handed Sword",
         sa: "Haste (Red Stage 13) | Health (Green Stage 13) | Focus (Blue Stage 13)",
         grade: "S",
         tipo: "Two-Handed Sword",
